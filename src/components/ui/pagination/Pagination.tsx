@@ -13,7 +13,7 @@ type PaginationType<T extends ElementType> = {
   as?: T
   className?: string
   currentPage: number
-  onPageChange: (page: number) => void
+  onPageChange: (page: any) => void
   pageSize: number
   siblingCount: number
   totalCount: number
