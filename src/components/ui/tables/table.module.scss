@@ -1,0 +1,35 @@
+.table {
+  border-collapse: collapse;
+  color: var(--color-light-100);
+  border: 1px solid var(--color-bg-dividers);
+}
+
+.headCell {
+  padding: 6px 24px;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-m);
+
+  background-color: var(--color-dark-500);
+
+  //border: 1px solid red;
+}
+
+.tableCell {
+  padding: 8px 24px;
+
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
+
+  background-color: var(--color-dark-900);
+  border-bottom: 1px solid var(--color-dark-500);
+}
+
+.stars {
+  display: flex;
+}
+
+.icons {
+  display: flex;
+}

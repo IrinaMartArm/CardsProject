@@ -1,0 +1,103 @@
+//root
+.root {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  height: 24px;
+
+  //border: 1px solid red;
+}
+
+.paginationContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+//select
+.selectWrapper {
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  height: 24px;
+}
+
+//arrows buttons
+.arrowButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  all: unset;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  line-height: 1.43;
+  color: var(--color-light-100);
+
+  border-radius: 2px;
+
+  &.dots:hover {
+    cursor: default;
+    background-color: transparent;
+  }
+
+  &:hover:not(&.selected) {
+    cursor: pointer;
+    background-color: var(--color-dark-500);
+  }
+
+  &:focus-within {
+    border: 1px soid var(--color-info-900);
+  }
+
+  &.selected {
+    color: var(--color-dark-900);
+    background-color: var(--color-light-100);
+  }
+
+  &.disabled {
+    pointer-events: none;
+    color: var(--color-dark-100);
+
+    &:hover {
+      cursor: default;
+      background-color: transparent;
+    }
+  }
+}
+
+.dots {
+  all: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  line-height: 1.43;
+  color: var(--color-light-100);
+
+  border-radius: 2px;
+}
+
+.icon {
+  color: var(--color-light-100);
+
+  .item:disabled & {
+    // important because icons have style prop
+    color: var(--color-dark-100) !important;
+  }
+}
