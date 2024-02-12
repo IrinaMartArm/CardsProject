@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1980px;
+  height: 60px;
+  padding: 12px 135px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-700);
+}
+
+.auth {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.name {
+  border-bottom: 1px dashed var(--color-light-100);
+}
