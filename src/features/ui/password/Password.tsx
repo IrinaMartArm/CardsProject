@@ -15,6 +15,7 @@ const classNames = {
   container: s.container,
   inputBox: clsx(s.inputBox, s.text),
   light: s.light,
+  link: s.link,
   root: s.root,
 }
 
@@ -32,12 +33,21 @@ export const Password = ({ forgot, onSubmit }: PasswordProps) => {
               </Typography>
             </div>
             <div className={classNames.buttonBox}>
-              <Button variant={'primary'}>Send Instructions</Button>
+              <Button onSubmit={() => onSubmit()} variant={'primary'}>
+                Send Instructions
+              </Button>
               <Typography className={classNames.light} variant={'body2'}>
                 Did you remember your password?
               </Typography>
-              <Button as={'a'} onSubmit={() => onSubmit()} variant={'link'}>
-                Try logging in
+              <Button
+                as={'a'}
+                className={classNames.link}
+                onSubmit={() => onSubmit()}
+                variant={'link'}
+              >
+                <Typography className={classNames.link} variant={'link1'}>
+                  Try logging in
+                </Typography>
               </Button>
             </div>
           </div>

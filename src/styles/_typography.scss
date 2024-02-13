@@ -1,12 +1,12 @@
 :root {
   /* globals */
   --font-family: 'Roboto', sans-serif;
-  --font-size-xs: 14px;
-  --font-size-s: 16px;
-  --font-size-m: 18px;
-  --font-size-l: 20px;
-  --font-size-xl: 24px;
-  --font-size-xxl: 28px;
+  --font-size-xs: 12px;
+  --font-size-s: 14px;
+  --font-size-m: 16px;
+  --font-size-l: 28px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 26px;
 
   /* line-heights */
   --line-height-s: 16px;
@@ -20,12 +20,12 @@
   --font-weight-bold: 700;
 
   @media (width <= 1100px) {
-    --font-size-xs: 12px;
-    --font-size-s: 14px;
-    --font-size-m: 16px;
-    --font-size-l: 18px;
-    --font-size-xl: 22px;
-    --font-size-xxl: 26px;
+    --font-size-xs: 10px;
+    --font-size-s: 12px;
+    --font-size-m: 14px;
+    --font-size-l: 16px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 22px;
   }
 
   @media (width <= 768px) {
@@ -33,8 +33,8 @@
     --font-size-s: 12px;
     --font-size-m: 14px;
     --font-size-l: 16px;
-    --font-size-xl: 20px;
-    --font-size-xxl: 24px;
+    --font-size-xl: 18px;
+    --font-size-xxl: 20px;
   }
 }
 
@@ -45,102 +45,4 @@
   font-weight: $fontWeight;
   line-height: $lineHeight;
   color: var(--color-text-primary);
-}
-
-.uik_typography-h1 {
-  @include typography(var(--font-size-xxl), var(--line-height-xl), var(--font-weight-bold));
-}
-
-.uik_typography-h2 {
-  @include typography(var(--font-size-xl), var(--line-height-m), var(--font-weight-semi-bold));
-}
-
-.uik_typography-h3 {
-  @include typography(var(--font-size-l), var(--line-height-m), var(--font-weight-medium));
-}
-
-.uik_typography-subtitle1 {
-  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-medium));
-}
-
-.uik_typography-subtitle2 {
-  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-medium));
-}
-
-.uik_typography-body1 {
-  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-regular));
-}
-
-.uik_typography-body2 {
-  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
-}
-
-.uik_typography-overline {
-  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
-
-  text-transform: uppercase;
-}
-
-.uik_typography-caption {
-  @include typography(var(--font-size-xs), var(--line-height-m), var(--font-weight-regular));
-
-  display: inline-block;
-  text-align: start;
-}
-
-.uik_typography-caption-bold {
-  @include typography(var(--font-size-xs), var(--line-height-m), var(--font-weight-bold));
-
-  display: inline-block;
-  text-align: start;
-}
-
-.uik_typography-caption-link {
-  @include typography(var(--font-size-xs), var(--line-height-m), var(--font-weight-regular));
-
-  text-decoration: underline;
-}
-
-.uik_typography-link {
-  @include typography(inherit, inherit, inherit);
-
-  cursor: pointer;
-  color: var(--color-info-500);
-  text-decoration: underline;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-}
-
-.uik_typography-subtitle-link {
-  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-bold));
-
-  cursor: pointer;
-  color: var(--color-info-500);
-  text-decoration: underline;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-}
-
-.uik_typography-error {
-  @include typography(var(--font-size-sx), var(--line-height-m), var(--font-weight-regular));
-
-  color: var(--color-danger-500);
-}
-
-@function calcFluidFontSize($f-min, $f-max, $v-min, $v-max) {
-  $k: ($f-max - $f-min)/ ($v-max - $v-min);
-  $b: $f-min - $k * $v-min;
-  $b: $b * 1px;
-
-  @return calc(#{$k} * 100vw + #{$b});
-}
-
-.fluid-font-size {
-  font-size: calcfluidfontsize(16, 48, 480, 1280);
 }

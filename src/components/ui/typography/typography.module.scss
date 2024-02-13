@@ -61,11 +61,24 @@
   text-decoration: underline;
 }
 
-.link {
-  @include typography(inherit, inherit, inherit);
+.link1 {
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-regular));
 
   cursor: pointer;
-  color: var(--color-info-300);
+  color: var(--color-info-700);
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.link2 {
+  @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
+
+  cursor: pointer;
+  color: var(--color-info-700);
   text-decoration: underline;
 
   &:hover,
@@ -78,7 +91,7 @@
   @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-bold));
 
   cursor: pointer;
-  color: var(--color-info-300);
+  color: var(--color-info-700);
   text-decoration: underline;
 
   &:hover,
