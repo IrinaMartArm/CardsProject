@@ -48,8 +48,6 @@ export const Input = (props: InputProps) => {
     label: clsx(disabled ? s.labelDisable : s.label),
     root: clsx(s.box, disabled ? s.disabled : '', className),
   }
-
-  // const isShowButton = true
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (onEnter && e.key === 'Enter') {
       onEnter(e)

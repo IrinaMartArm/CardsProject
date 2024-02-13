@@ -10,8 +10,9 @@ import s from './modals.module.scss'
 
 type ModalsProps = {
   buttons?: boolean
+  title: string
 }
-export const Modals = ({ buttons }: ModalsProps) => {
+export const Modals = ({ buttons, title }: ModalsProps) => {
   const classNames = {
     footer: clsx(s.footer, buttons && s.buttons),
   }
@@ -19,13 +20,14 @@ export const Modals = ({ buttons }: ModalsProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className={s.ButtonV}>
-          Title <Close />
-        </button>
+        <button className={s.ButtonV}>{title}</button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.DialogOverlay} />
         <Dialog.Content className={s.DialogContent}>
+          <button className={s.ButtonV}>
+            {title} <Close />
+          </button>
           <fieldset className={s.Fieldset}>
             <Select
               className={s.fullWidth}

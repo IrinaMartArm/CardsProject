@@ -129,13 +129,13 @@ export function App() {
           </Table.Row>
         </Table.Body>
       </Table.Root>
-      <Modals />
-      <Modals buttons />
+      <Modals title={'Add New Deck'} />
+      <Modals buttons title={'Add New Deck'} />
       <Header name={'Irina'} />
       <Header withBtn />
       <ErrorPage />
-      <Password />
-      <Password forgot />
+      <Password onSubmit={() => {}} />
+      <Password forgot onSubmit={() => {}} />
     </div>
   )
 }
