@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 130px;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1980px;
+
+  background-color: var(--color-dark-900);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.img {
+  width: 100%;
+  max-width: 451px;
+}
