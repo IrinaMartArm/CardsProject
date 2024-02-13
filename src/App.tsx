@@ -15,6 +15,7 @@ import { StarsBlock } from '@/components/ui/tables/StarsBlock'
 import { Table } from '@/components/ui/tables/Table'
 import { TabsDemo } from '@/components/ui/tabs/TabsDemo'
 import { Typography } from '@/components/ui/typography/Typography'
+import { ErrorPage } from '@/features/ui/errorPage/ErrorPage'
 import { Password } from '@/features/ui/password/Password'
 
 import { Button } from './components/ui/button'
@@ -132,6 +133,7 @@ export function App() {
       <Modals buttons />
       <Header name={'Irina'} />
       <Header withBtn />
+      <ErrorPage />
       <Password />
     </div>
   )

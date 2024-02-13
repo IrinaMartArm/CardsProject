@@ -10,7 +10,7 @@ export const ErrorPage = () => {
     <div className={s.root}>
       <Header withBtn />
       <div className={s.content}>
-        <img alt={'404 ERROR'} className={s.img} src={error} />
+        <img alt={'errorPage ERROR'} className={s.img} src={error} />
         <Typography variant={'body2'}>Sorry! Page not found!</Typography>
         <Button variant={'primary'}>Back to home page</Button>
       </div>
