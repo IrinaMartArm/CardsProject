@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, KeyboardEvent, ReactNode } from 'react'
 
 import { Label } from '@/components/ui/label/Label'
-import { Typography } from '@/components/ui/tipography/Typography'
+import { Typography } from '@/components/ui/typography/Typography'
 import { Close } from '@/images/icons/svgs/Close'
 import { Search } from '@/images/icons/svgs/Search'
 import { Visibility } from '@/images/icons/svgs/Visibility'

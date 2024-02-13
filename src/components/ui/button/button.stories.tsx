@@ -116,13 +116,12 @@ export const AsLink: Story = {
     variant: 'primary',
   },
 }
-export const AsLinkDisabled: Story = {
+export const DisabledButtonWithIcon: Story = {
   args: {
-    as: 'a',
     children: (
       <>
         <img alt={''} src={out} />
-        As Link Disabled
+        Button primary
       </>
     ),
     disabled: true,
