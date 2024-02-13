@@ -1,6 +1,6 @@
 import { AuthPhoto } from '@/components/ui/authPhoto/AuthPhoto'
 import { Button } from '@/components/ui/button'
-import { Typography } from '@/components/ui/tipography/Typography'
+import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './header.module.scss'
 
