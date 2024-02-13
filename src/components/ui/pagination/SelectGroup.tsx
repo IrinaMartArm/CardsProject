@@ -1,6 +1,6 @@
 import { items } from '@/App'
 import Select from '@/components/ui/select/Select'
-import { Typography } from '@/components/ui/tipography/Typography'
+import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './pagination.module.scss'
 export const SelectGroup = () => {
