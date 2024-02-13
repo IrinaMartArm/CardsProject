@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { CheckBox } from '@/components/ui/checkBox'
 import { Input } from '@/components/ui/input'
 import Select from '@/components/ui/select/Select'
+import { Typography } from '@/components/ui/typography/Typography'
 import { Close } from '@/images/icons/svgs/Close'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
@@ -12,9 +13,12 @@ type ModalsProps = {
   buttons?: boolean
   title: string
 }
+
 export const Modals = ({ buttons, title }: ModalsProps) => {
   const classNames = {
     footer: clsx(s.footer, buttons && s.buttons),
+    textFieldsBox: s.textFieldsBox,
+    titleBox: s.titleBox,
   }
 
   return (
@@ -25,41 +29,50 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
       <Dialog.Portal>
         <Dialog.Overlay className={s.DialogOverlay} />
         <Dialog.Content className={s.DialogContent}>
-          <button className={s.ButtonV}>
-            {title} <Close />
-          </button>
-          <fieldset className={s.Fieldset}>
-            <Select
-              className={s.fullWidth}
-              items={[]}
-              onChange={() => {}}
-              placeholder={'something'}
-            />
-          </fieldset>
-          <fieldset className={s.Fieldset}>
-            <Input fullWidth placeholder={'Input'} type={'text'} />
-          </fieldset>
-          <fieldset className={s.Fieldset}>
-            <Input fullWidth placeholder={'Input'} type={'text'} />
-          </fieldset>
-          <fieldset className={s.Fieldset}>
-            <CheckBox label={'Check-box'} />
-          </fieldset>
-          <div>
-            {buttons ? (
-              <div className={classNames.footer}>
-                <Button variant={'secondary'}>Button secondary</Button>
-                <Dialog.Close asChild>
-                  <Button variant={'primary'}>Button primary</Button>
-                </Dialog.Close>
-              </div>
-            ) : (
-              <div className={classNames.footer}>
-                <Dialog.Close asChild>
+          <div className={classNames.titleBox}>
+            <Dialog.Title>
+              <Typography variant={'h3'}>{title}</Typography>
+            </Dialog.Title>
+            <Dialog.Close asChild>
+              <button aria-label={'Close'} className={'IconButton'}>
+                <Close />
+              </button>
+            </Dialog.Close>
+          </div>
+          <div className={classNames.textFieldsBox}>
+            <fieldset className={s.Fieldset}>
+              <Select
+                className={s.fullWidth}
+                items={[]}
+                onChange={() => {}}
+                placeholder={'something'}
+              />
+            </fieldset>
+            <fieldset className={s.Fieldset}>
+              <Input fullWidth placeholder={'Input'} type={'text'} />
+            </fieldset>
+            <fieldset className={s.Fieldset}>
+              <Input fullWidth placeholder={'Input'} type={'text'} />
+            </fieldset>
+            <fieldset className={s.Fieldset}>
+              <CheckBox label={'Check-box'} />
+            </fieldset>
+            <div>
+              {buttons ? (
+                <div className={classNames.footer}>
                   <Button variant={'secondary'}>Button secondary</Button>
-                </Dialog.Close>
-              </div>
-            )}
+                  <Dialog.Close asChild>
+                    <Button variant={'primary'}>Button primary</Button>
+                  </Dialog.Close>
+                </div>
+              ) : (
+                <div className={classNames.footer}>
+                  <Dialog.Close asChild>
+                    <Button variant={'secondary'}>Button secondary</Button>
+                  </Dialog.Close>
+                </div>
+              )}
+            </div>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
