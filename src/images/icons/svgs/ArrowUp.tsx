@@ -1,6 +1,8 @@
+import { forwardRef, memo } from 'react'
+
 import { IconProps, IconWrapper } from '../IconWrapper'
 
-export const KeyboardArrowUp = (allProps: IconProps) => {
+const KeyboardArrowUp = (allProps: IconProps) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (
@@ -31,3 +33,6 @@ export const KeyboardArrowUp = (allProps: IconProps) => {
     />
   )
 }
+const ForwardRef = forwardRef(KeyboardArrowUp)
+
+export default memo(ForwardRef)

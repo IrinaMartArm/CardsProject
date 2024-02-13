@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components/ui/header/Header'
-import { Typography } from '@/components/ui/tipography/Typography'
+import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './error.module.scss'
 
