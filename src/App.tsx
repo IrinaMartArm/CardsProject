@@ -135,6 +135,7 @@ export function App() {
       <Header withBtn />
       <ErrorPage />
       <Password />
+      <Password forgot />
     </div>
   )
 }
