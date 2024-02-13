@@ -8,7 +8,10 @@
     "build": "tsc && vite build",
     "format": "prettier --write src",
     "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test:unit": "vitest --root src/"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",

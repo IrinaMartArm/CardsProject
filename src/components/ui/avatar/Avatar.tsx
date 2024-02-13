@@ -11,7 +11,7 @@ type Props = {
 } & ComponentPropsWithoutRef<typeof RadixAvatar.Root>
 
 export const Avatar = forwardRef<ElementRef<typeof RadixAvatar.Root>, Props>(
-  ({ className, size = 'large', src, title, ...rest }, ref) => {
+  ({ className, size = 'small', src, title, ...rest }, ref) => {
     return (
       <RadixAvatar.Root className={`${s.root} ${s[size]} ${className}`} ref={ref} {...rest}>
         <RadixAvatar.Image alt={'avatar'} className={s.image} src={src} />
