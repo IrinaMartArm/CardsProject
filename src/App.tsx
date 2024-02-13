@@ -26,7 +26,6 @@ export const tabsOptions = [
   { disabled: false, option: 'Switcher' },
   { disabled: true, option: 'Switcher' },
   { disabled: false, option: 'Switcher' },
-  { disabled: true, option: 'Switcher' },
   { disabled: false, option: 'Switcher' },
 ]
 
