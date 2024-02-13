@@ -1,3 +1,5 @@
+import { FormEvent } from 'react'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -20,6 +22,15 @@ const classNames = {
 }
 
 export const Password = ({ forgot, onSubmit }: PasswordProps) => {
+  const onSubmitHandler = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    onSubmit()
+  }
+  const onSubmitHandler2 = (e: FormEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    onSubmit()
+  }
+
   return (
     <form>
       {forgot ? (
@@ -33,7 +44,7 @@ export const Password = ({ forgot, onSubmit }: PasswordProps) => {
               </Typography>
             </div>
             <div className={classNames.buttonBox}>
-              <Button onSubmit={() => onSubmit()} variant={'primary'}>
+              <Button onSubmit={onSubmitHandler} variant={'primary'}>
                 Send Instructions
               </Button>
               <Typography className={classNames.light} variant={'body2'}>
@@ -42,7 +53,7 @@ export const Password = ({ forgot, onSubmit }: PasswordProps) => {
               <Button
                 as={'a'}
                 className={classNames.link}
-                onSubmit={() => onSubmit()}
+                onSubmit={onSubmitHandler2}
                 variant={'link'}
               >
                 <Typography className={classNames.link} variant={'link1'}>
@@ -63,7 +74,7 @@ export const Password = ({ forgot, onSubmit }: PasswordProps) => {
               </Typography>
             </div>
             <div className={classNames.buttonBox}>
-              <Button onSubmit={() => {}} variant={'primary'}>
+              <Button onSubmit={onSubmitHandler} variant={'primary'}>
                 Create New Password
               </Button>
             </div>

@@ -24,7 +24,7 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className={s.ButtonV}>{title}</button>
+        <Button variant={'primary'}>{title}</Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.DialogOverlay} />
