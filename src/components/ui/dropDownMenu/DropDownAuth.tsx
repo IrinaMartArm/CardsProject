@@ -46,7 +46,7 @@ const Photo = () => {
   return (
     <div className={s.photoBox}>
       {/*<div className={s.photoWrapper}>*/}
-      {/*  <image alt={''} className={s.photo} src={photo} />*/}
+      {/*  <img alt={''} className={s.photo} src={photo} />*/}
       {/*</div>*/}
       <AuthPhoto photo={photo} />
       <div className={s.infoBox}>

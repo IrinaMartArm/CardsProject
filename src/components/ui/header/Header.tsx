@@ -1,10 +1,8 @@
-import { AuthPhoto } from '@/components/ui/authPhoto/AuthPhoto'
+import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './header.module.scss'
-
-import photo from '../../../images/photo 1.png'
 
 type HeaderProps = {
   name?: string
@@ -26,7 +24,7 @@ export const Header = ({ name, withBtn }: HeaderProps) => {
           <Typography className={s.name} variant={'subtitle1'}>
             {name}
           </Typography>
-          <AuthPhoto photo={photo} />
+          <Avatar title={'avatar'} />
         </div>
       )}
     </div>
