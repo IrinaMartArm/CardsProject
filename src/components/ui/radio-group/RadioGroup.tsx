@@ -1,38 +1,46 @@
-import * as RadioGroup from '@radix-ui/react-radio-group'
+import { ElementRef, Ref, forwardRef } from 'react'
+
+import { AnswerVariantType } from '@/utils/Types'
+import * as RadioGroupRadix from '@radix-ui/react-radio-group'
 
 import s from './radio-group.module.scss'
 
-type RadioGroupType = {
+export type RadioGroupType = {
   disabled?: boolean
+  name?: string
+  onChange?: () => void
+  onValueChange?: () => void
+  variants: AnswerVariantType[]
 }
-const RadioGroupDemo = ({ disabled }: RadioGroupType) => (
-  <RadioGroup.Root
-    aria-label={'View density'}
-    className={`${s.radioGroupRoot} ${disabled ? s.disabled : ''}`}
-    defaultValue={'default'}
-    disabled={disabled}
-  >
-    <div className={s.box}>
-      <div className={`${s.wrapper} ${disabled ? s.disabled : ''}`}>
-        <RadioGroup.Item className={s.RadioGroupItem} id={'r1'} value={'default'}>
-          <RadioGroup.Indicator className={s.RadioGroupIndicator} />
-        </RadioGroup.Item>
-      </div>
-      <label className={'Label'} htmlFor={'r1'}>
-        Default
-      </label>
-    </div>
-    <div className={s.box}>
-      <div className={`${s.wrapper} ${disabled ? s.disabled : ''}`}>
-        <RadioGroup.Item className={s.RadioGroupItem} id={'r2'} value={'comfortable'}>
-          <RadioGroup.Indicator className={s.RadioGroupIndicator} />
-        </RadioGroup.Item>
-      </div>
-      <label className={'Label'} htmlFor={'r2'}>
-        Comfortable
-      </label>
-    </div>
-  </RadioGroup.Root>
+export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, RadioGroupType>(
+  ({ disabled, name, onChange, variants }: RadioGroupType, ref: Ref<HTMLDivElement>) => {
+    return (
+      <form>
+        <RadioGroupRadix.Root
+          aria-label={'View density'}
+          className={`${s.radioGroupRoot} ${disabled ? s.disabled : ''}`}
+          defaultValue={'1'}
+          disabled={disabled}
+          name={name}
+          onChange={onChange}
+          ref={ref}
+        >
+          {variants.map(el => {
+            return (
+              <div className={s.box} key={el.id}>
+                <div className={`${s.wrapper} ${disabled ? s.disabled : ''}`}>
+                  <RadioGroupRadix.Item className={s.RadioGroupItem} id={el.id} value={el.variant}>
+                    <RadioGroupRadix.Indicator className={s.RadioGroupIndicator} />
+                  </RadioGroupRadix.Item>
+                </div>
+                <label className={'Label'} htmlFor={el.id}>
+                  {el.variant}
+                </label>
+              </div>
+            )
+          })}
+        </RadioGroupRadix.Root>
+      </form>
+    )
+  }
 )
-
-export default RadioGroupDemo
