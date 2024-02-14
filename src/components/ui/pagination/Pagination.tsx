@@ -1,9 +1,11 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
+import { items } from '@/App'
 import { LeftArrowButton } from '@/components/ui/pagination/LeftArrowButton'
 import { PaginationButtons } from '@/components/ui/pagination/PaginationButtons'
 import { RightArrowButton } from '@/components/ui/pagination/RightArrowButton'
-import { SelectGroup } from '@/components/ui/pagination/SelectGroup'
+import Select from '@/components/ui/select/Select'
+import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './pagination.module.scss'
 
@@ -36,6 +38,12 @@ export const Pagination = <T extends ElementType = 'a'>(
     return null
   }
 
+  const onChangeHandller = (value: string) => {
+    console.log(value)
+  }
+
+  console.log(pageSize)
+
   return (
     <div className={s.root}>
       <div className={s.paginationContainer}>
@@ -51,7 +59,11 @@ export const Pagination = <T extends ElementType = 'a'>(
 
         <RightArrowButton disabled={isLastPage} onClick={onNext} />
       </div>
-      <SelectGroup />
+      <div className={s.selectWrapper}>
+        <Typography variant={'body2'}>Показать</Typography>
+        <Select defaultValue={pageSize + ''} items={items} onChange={onChangeHandller} />
+        <Typography variant={'body2'}>на странице</Typography>
+      </div>
     </div>
   )
 }

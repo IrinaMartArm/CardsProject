@@ -78,7 +78,7 @@ export function App() {
       <RadioGroupDemo />
       <RadioGroupDemo disabled />
       <Slider />
-      <Select items={items} onChange={() => {}} placeholder={'100'} />
+      <Select items={items} onChange={() => {}} />
       <TabsDemo tabsOptions={tabsOptions} />
       <DropdownMenuDemo />
       <div>

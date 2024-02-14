@@ -24,7 +24,7 @@ export const PaginationButtons = <T extends ElementType = 'a'>(
   props: PaginationButtonsType<T> &
     Omit<ComponentPropsWithoutRef<T>, keyof PaginationButtonsType<T>>
 ) => {
-  const { as: Component = 'a', currentPage, onClick, paginationRange, ...rest } = props
+  const { as: Component = 'button', currentPage, onClick, paginationRange, ...rest } = props
 
   return (
     <>

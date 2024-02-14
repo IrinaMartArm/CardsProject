@@ -10,31 +10,31 @@ type ItemsType = {
 
 type SelectType = {
   className?: string
+  defaultValue?: string
   disabled?: boolean
   items: ItemsType[]
   label?: string
-  onChange: any
-  placeholder?: string
+  onChange: (value: string) => void
+  // value?: string
 }
 type SelectItemType = {
   children: string
   className?: string
   disabled?: boolean
   label?: string
-  onChange: any
   value: string
 }
-const SelectDemo = ({ className, items, label, placeholder }: SelectType) => {
+const SelectDemo = ({ className, defaultValue, items, label, onChange }: SelectType) => {
   const classNames = {
     Container: clsx(s.Container, className),
     SelectTrigger: clsx(s.SelectTrigger, className),
   }
 
   return (
-    <Select.Root>
+    <Select.Root defaultValue={defaultValue || items[0].name} onValueChange={onChange}>
       <div className={classNames.Container}>
         <Select.Trigger aria-label={label} className={classNames.SelectTrigger}>
-          <Select.Value placeholder={placeholder} />
+          <Select.Value />
           <Select.Icon className={s.SelectIcon}>
             <ChevronDownIcon />
           </Select.Icon>
@@ -44,7 +44,7 @@ const SelectDemo = ({ className, items, label, placeholder }: SelectType) => {
             <Select.Viewport className={s.SelectViewport}>
               <Select.Group>
                 {items.map((el, index) => (
-                  <SelectItem key={index} onChange={() => 'da'} value={el.name}>
+                  <SelectItem key={index} value={el.name}>
                     {el.name}
                   </SelectItem>
                 ))}
