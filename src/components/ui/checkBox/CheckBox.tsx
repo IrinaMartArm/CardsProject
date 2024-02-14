@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react'
+import { FC } from 'react'
 
 import { Check } from '@/images/icons/svgs/Check'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
@@ -9,13 +9,24 @@ import { AnimatePresence } from 'framer-motion'
 import s from './checkBox.module.scss'
 
 export type CheckboxProps = {
+  checked?: boolean
   className?: string
   disabled?: boolean
-  label?: ReactNode
-  onChange?: (checked: boolean) => void
+  id?: string
+  label?: string
+  onValueChange?: (checked: boolean) => void
+  required?: boolean
 }
 
-export const CheckBox: FC<CheckboxProps> = ({ className, disabled, label }) => {
+export const CheckBox: FC<CheckboxProps> = ({
+  checked,
+  className,
+  disabled,
+  id,
+  label,
+  onValueChange,
+  required,
+}) => {
   const classNames = {
     arrowColor: clsx(disabled ? 'var(--color-light-700)' : ''),
     buttonWrapper: clsx(s.buttonWrapper, disabled && s.disabled),
@@ -23,11 +34,6 @@ export const CheckBox: FC<CheckboxProps> = ({ className, disabled, label }) => {
     checkColorB: clsx(disabled ? 'var(--color-light-900)' : 'var(--color-dark-900)'),
     container: clsx(s.container, className),
     label: clsx(s.label, disabled && s.disabled),
-  }
-
-  const [checked, setChecked] = useState(false)
-  const onChangeH = () => {
-    setChecked(!checked)
   }
 
   return (
@@ -39,7 +45,9 @@ export const CheckBox: FC<CheckboxProps> = ({ className, disabled, label }) => {
               checked={checked}
               className={s.root}
               disabled={disabled}
-              onCheckedChange={onChangeH}
+              id={id}
+              onCheckedChange={onValueChange}
+              required={required}
             >
               <AnimatePresence initial={false}>
                 {checked && (

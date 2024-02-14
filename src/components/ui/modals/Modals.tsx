@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { ButtonRef } from '@/components/ui/button/ButtonRef'
 import { CheckBox } from '@/components/ui/checkBox'
 import { Input } from '@/components/ui/input'
 import Select from '@/components/ui/select/Select'
@@ -24,7 +25,7 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <Button variant={'primary'}>{title}</Button>
+        <ButtonRef variant={'primary'}>{title}</ButtonRef>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.DialogOverlay} />

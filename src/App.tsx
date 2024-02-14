@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { ButtonRef } from '@/components/ui/button/ButtonRef'
 import { Card } from '@/components/ui/card'
 import { CheckBox } from '@/components/ui/checkBox'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
@@ -70,10 +71,10 @@ export function App() {
         type={'search'}
       />
       <Card />
-      <CheckBox onChange={() => {}} />
-      <CheckBox disabled onChange={() => {}} />
-      <CheckBox label={'Check-box'} onChange={() => {}} />
-      <CheckBox disabled label={'Check-box'} onChange={() => {}} />
+      <CheckBox onValueChange={() => {}} />
+      <CheckBox disabled onValueChange={() => {}} />
+      <CheckBox label={'Check-box'} onValueChange={() => {}} />
+      <CheckBox disabled label={'Check-box'} onValueChange={() => {}} />
       <RadioGroupDemo />
       <RadioGroupDemo disabled />
       <Slider />
@@ -136,6 +137,7 @@ export function App() {
       <ErrorPage />
       <Password onSubmit={() => {}} />
       <Password forgot onSubmit={() => {}} />
+      <ButtonRef>test</ButtonRef>
     </div>
   )
 }
