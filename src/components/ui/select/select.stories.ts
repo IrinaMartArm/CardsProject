@@ -1,5 +1,5 @@
 import { items } from '@/App'
-import Select from '@/components/ui/select/Select'
+import { Select } from '@/components/ui/select/Select'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -17,5 +17,6 @@ type Story = StoryObj<typeof meta>
 export const SelectDemo: Story = {
   args: {
     items: items,
+    name: 'select',
   },
 }

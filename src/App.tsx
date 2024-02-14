@@ -6,7 +6,7 @@ import { CheckBox } from '@/components/ui/checkBox'
 import { ControlledRadioGroup } from '@/components/ui/controlled/ControlledRadioGroup'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
 import { Pagination } from '@/components/ui/pagination/Pagination'
-import Select from '@/components/ui/select/Select'
+import { Select } from '@/components/ui/select/Select'
 import Slider from '@/components/ui/slider/Slider'
 import { IconsBlock } from '@/components/ui/tables/IconsBlock'
 import { StarsBlock } from '@/components/ui/tables/StarsBlock'
@@ -70,7 +70,7 @@ export function App() {
       <CheckBox label={'Check-box'} onCheckedChange={() => {}} />
       <CheckBox disabled label={'Check-box'} onCheckedChange={() => {}} />
       <Slider />
-      <Select items={items} onChange={() => {}} />
+      <Select items={items} name={'select'} onChange={() => {}} />
       <TabsDemo tabsOptions={tabsOptions} />
       <DropdownMenuDemo />
       <div>

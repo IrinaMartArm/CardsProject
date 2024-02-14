@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { ButtonRef } from '@/components/ui/button/ButtonRef'
 import { CheckBox } from '@/components/ui/checkBox'
 import { Input } from '@/components/ui/input'
-import Select from '@/components/ui/select/Select'
+import { Select } from '@/components/ui/select/Select'
 import { Typography } from '@/components/ui/typography/Typography'
 import { Close } from '@/images/icons/svgs/Close'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -42,7 +42,7 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
           </div>
           <div className={classNames.textFieldsBox}>
             <fieldset className={s.Fieldset}>
-              <Select className={s.fullWidth} items={[]} onChange={() => {}} />
+              <Select className={s.fullWidth} items={[]} name={'select'} onChange={() => {}} />
             </fieldset>
             <fieldset className={s.Fieldset}>
               <Input fullWidth placeholder={'Input'} type={'text'} />

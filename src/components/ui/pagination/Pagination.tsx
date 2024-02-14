@@ -4,7 +4,7 @@ import { items } from '@/App'
 import { LeftArrowButton } from '@/components/ui/pagination/LeftArrowButton'
 import { PaginationButtons } from '@/components/ui/pagination/PaginationButtons'
 import { RightArrowButton } from '@/components/ui/pagination/RightArrowButton'
-import Select from '@/components/ui/select/Select'
+import { Select } from '@/components/ui/select/Select'
 import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './pagination.module.scss'
@@ -58,7 +58,12 @@ export const Pagination = <T extends ElementType = 'a'>(
       </div>
       <div className={s.selectWrapper}>
         <Typography variant={'body2'}>Показать</Typography>
-        <Select defaultValue={pageSize + ''} items={items} onChange={onChangeHandler} />
+        <Select
+          defaultValue={pageSize + ''}
+          items={items}
+          name={'page'}
+          onChange={onChangeHandler}
+        />
         <Typography variant={'body2'}>на странице</Typography>
       </div>
     </div>
