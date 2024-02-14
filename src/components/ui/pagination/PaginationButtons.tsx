@@ -35,11 +35,13 @@ export const PaginationButtons = <T extends ElementType = 'a'>(
           return <Dots key={index} />
         }
 
+        const onClickHandler = () => onClick(page)
+
         return (
           <Component
             className={classNames.pageButton(isSelected)}
             key={index}
-            onClick={() => onClick(page)}
+            onClick={onClickHandler}
             {...rest}
           >
             {page}

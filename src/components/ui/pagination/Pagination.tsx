@@ -38,11 +38,9 @@ export const Pagination = <T extends ElementType = 'a'>(
     return null
   }
 
-  const onChangeHandller = (value: string) => {
+  const onChangeHandler = (value: string) => {
     console.log(value)
   }
-
-  console.log(pageSize)
 
   return (
     <div className={s.root}>
@@ -61,7 +59,7 @@ export const Pagination = <T extends ElementType = 'a'>(
       </div>
       <div className={s.selectWrapper}>
         <Typography variant={'body2'}>Показать</Typography>
-        <Select defaultValue={pageSize + ''} items={items} onChange={onChangeHandller} />
+        <Select defaultValue={pageSize + ''} items={items} onChange={onChangeHandler} />
         <Typography variant={'body2'}>на странице</Typography>
       </div>
     </div>
