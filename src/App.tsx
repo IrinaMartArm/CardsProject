@@ -71,10 +71,10 @@ export function App() {
         type={'search'}
       />
       <Card />
-      <CheckBox onValueChange={() => {}} />
-      <CheckBox disabled onValueChange={() => {}} />
-      <CheckBox label={'Check-box'} onValueChange={() => {}} />
-      <CheckBox disabled label={'Check-box'} onValueChange={() => {}} />
+      <CheckBox onCheckedChange={() => {}} />
+      <CheckBox disabled onCheckedChange={() => {}} />
+      <CheckBox label={'Check-box'} onCheckedChange={() => {}} />
+      <CheckBox disabled label={'Check-box'} onCheckedChange={() => {}} />
       <RadioGroupDemo />
       <RadioGroupDemo disabled />
       <Slider />

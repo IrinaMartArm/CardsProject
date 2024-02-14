@@ -60,6 +60,8 @@ const SelectDemo = ({ className, defaultValue, items, label, onChange }: SelectT
   )
 }
 
+export default SelectDemo
+
 const SelectItem = ({ children, className, ...props }: SelectItemType) => {
   const classNames = {
     selectItem: clsx(s.SelectItem, className),
@@ -74,5 +76,3 @@ const SelectItem = ({ children, className, ...props }: SelectItemType) => {
     </Select.Item>
   )
 }
-
-export default SelectDemo

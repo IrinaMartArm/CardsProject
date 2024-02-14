@@ -49,7 +49,6 @@ export const Pagination = <T extends ElementType = 'a'>(
 
         <PaginationButtons
           currentPage={currentPage}
-          // onClick={handlePageClicked}
           onClick={onPageChange}
           paginationRange={paginationRange}
           {...rest}

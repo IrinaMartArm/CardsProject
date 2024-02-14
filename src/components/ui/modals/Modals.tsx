@@ -42,12 +42,7 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
           </div>
           <div className={classNames.textFieldsBox}>
             <fieldset className={s.Fieldset}>
-              <Select
-                className={s.fullWidth}
-                items={[]}
-                onChange={() => {}}
-                placeholder={'something'}
-              />
+              <Select className={s.fullWidth} items={[]} onChange={() => {}} />
             </fieldset>
             <fieldset className={s.Fieldset}>
               <Input fullWidth placeholder={'Input'} type={'text'} />

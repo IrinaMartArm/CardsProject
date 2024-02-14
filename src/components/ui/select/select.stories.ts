@@ -17,6 +17,5 @@ type Story = StoryObj<typeof meta>
 export const SelectDemo: Story = {
   args: {
     items: items,
-    placeholder: '100',
   },
 }
