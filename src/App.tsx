@@ -1,14 +1,11 @@
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
-import { ButtonRef } from '@/components/ui/button/ButtonRef'
 import { Card } from '@/components/ui/card'
 import { CheckBox } from '@/components/ui/checkBox'
+import { ControlledRadioGroup } from '@/components/ui/controlled/ControlledRadioGroup'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
-import { Header } from '@/components/ui/header/Header'
-import { Input } from '@/components/ui/input'
-import { Modals } from '@/components/ui/modals/Modals'
 import { Pagination } from '@/components/ui/pagination/Pagination'
-import RadioGroupDemo from '@/components/ui/radio-group/RadioGroup'
 import Select from '@/components/ui/select/Select'
 import Slider from '@/components/ui/slider/Slider'
 import { IconsBlock } from '@/components/ui/tables/IconsBlock'
@@ -16,8 +13,6 @@ import { StarsBlock } from '@/components/ui/tables/StarsBlock'
 import { Table } from '@/components/ui/tables/Table'
 import { TabsDemo } from '@/components/ui/tabs/TabsDemo'
 import { Typography } from '@/components/ui/typography/Typography'
-import { ErrorPage } from '@/features/ui/errorPage/ErrorPage'
-import { Password } from '@/features/ui/password/Password'
 
 import { Button } from './components/ui/button'
 import out from './images/svg/log-out.svg'
@@ -31,9 +26,18 @@ export const tabsOptions = [
   { disabled: false, option: 'Switcher' },
 ]
 
+export const answerVariants = [
+  { disabled: false, id: '1', variant: 'Did not know' },
+  { disabled: false, id: '2', variant: 'Forgot' },
+  { disabled: false, id: '3', variant: 'A lot of thought' },
+  { disabled: false, id: '4', variant: 'Confused' },
+  { disabled: false, id: '5', variant: 'Knew the answer' },
+]
+
 export function App() {
   const [currentPage, setCurrentPage] = useState(1)
 
+  const { control } = useForm<any>({})
   const PageChangeHandle = (page: number) => {
     setCurrentPage(page)
   }
@@ -60,23 +64,11 @@ export function App() {
       <Button fullWidth variant={'primary'}>
         hello
       </Button>
-      <Input className={'password'} label={'Input'} placeholder={'input'} type={'password'} />
-      <Input className={'text'} label={'Input'} placeholder={'input'} type={'text'} />
-      <Input className={'text'} disabled label={'Disabled'} placeholder={'input'} type={'text'} />
-      <Input
-        className={'search'}
-        errorMessage={'error'}
-        isShowButton
-        placeholder={'input search'}
-        type={'search'}
-      />
       <Card />
       <CheckBox onCheckedChange={() => {}} />
       <CheckBox disabled onCheckedChange={() => {}} />
       <CheckBox label={'Check-box'} onCheckedChange={() => {}} />
       <CheckBox disabled label={'Check-box'} onCheckedChange={() => {}} />
-      <RadioGroupDemo />
-      <RadioGroupDemo disabled />
       <Slider />
       <Select items={items} onChange={() => {}} />
       <TabsDemo tabsOptions={tabsOptions} />
@@ -130,14 +122,7 @@ export function App() {
           </Table.Row>
         </Table.Body>
       </Table.Root>
-      <Modals title={'Add New Deck'} />
-      <Modals buttons title={'Add New Deck'} />
-      <Header name={'Irina'} />
-      <Header withBtn />
-      <ErrorPage />
-      <Password onSubmit={() => {}} />
-      <Password forgot onSubmit={() => {}} />
-      <ButtonRef>test</ButtonRef>
+      <ControlledRadioGroup control={control} name={'testRadioGroup'} variants={answerVariants} />
     </div>
   )
 }
