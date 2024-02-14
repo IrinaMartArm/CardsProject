@@ -1,4 +1,11 @@
-import { ComponentPropsWithoutRef, KeyboardEvent, ReactNode } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  KeyboardEvent,
+  ReactNode,
+  Ref,
+  forwardRef,
+} from 'react'
 
 import { Label } from '@/components/ui/label/Label'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -14,48 +21,67 @@ export type InputProps = {
   fullWidth?: boolean
   isShowButton?: boolean
   label?: ReactNode
+  onChange?: (value: string) => void
   onClearClick?: () => void
   onEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   type: 'password' | 'search' | 'text'
+  value?: string
 } & ComponentPropsWithoutRef<'input'>
-export const Input = (props: InputProps) => {
-  const {
-    className,
-    disabled,
-    errorMessage,
-    fullWidth,
-    isShowButton = false,
-    label,
-    onClearClick,
-    onEnter,
-    onKeyDown,
-    type,
-    ...rest
-  } = props
-  const showError = !!errorMessage && errorMessage.length > 0
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      className,
+      disabled,
+      errorMessage,
+      fullWidth,
+      isShowButton = false,
+      label,
+      onChange,
+      onClearClick,
+      onEnter,
+      onKeyDown,
+      type,
+      value,
+      ...rest
+    }: InputProps,
+    ref: Ref<HTMLInputElement>
+  ) => {
+    const showError = !!errorMessage && errorMessage.length > 0
 
-  const classNames = {
-    clearButton: s.clearButton,
-    input: clsx(s.input, showError && s.error, disabled ? s.disabled : ''),
-    input_wrapper: clsx(
-      s.input_wrapper,
-      disabled && s.disabled,
-      showError && s.error,
-      `${s[type]}`,
-      fullWidth && s.fullWidth
-    ),
-    inputWithStart: clsx(s.inputWithStart, showError && s.error, disabled ? s.disabled : ''),
-    label: clsx(disabled ? s.labelDisable : s.label),
-    root: clsx(s.box, disabled ? s.disabled : '', className),
-  }
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (onEnter && e.key === 'Enter') {
-      onEnter(e)
+    const classNames = {
+      clearButton: s.clearButton,
+      input: clsx(s.input, showError && s.error, disabled ? s.disabled : ''),
+      input_wrapper: clsx(
+        s.input_wrapper,
+        disabled && s.disabled,
+        showError && s.error,
+        `${s[type]}`,
+        fullWidth && s.fullWidth
+      ),
+      inputWithStart: clsx(s.inputWithStart, showError && s.error, disabled ? s.disabled : ''),
+      label: clsx(disabled ? s.labelDisable : s.label),
+      root: clsx(s.box, disabled ? s.disabled : '', className),
     }
-    onKeyDown?.(e)
-  }
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+      if (onEnter && e.key === 'Enter') {
+        onEnter(e)
+      }
+      onKeyDown?.(e)
+    }
 
-  {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      if (onChange) {
+        onChange(e)
+      }
+    }
+
+    const onClearClickHandler = () => {
+      if (onClearClick) {
+        onClearClick()
+      }
+      // value = ''
+    }
+
     return (
       <div className={s.box}>
         <span className={classNames.label}>
@@ -70,8 +96,11 @@ export const Input = (props: InputProps) => {
           <input
             className={classNames.input}
             disabled={disabled}
+            onChange={onChangeHandler}
             onKeyDown={handleKeyDown}
+            ref={ref}
             type={type}
+            value={value}
             {...rest}
           />
           {type === 'password' && (
@@ -80,7 +109,7 @@ export const Input = (props: InputProps) => {
             </span>
           )}
           {isShowButton && (
-            <button className={s.iconEnd} onClick={onClearClick} type={'button'}>
+            <button className={s.iconEnd} onClick={onClearClickHandler} type={'button'}>
               {<Close color={'var(--color-light-100)'} size={20} />}
             </button>
           )}
@@ -89,6 +118,7 @@ export const Input = (props: InputProps) => {
       </div>
     )
   }
+
   // if (type === 'password') {
   //   return (
   //     <div className={s.box}>
@@ -123,4 +153,4 @@ export const Input = (props: InputProps) => {
   //     {showError && <Typography.Error>{errorMessage}</Typography.Error>}
   //   </div>
   // )
-}
+)
