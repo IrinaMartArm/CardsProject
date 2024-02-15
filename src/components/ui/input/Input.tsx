@@ -3,15 +3,16 @@ import {
   ComponentPropsWithoutRef,
   KeyboardEvent,
   ReactNode,
-  Ref,
   forwardRef,
+  useState,
 } from 'react'
 
 import { Label } from '@/components/ui/label/Label'
 import { Typography } from '@/components/ui/typography/Typography'
 import { Close } from '@/images/icons/svgs/Close'
+import { Eye } from '@/images/icons/svgs/Eye'
+import { EyeOff } from '@/images/icons/svgs/EyeOff'
 import { Search } from '@/images/icons/svgs/Search'
-import { Visibility } from '@/images/icons/svgs/Visibility'
 import { clsx } from 'clsx'
 
 import s from './input.module.scss'
@@ -39,14 +40,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange,
       onClearClick,
       onEnter,
-      onKeyDown,
       type,
       value,
       ...rest
-    }: InputProps,
-    ref: Ref<HTMLInputElement>
+    },
+    ref
   ) => {
     const showError = !!errorMessage && errorMessage.length > 0
+    const [showPassword, setShowPassword] = useState(false)
 
     const classNames = {
       clearButton: s.clearButton,
@@ -66,7 +67,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       if (onEnter && e.key === 'Enter') {
         onEnter(e)
       }
-      onKeyDown?.(e)
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +80,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         onClearClick()
       }
       // value = ''
+    }
+
+    const showPasswordHandler = () => {
+      setShowPassword(!showPassword)
     }
 
     return (
@@ -99,14 +103,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={onChangeHandler}
             onKeyDown={handleKeyDown}
             ref={ref}
-            type={type}
+            type={
+              // eslint-disable-next-line no-nested-ternary
+              type === 'password' && !showPassword
+                ? 'password'
+                : type === 'search'
+                ? 'search'
+                : 'text'
+            }
             value={value}
             {...rest}
           />
           {type === 'password' && (
-            <span className={s.iconStart}>
-              <Visibility size={20} />
-            </span>
+            <button className={s.iconStart} onClick={showPasswordHandler} type={'button'}>
+              {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+            </button>
           )}
           {isShowButton && (
             <button className={s.iconEnd} onClick={onClearClickHandler} type={'button'}>
@@ -134,7 +145,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   //           disabled
   //         />
   //         <span className={s.iconEnd}>
-  //           <Visibility />
+  //           <Eye />
   //         </span>
   //       </div>
   //       {showError && <Typography.Error>{errorMessage}</Typography.Error>}

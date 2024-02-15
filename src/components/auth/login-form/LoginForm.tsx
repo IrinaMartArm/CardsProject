@@ -3,18 +3,13 @@ import { useForm } from 'react-hook-form'
 import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCceckBox'
 import { ControlledInput } from '@/components/ui/controlled/ControlledInput'
 import { Input } from '@/components/ui/input'
+import { loginSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 
 type FormValues = z.infer<typeof loginSchema>
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3).max(20),
-  rememberMe: z.boolean(),
-})
 
 export const LoginForm = () => {
   const {

@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { Ref, forwardRef, useState } from 'react'
 
-import * as Slider from '@radix-ui/react-slider'
+import * as SliderRadix from '@radix-ui/react-slider'
 
 import s from './slider.module.scss'
 
-const SliderDemo = () => {
+export type SliderProps = {
+  name?: string
+}
+export const Slider = forwardRef(({ name }: SliderProps, ref: Ref<HTMLSpanElement>) => {
   const [value1, setValue1] = useState(0)
   const [value2, setValue2] = useState(100)
 
@@ -18,24 +21,26 @@ const SliderDemo = () => {
   }
 
   return (
-    <div className={s.Container}>
-      <div className={s.Block}>{value1}</div>
-      <Slider.Root
-        className={s.SliderRoot}
-        defaultValue={[25, 75]}
-        max={100}
-        onValueChange={change}
-        step={1}
-      >
-        <Slider.Track className={s.SliderTrack}>
-          <Slider.Range className={s.SliderRange} />
-        </Slider.Track>
-        <Slider.Thumb aria-label={'Volume'} className={s.SliderThumb} />
-        <Slider.Thumb aria-label={'Volume'} className={s.SliderThumb} />
-      </Slider.Root>
-      <div className={s.Block}>{value2}</div>
-    </div>
+    <form>
+      <div className={s.Container}>
+        <div className={s.Block}>{value1}</div>
+        <SliderRadix.Root
+          className={s.SliderRoot}
+          defaultValue={[25, 75]}
+          max={100}
+          name={name}
+          onValueChange={change}
+          ref={ref}
+          step={1}
+        >
+          <SliderRadix.Track className={s.SliderTrack}>
+            <SliderRadix.Range className={s.SliderRange} />
+          </SliderRadix.Track>
+          <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
+          <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
+        </SliderRadix.Root>
+        <div className={s.Block}>{value2}</div>
+      </div>
+    </form>
   )
-}
-
-export default SliderDemo
+})

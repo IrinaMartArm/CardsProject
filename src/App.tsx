@@ -7,12 +7,13 @@ import { ControlledRadioGroup } from '@/components/ui/controlled/ControlledRadio
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Select } from '@/components/ui/select/Select'
-import Slider from '@/components/ui/slider/Slider'
+import { Slider } from '@/components/ui/slider/Slider'
 import { IconsBlock } from '@/components/ui/tables/IconsBlock'
 import { StarsBlock } from '@/components/ui/tables/StarsBlock'
 import { Table } from '@/components/ui/tables/Table'
-import { TabsDemo } from '@/components/ui/tabs/TabsDemo'
+import { Tabs } from '@/components/ui/tabs/TabsDemo'
 import { Typography } from '@/components/ui/typography/Typography'
+import { CreateNewPassword } from '@/features/ui/password/CreateNewPassword'
 
 import { Button } from './components/ui/button'
 import out from './images/svg/log-out.svg'
@@ -71,7 +72,7 @@ export function App() {
       <CheckBox disabled label={'Check-box'} onCheckedChange={() => {}} />
       <Slider />
       <Select items={items} name={'select'} onChange={() => {}} />
-      <TabsDemo tabsOptions={tabsOptions} />
+      <Tabs tabsOptions={tabsOptions} />
       <DropdownMenuDemo />
       <div>
         <Typography variant={'body1'}>IT-incubator body1</Typography>
@@ -123,6 +124,8 @@ export function App() {
         </Table.Body>
       </Table.Root>
       <ControlledRadioGroup control={control} name={'testRadioGroup'} variants={answerVariants} />
+      <CreateNewPassword />
+      <CreateNewPassword />
     </div>
   )
 }

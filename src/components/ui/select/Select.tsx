@@ -1,4 +1,4 @@
-import { ElementRef, forwardRef } from 'react'
+import { ElementRef, Ref, forwardRef } from 'react'
 
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
@@ -28,7 +28,10 @@ type SelectType = {
 //   value: string
 // }
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType>(
-  ({ className, defaultValue, items, label, name, onChange, ...rest }: SelectType, ref) => {
+  (
+    { className, defaultValue, items, label, name, onChange, ...rest }: SelectType,
+    ref: Ref<HTMLSelectElement>
+  ) => {
     const classNames = {
       Container: clsx(s.Container, className),
       SelectTrigger: clsx(s.SelectTrigger, className),
@@ -40,12 +43,11 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
         defaultValue={defaultValue || items[0].name}
         name={name}
         onValueChange={onChange}
-        ref={ref}
         {...rest}
       >
         <div className={classNames.Container}>
           <SelectRadix.Trigger aria-label={label} className={classNames.SelectTrigger}>
-            <SelectRadix.Value />
+            <SelectRadix.Value ref={ref} />
             <SelectRadix.Icon className={s.SelectIcon}>
               <ChevronDownIcon />
             </SelectRadix.Icon>

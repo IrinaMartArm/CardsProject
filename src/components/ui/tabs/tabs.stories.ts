@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { tabsOptions } from '@/App'
-import { TabsDemo } from '@/components/ui/tabs/TabsDemo'
+import { Tabs } from '@/components/ui/tabs/TabsDemo'
 
 const meta = {
   argTypes: {},
-  component: TabsDemo,
+  component: Tabs,
   tags: ['autodocs'],
-  title: 'Components/TabsDemo',
-} satisfies Meta<typeof TabsDemo>
+  title: 'Components/Tabs',
+} satisfies Meta<typeof Tabs>
 
 export default meta
 type Story = StoryObj<typeof meta>

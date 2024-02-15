@@ -1,4 +1,4 @@
-import Slider from '@/components/ui/slider/Slider'
+import { Slider } from '@/components/ui/slider/Slider'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

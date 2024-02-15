@@ -1,6 +1,6 @@
 import { IconProps, IconWrapper } from '../IconWrapper'
 
-export const VisibilityOff = (allProps: IconProps) => {
+export const EyeOff = (allProps: IconProps) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (

@@ -13,12 +13,15 @@ export const ControlledInput = <T extends FieldValues>({
   shouldUnregister,
   ...rest
 }: PropsType<T>) => {
-  const { field } = useController({
+  const {
+    field,
+    fieldState: { error },
+  } = useController({
     control,
     disabled: rest.disabled,
     name: rest.name,
     shouldUnregister,
   })
 
-  return <Input {...rest} {...field} label={label} />
+  return <Input {...rest} {...field} errorMessage={error?.message} label={label} />
 }

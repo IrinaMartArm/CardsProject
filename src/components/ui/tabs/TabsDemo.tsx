@@ -1,4 +1,4 @@
-import * as Tabs from '@radix-ui/react-tabs'
+import * as TabsRadix from '@radix-ui/react-tabs'
 
 import s from './tabs.module.scss'
 
@@ -10,23 +10,29 @@ type OptionsType = {
 type TabsType = {
   tabsOptions: OptionsType[]
 }
-export const TabsDemo = ({ tabsOptions }: TabsType) => {
+export const Tabs = ({ tabsOptions }: TabsType) => {
+  const onValueChangeHandler = () => {}
+
   return (
-    <Tabs.Root className={s.TabsRoot} defaultValue={'tab1'}>
-      <Tabs.List aria-label={'Manage your account'} className={s.TabsList}>
+    <TabsRadix.Root
+      className={s.TabsRoot}
+      defaultValue={tabsOptions[0].option}
+      onValueChange={onValueChangeHandler}
+    >
+      <TabsRadix.List aria-label={'Manage your account'} className={s.TabsList}>
         {tabsOptions.map((el, index) => {
           return (
-            <Tabs.Trigger
+            <TabsRadix.Trigger
               className={s.TabsTrigger}
               disabled={el.disabled}
               key={index}
               value={el.option}
             >
               {el.option}
-            </Tabs.Trigger>
+            </TabsRadix.Trigger>
           )
         })}
-      </Tabs.List>
-    </Tabs.Root>
+      </TabsRadix.List>
+    </TabsRadix.Root>
   )
 }
