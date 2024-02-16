@@ -17,17 +17,30 @@ import { clsx } from 'clsx'
 
 import s from './input.module.scss'
 
+type InputTypes = 'password' | 'search' | 'text'
+
 export type InputProps = {
   errorMessage?: string
   fullWidth?: boolean
   isShowButton?: boolean
   label?: ReactNode
   onChange?: (value: string) => void
-  onClearClick?: () => void
+  onClearClick?: (value: string) => void
   onEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
-  type: 'password' | 'search' | 'text'
+  type: InputTypes
   value?: string
 } & ComponentPropsWithoutRef<'input'>
+
+const InputType = (type: InputTypes, showPassword: boolean) => {
+  if (type === 'password') {
+    return showPassword ? 'text' : 'password'
+  } else if (type === 'search') {
+    return 'search'
+  } else {
+    return 'text'
+  }
+}
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
@@ -71,15 +84,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
-        onChange(e)
+        onChange(e.currentTarget.value)
       }
     }
 
     const onClearClickHandler = () => {
       if (onClearClick) {
-        onClearClick()
+        onClearClick('')
       }
-      // value = ''
     }
 
     const showPasswordHandler = () => {
@@ -103,14 +115,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={onChangeHandler}
             onKeyDown={handleKeyDown}
             ref={ref}
-            type={
-              // eslint-disable-next-line no-nested-ternary
-              type === 'password' && !showPassword
-                ? 'password'
-                : type === 'search'
-                ? 'search'
-                : 'text'
-            }
+            type={InputType(type, showPassword)}
             value={value}
             {...rest}
           />

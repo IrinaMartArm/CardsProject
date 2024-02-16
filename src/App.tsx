@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card'
 import { CheckBox } from '@/components/ui/checkBox'
 import { ControlledRadioGroup } from '@/components/ui/controlled/ControlledRadioGroup'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
+import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Select } from '@/components/ui/select/Select'
 import { Slider } from '@/components/ui/slider/Slider'
@@ -42,6 +43,8 @@ export function App() {
   const PageChangeHandle = (page: number) => {
     setCurrentPage(page)
   }
+
+  const [inputValue, setInputValue] = useState('')
 
   return (
     <div
@@ -126,6 +129,13 @@ export function App() {
       <ControlledRadioGroup control={control} name={'testRadioGroup'} variants={answerVariants} />
       <CreateNewPassword />
       <CreateNewPassword />
+      <Input
+        isShowButton
+        // onChange={setInputValue}
+        onClearClick={setInputValue}
+        type={'search'}
+        value={inputValue}
+      />
     </div>
   )
 }
