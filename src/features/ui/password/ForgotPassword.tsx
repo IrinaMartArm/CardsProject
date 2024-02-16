@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ControlledInput } from '@/components/ui/controlled/ControlledInput'
+import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
 import { emailSchema, passwordSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -46,7 +46,7 @@ export const ForgotPassword = ({ className }: Props) => {
       <div className={classNames.container}>
         <Typography variant={'h1'}>Forgot your password?</Typography>
         <div className={classNames.inputBox}>
-          <ControlledInput
+          <ControlledTextField
             control={control}
             errorMessage={errors.email?.message}
             fullWidth

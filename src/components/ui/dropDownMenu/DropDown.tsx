@@ -1,7 +1,7 @@
-import { More } from '@/images/icons/svgs/More'
-import { Pen } from '@/images/icons/svgs/Pen'
-import { Play } from '@/images/icons/svgs/Play'
-import { TrashBin } from '@/images/icons/svgs/TrashBin'
+import { More } from '@/components/assets/icons/More'
+import { Pen } from '@/components/assets/icons/Pen'
+import { Play } from '@/components/assets/icons/Play'
+import { TrashBin } from '@/components/assets/icons/TrashBin'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import s from './dropDown.module.scss'

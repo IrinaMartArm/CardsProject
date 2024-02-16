@@ -1,6 +1,6 @@
+import { Out } from '@/components/assets/icons/Out'
+import { Person } from '@/components/assets/icons/Person'
 import { Avatar } from '@/components/ui/avatar'
-import { Out } from '@/images/icons/svgs/Out'
-import { Person } from '@/images/icons/svgs/Person'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import s from './dropDown.module.scss'

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 
 import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCceckBox'
-import { ControlledInput } from '@/components/ui/controlled/ControlledInput'
+import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Input } from '@/components/ui/input'
 import { loginSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -34,7 +34,7 @@ export const LoginForm = () => {
         label={'email'}
         onChange={() => {}}
       />
-      <ControlledInput
+      <ControlledTextField
         control={control}
         errorMessage={errors.password?.message}
         label={'password'}

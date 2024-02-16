@@ -7,12 +7,12 @@ import {
   useState,
 } from 'react'
 
+import { Close } from '@/components/assets/icons/Close'
+import { Eye } from '@/components/assets/icons/Eye'
+import { EyeOff } from '@/components/assets/icons/EyeOff'
+import { Search } from '@/components/assets/icons/Search'
 import { Label } from '@/components/ui/label/Label'
 import { Typography } from '@/components/ui/typography/Typography'
-import { Close } from '@/images/icons/svgs/Close'
-import { Eye } from '@/images/icons/svgs/Eye'
-import { EyeOff } from '@/images/icons/svgs/EyeOff'
-import { Search } from '@/images/icons/svgs/Search'
 import { clsx } from 'clsx'
 
 import s from './input.module.scss'

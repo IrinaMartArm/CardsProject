@@ -1,5 +1,5 @@
-import { Star } from '@/images/icons/svgs/Star'
-import { StarBorder } from '@/images/icons/svgs/StarBorder'
+import { Star } from '@/components/assets/icons/Star'
+import { StarBorder } from '@/components/assets/icons/StarBorder'
 
 import s from './table.module.scss'
 

@@ -1,4 +1,4 @@
-import { KeyboardArrowLeft } from '@/images/icons/svgs/KeyboardArrowLeft'
+import { KeyboardArrowLeft } from '@/components/assets/icons/KeyboardArrowLeft'
 
 import s from './pagination.module.scss'
 

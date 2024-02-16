@@ -1,9 +1,9 @@
+import { Close } from '@/components/assets/icons/Close'
 import { Button } from '@/components/ui/button/Button'
 import { CheckBox } from '@/components/ui/checkBox'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select/Select'
 import { Typography } from '@/components/ui/typography/Typography'
-import { Close } from '@/images/icons/svgs/Close'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 
