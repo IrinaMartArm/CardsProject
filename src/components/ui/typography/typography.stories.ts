@@ -10,6 +10,4 @@ export default {
   title: 'Components/Typography',
 } as Meta<typeof Typography>
 
-export const AllTypography = {
-  render: () => Typography,
-}
+export const AllTypography = {}

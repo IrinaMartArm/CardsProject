@@ -1,6 +1,6 @@
-import { ElementRef, Ref, forwardRef } from 'react'
+import { ElementRef, Ref, forwardRef, useState } from 'react'
 
-import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
@@ -14,46 +14,64 @@ type SelectType = {
   className?: string
   defaultValue?: string
   disabled?: boolean
+  isPagination?: boolean
   items: ItemsType[]
   label?: string
   name: string
   onChange: (value: string) => void
-  // value?: string
+  value?: string
 }
-// type SelectItemType = {
-//   children: string
-//   className?: string
-//   disabled?: boolean
-//   label?: string
-//   value: string
-// }
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType>(
   (
-    { className, defaultValue, items, label, name, onChange, ...rest }: SelectType,
+    {
+      className,
+      defaultValue,
+      isPagination,
+      items,
+      label,
+      name,
+      onChange,
+      value,
+      ...rest
+    }: SelectType,
     ref: Ref<HTMLSelectElement>
   ) => {
     const classNames = {
       Container: clsx(s.Container, className),
-      SelectTrigger: clsx(s.SelectTrigger, className),
-      selectItem: clsx(s.SelectItem, className),
+      SelectTrigger: clsx(s.SelectTrigger, isPagination && s.pagination, className),
+      selectItem: clsx(s.SelectItem, isPagination && s.pagination, className),
     }
+
+    const [open, setOpen] = useState(false)
+    const toggle = () => {
+      setOpen(!open)
+    }
+    const ValueChangeHandler = (value: string) => onChange(value)
 
     return (
       <SelectRadix.Root
         defaultValue={defaultValue || items[0].name}
         name={name}
-        onValueChange={onChange}
+        onOpenChange={toggle}
+        onValueChange={ValueChangeHandler}
+        value={value}
         {...rest}
       >
         <div className={classNames.Container}>
           <SelectRadix.Trigger aria-label={label} className={classNames.SelectTrigger}>
             <SelectRadix.Value ref={ref} />
-            <SelectRadix.Icon className={s.SelectIcon}>
-              <ChevronDownIcon />
-            </SelectRadix.Icon>
+            {open ? (
+              <SelectRadix.Icon className={s.SelectIcon}>
+                <ChevronUpIcon />
+              </SelectRadix.Icon>
+            ) : (
+              <SelectRadix.Icon className={s.SelectIcon}>
+                <ChevronDownIcon />
+              </SelectRadix.Icon>
+            )}
           </SelectRadix.Trigger>
           <SelectRadix.Portal>
-            <SelectRadix.Content className={s.SelectContent} position={'popper'}>
+            <SelectRadix.Content className={s.SelectContent} position={'popper'} sideOffset={-2}>
               <SelectRadix.Viewport className={s.SelectViewport}>
                 <SelectRadix.Group>
                   {items.map((el, index) => (
