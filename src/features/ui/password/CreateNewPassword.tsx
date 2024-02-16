@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { ControlledInput } from '@/components/ui/controlled/ControlledInput'
 import { Typography } from '@/components/ui/typography/Typography'
 import { passwordSchema } from '@/utils/Validation'
@@ -13,19 +14,20 @@ import s from './password.module.scss'
 type PasswordForm = {
   password: string
 }
+type Props = { className?: string }
 
 type PasswordValues = z.infer<typeof passwordSchema>
 
-const classNames = {
-  buttonBox: s.buttonBox,
-  container: s.container,
-  inputBox: clsx(s.inputBox, s.text),
-  light: s.light,
-  link: s.link,
-  root: s.root,
-}
+export const CreateNewPassword = ({ className }: Props) => {
+  const classNames = {
+    buttonBox: s.buttonBox,
+    container: s.container,
+    inputBox: clsx(s.inputBox, s.text),
+    light: s.light,
+    link: s.link,
+    root: s.root,
+  }
 
-export const CreateNewPassword = () => {
   const { control, handleSubmit } = useForm<PasswordValues>({
     defaultValues: { password: '' },
     resolver: zodResolver(passwordSchema),
@@ -36,7 +38,7 @@ export const CreateNewPassword = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
+    <Card as={'form'} className={`${s.root} ${className}`} onSubmit={handleSubmit(onSubmitHandler)}>
       <div className={classNames.root}>
         <div className={classNames.container}>
           <Typography variant={'h1'}>Create new password</Typography>
@@ -59,6 +61,6 @@ export const CreateNewPassword = () => {
           </div>
         </div>
       </div>
-    </form>
+    </Card>
   )
 }
