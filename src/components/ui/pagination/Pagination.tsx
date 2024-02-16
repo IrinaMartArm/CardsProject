@@ -58,12 +58,7 @@ export const Pagination = <T extends ElementType = 'a'>(
       </div>
       <div className={s.selectWrapper}>
         <Typography variant={'body2'}>Показать</Typography>
-        <Select
-          defaultValue={pageSize + ''}
-          items={items}
-          name={'page'}
-          onChange={onChangeHandler}
-        />
+        <Select items={items} name={'page'} onChange={onChangeHandler} />
         <Typography variant={'body2'}>на странице</Typography>
       </div>
     </div>

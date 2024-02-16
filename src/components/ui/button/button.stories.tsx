@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import out from '../../../images/svg/log-out.svg'
+import { Out } from '../../assets/icons/Out'
 import { Button } from './'
 
 const meta = {
@@ -95,7 +95,7 @@ export const FullWidthDisabled: Story = {
   args: {
     children: (
       <>
-        <img alt={''} src={out} />
+        <Out />
         Full Width Disabled
       </>
     ),
@@ -109,7 +109,7 @@ export const AsLink: Story = {
   args: {
     children: (
       <>
-        <img alt={''} src={out} />
+        <Out />
         AsLink
       </>
     ),
@@ -120,7 +120,7 @@ export const DisabledButtonWithIcon: Story = {
   args: {
     children: (
       <>
-        <img alt={''} src={out} />
+        <Out />
         Button primary
       </>
     ),

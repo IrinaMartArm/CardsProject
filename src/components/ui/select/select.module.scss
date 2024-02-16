@@ -23,7 +23,7 @@ button {
   color: var(--color-light-100);
 
   background-color: var(--color-dark-700);
-  border: 1px solid var(--color-dark-300);
+  border: 1px solid var(--color-dark-500);
   border-radius: 2px;
 
   &:focus-within {
@@ -41,14 +41,15 @@ button {
 
 .SelectContent {
   overflow: hidden;
-  background-color: var(--color-dark-500);
+  background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
   border-radius: 2px;
 }
 
-.SelectViewport {
-  padding: 5px;
-}
+//.SelectViewport {
+//  //padding: 5px;
+//  width: 100%;
+//}
 
 .SelectItem {
   user-select: none;

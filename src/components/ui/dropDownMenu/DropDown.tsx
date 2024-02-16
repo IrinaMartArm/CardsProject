@@ -16,7 +16,7 @@ export const DropdownMenuDemo = () => {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className={s.DropdownMenuContent} sideOffset={5}>
+        <DropdownMenu.Content align={'end'} className={s.DropdownMenuContent} sideOffset={5}>
           <DropdownMenu.Item className={s.DropdownMenuItem}>
             <div className={s.itemBox}>
               <Play size={16} />

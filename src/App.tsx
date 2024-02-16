@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/Pagination'
+import { Select } from '@/components/ui/select/Select'
 import { CreateNewPassword } from '@/features/ui/password/CreateNewPassword'
 import { ForgotPassword } from '@/features/ui/password/ForgotPassword'
 
@@ -43,6 +44,7 @@ export function App() {
       }}
     >
       <DropdownMenuDemo />
+      <Select items={items} name={'items'} onChange={() => {}} />
       <Pagination
         currentPage={currentPage}
         onPageChange={PageChangeHandle}
@@ -54,7 +56,7 @@ export function App() {
       <CreateNewPassword />
       <Input
         isShowButton
-        // onChange={setInputValue}
+        onChange={setInputValue}
         onClearClick={setInputValue}
         type={'search'}
         value={inputValue}

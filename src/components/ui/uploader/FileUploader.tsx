@@ -10,7 +10,7 @@ import {
 import { Typography } from '@/components/ui/typography/Typography'
 import { ZodEffects, ZodError } from 'zod'
 
-import s from './uploader.module.scss'
+import s from './fileUploader.module.scss'
 
 type Props = {
   setFile: (file: File) => void

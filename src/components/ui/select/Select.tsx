@@ -53,7 +53,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
             </SelectRadix.Icon>
           </SelectRadix.Trigger>
           <SelectRadix.Portal>
-            <SelectRadix.Content className={s.SelectContent}>
+            <SelectRadix.Content className={s.SelectContent} position={'popper'}>
               <SelectRadix.Viewport className={s.SelectViewport}>
                 <SelectRadix.Group>
                   {items.map((el, index) => (

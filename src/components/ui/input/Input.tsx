@@ -29,7 +29,8 @@ export type InputProps = {
   onEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   type: InputTypes
   value?: string
-} & ComponentPropsWithoutRef<'input'>
+} & Omit<ComponentPropsWithoutRef<'input'>, 'onChange'>
+// onChange
 
 const InputType = (type: InputTypes, showPassword: boolean) => {
   if (type === 'password') {

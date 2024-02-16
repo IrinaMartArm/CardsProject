@@ -16,6 +16,8 @@ input {
   width: 284px;
   height: 36px;
 
+  color: var(--color-dark-100);
+
   border: 1px solid var(--color-dark-300);
   border-radius: 2px;
 
@@ -25,8 +27,8 @@ input {
     var(--transtition-duration-basic) border-color;
 
   &:hover:not(&.disabled) {
-    color: var(--color-dark-100);
     background-color: var(--color-dark-700);
+    border: 1px solid var(--color-dark-100);
   }
 
   &:active:not(&.disabled) {
