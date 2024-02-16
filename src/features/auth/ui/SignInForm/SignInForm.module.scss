@@ -1,0 +1,51 @@
+.form {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 33px 36px 28px;
+}
+.headerText {
+  user-select: none;
+}
+
+.input {
+  margin-top: 27px;
+}
+
+.checkbox {
+  align-self: flex-start;
+  margin-top: 18px;
+}
+
+.forgotNav {
+  cursor: pointer;
+
+  align-self: flex-end;
+
+  margin-top: 12px;
+  margin-right: 12px;
+
+  color: var(--color-light-100);
+  text-decoration: none;
+
+  transition: all 0.2s linear;
+}
+
+.signInBtn {
+  width: 290px;
+  margin-top: 60px;
+}
+
+.signUpText {
+  user-select: none;
+  margin-top: 20px;
+  color: var(--color-light-900);
+}
+
+.form .signUpNav {
+  margin-top: 10px;
+  padding: 0;
+  color: var(--color-accent-500);
+  text-decoration: underline 1px;
+}
+

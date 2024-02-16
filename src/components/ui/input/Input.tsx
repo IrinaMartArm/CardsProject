@@ -24,15 +24,17 @@ export type InputProps = {
   fullWidth?: boolean
   isShowButton?: boolean
   label?: ReactNode
-  onChange?: (value: string) => void
   onClearClick?: (value: string) => void
   onEnter?: (e: KeyboardEvent<HTMLInputElement>) => void
   type: InputTypes
   value?: string
-} & Omit<ComponentPropsWithoutRef<'input'>, 'onChange'>
+} & ComponentPropsWithoutRef<'input'>
 // onChange
 
-const InputType = (type: InputTypes, showPassword: boolean) => {
+const InputType = (
+  type: InputTypes & Omit<ComponentPropsWithoutRef<'input'>, keyof InputProps>,
+  showPassword: boolean
+) => {
   if (type === 'password') {
     return showPassword ? 'text' : 'password'
   } else if (type === 'search') {
@@ -85,7 +87,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
-        onChange(e.currentTarget.value)
+        onChange(e)
       }
     }
 

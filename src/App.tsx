@@ -56,7 +56,9 @@ export function App() {
       <CreateNewPassword />
       <Input
         isShowButton
-        onChange={setInputValue}
+        onChange={e => {
+          setInputValue(e.currentTarget.value)
+        }}
         onClearClick={setInputValue}
         type={'search'}
         value={inputValue}

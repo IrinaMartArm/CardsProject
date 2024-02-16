@@ -1,0 +1,29 @@
+.form {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 33px 36px 28px;
+}
+
+.headerText {
+  user-select: none;
+}
+
+.image {
+  margin-top: 28px;
+  background-color: rgb(140 97 255 / 5%);
+}
+
+.descriptionText {
+  width: 250px;
+  text-align: center;
+  user-select: none;
+  margin-top: 20px;
+  color: var(--color-light-900);
+  opacity: 0.5;
+}
+
+.signInNav {
+  width: 290px;
+  margin-top: 66px;
+}

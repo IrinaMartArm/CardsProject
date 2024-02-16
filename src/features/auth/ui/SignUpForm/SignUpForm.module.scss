@@ -1,0 +1,31 @@
+.form {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 33px 36px 28px;
+}
+.headerText {
+  user-select: none;
+}
+
+.input {
+  margin-top: 27px;
+}
+
+.signUpBtn {
+  width: 290px;
+  margin-top: 60px;
+}
+
+.haveAnAccountText {
+  user-select: none;
+  margin-top: 20px;
+  color: var(--color-light-900);
+}
+
+.form .signInNav {
+  margin-top: 10px;
+  padding: 0;
+  color: var(--color-accent-500);
+  text-decoration: underline 1px;
+}
