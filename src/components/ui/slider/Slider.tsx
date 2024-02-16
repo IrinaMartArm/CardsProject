@@ -1,5 +1,6 @@
 import { Ref, forwardRef, useState } from 'react'
 
+import { Input } from '@/components/ui/input'
 import * as SliderRadix from '@radix-ui/react-slider'
 
 import s from './slider.module.scss'
@@ -23,7 +24,7 @@ export const Slider = forwardRef(({ name }: SliderProps, ref: Ref<HTMLSpanElemen
   return (
     <form>
       <div className={s.Container}>
-        <div className={s.Block}>{value1}</div>
+        <Input className={s.Block} type={'text'} value={value1 + ''} />
         <SliderRadix.Root
           className={s.SliderRoot}
           defaultValue={[25, 75]}
@@ -39,7 +40,7 @@ export const Slider = forwardRef(({ name }: SliderProps, ref: Ref<HTMLSpanElemen
           <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
           <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
         </SliderRadix.Root>
-        <div className={s.Block}>{value2}</div>
+        <Input className={s.Block} type={'text'} value={value2 + ''} />
       </div>
     </form>
   )

@@ -1,7 +1,6 @@
 import { ElementRef, Ref, forwardRef, useState } from 'react'
 
-import { KeyboardArrowDown } from '@/components/assets/icons'
-import { ArrowUpIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
+import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
@@ -12,6 +11,7 @@ type ItemsType = {
 }
 
 type SelectType = {
+  className?: string
   defaultValue?: string
   disabled?: boolean
   isPagination?: boolean
@@ -23,13 +23,23 @@ type SelectType = {
 }
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType>(
   (
-    { defaultValue, isPagination, items, label, name, onChange, value, ...rest }: SelectType,
+    {
+      className,
+      defaultValue,
+      isPagination,
+      items,
+      label,
+      name,
+      onChange,
+      value,
+      ...rest
+    }: SelectType,
     ref: Ref<HTMLSelectElement>
   ) => {
     const classNames = {
-      Container: clsx(s.Container),
-      SelectTrigger: clsx(s.SelectTrigger, isPagination && s.pagination),
-      selectItem: clsx(s.SelectItem, isPagination && s.pagination),
+      Container: clsx(s.Container, className),
+      SelectTrigger: clsx(s.SelectTrigger, isPagination && s.pagination, className),
+      selectItem: clsx(s.SelectItem, isPagination && s.pagination, className),
     }
 
     const [open, setOpen] = useState(false)

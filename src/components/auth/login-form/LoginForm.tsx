@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 
-import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCceckBox'
+import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Input } from '@/components/ui/input'
 import { loginSchema } from '@/utils/Validation'
