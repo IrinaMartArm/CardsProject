@@ -6,10 +6,10 @@ export const Eye = memo(
   forwardRef<SVGSVGElement, IconProps>(({}, ref) => (
     <svg
       fill={'none'}
-      height={'20'}
+      height={'24'}
       ref={ref}
-      viewBox={'0 0 20 20'}
-      width={'20'}
+      viewBox={'0 0 24 24'}
+      width={'24'}
       xmlns={'http://www.w3.org/2000/svg'}
     >
       <g clipPath={'url(#clip0_5661_2355)'}>
