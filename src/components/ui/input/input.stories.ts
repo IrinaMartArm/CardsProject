@@ -30,3 +30,10 @@ export const Password: Story = {
     type: 'password',
   },
 }
+export const Search: Story = {
+  args: {
+    disabled: false,
+    placeholder: 'Input',
+    type: 'search',
+  },
+}
