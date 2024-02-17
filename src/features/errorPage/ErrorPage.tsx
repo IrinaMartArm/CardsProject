@@ -4,7 +4,7 @@ import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './error.module.scss'
 
-import error from '../../../components/assets/images/404.png'
+import error from '../../components/assets/images/404.png'
 export const ErrorPage = () => {
   return (
     <div className={s.root}>

@@ -1,16 +1,13 @@
 import { useState } from 'react'
 
-import { ALLOWED_IMAGES_FORMATS, COVER_SCHEMA } from 'constants'
-
 import { Edit } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Select } from '@/components/ui/select/Select'
-import { FileUploader } from '@/components/ui/uploader/FileUploader'
-import { CreateNewPassword } from '@/features/ui/password/CreateNewPassword'
-import { ForgotPassword } from '@/features/ui/password/ForgotPassword'
+import { CreateNewPassword } from '@/features/auth/ui/password/CreateNewPassword'
+import { ForgotPassword } from '@/features/auth/ui/password/ForgotPassword'
 
 export const items = [{ name: '1' }, { name: '2' }, { name: '3' }, { name: '4' }]
 
@@ -36,9 +33,6 @@ export function App() {
     setCurrentPage(page)
   }
 
-  const [cover, setCover] = useState<File | null>(null)
-  const coverIsValidImage = cover !== null && ALLOWED_IMAGES_FORMATS.includes(cover.type)
-
   const [inputValue, setInputValue] = useState('')
 
   return (
@@ -63,10 +57,6 @@ export function App() {
       <ForgotPassword />
       <Button icon={<Edit />}>hi</Button>
       <CreateNewPassword />
-      <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '500px' }}>
-        <FileUploader setFile={setCover} trigger={<Edit />} validationSchema={COVER_SCHEMA} />
-        {coverIsValidImage && <img alt={'cover'} src={URL.createObjectURL(cover)} />}
-      </div>
       <Input
         isShowButton
         onChange={e => {

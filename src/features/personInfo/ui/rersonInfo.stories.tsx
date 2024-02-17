@@ -1,4 +1,4 @@
-import { PersonInfo } from '@/features/ui/personInfo/PersonInfo'
+import { PersonInfo } from '@/features/personInfo/ui/PersonInfo'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

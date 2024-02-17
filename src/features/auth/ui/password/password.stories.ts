@@ -1,4 +1,4 @@
-import { CreateNewPassword } from '@/features/ui/password/CreateNewPassword'
+import { CreateNewPassword } from '@/features/auth/ui/password/CreateNewPassword'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
