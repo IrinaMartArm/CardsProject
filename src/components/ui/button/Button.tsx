@@ -6,6 +6,7 @@ export type ButtonProps<T extends ElementType> = {
   as?: T
   children?: ReactNode
   fullWidth?: boolean
+  icon?: ReactNode
   variant?: 'link' | 'outlined' | 'primary' | 'secondary'
 } & ComponentPropsWithoutRef<T>
 
@@ -19,6 +20,7 @@ export const Button = forwardRef(
       children,
       className,
       fullWidth,
+      icon,
       variant = 'primary',
       ...rest
     } = props
@@ -29,7 +31,7 @@ export const Button = forwardRef(
         ref={ref as Ref<HTMLButtonElement>}
         {...rest}
       >
-        {/*<div className={`${s.box}`}>{children}</div>*/}
+        {icon}
         {children}
       </Component>
     )

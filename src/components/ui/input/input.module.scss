@@ -5,6 +5,7 @@ input {
 .box {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -13,6 +14,7 @@ input {
   align-items: center;
   justify-content: center;
 
+  box-sizing: border-box;
   width: 284px;
   height: 36px;
 

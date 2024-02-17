@@ -118,13 +118,18 @@ export const AsLink: Story = {
 }
 export const DisabledButtonWithIcon: Story = {
   args: {
-    children: (
-      <>
-        <Out />
-        Button primary
-      </>
-    ),
-    disabled: true,
+    children: 'Primary Button',
+    icon: <Out />,
     variant: 'primary',
   },
+  // args: {
+  //   children: (
+  //     <>
+  //       <Out />
+  //       Button primary
+  //     </>
+  //   ),
+  //   disabled: true,
+  //
+  // },
 }
