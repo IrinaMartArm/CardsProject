@@ -10,8 +10,11 @@ export const baseApi = createApi({
   }),
   endpoints: builder => {
     return {
-      getDecks: builder.query<Response, void>({
-        query: () => `v2/decks`,
+      getDecks: builder.query<Response, GetDecksArgs | void>({
+        query: args => ({
+          params: args ? args : undefined,
+          url: `v2/decks`,
+        }),
       }),
     }
   },
@@ -46,4 +49,13 @@ export type RootObject = {
 export type RootObjectAuthor = {
   id: string
   name: string
+}
+type GetDecksArgs = {
+  authorId?: string
+  currentPage?: number
+  itemsPerPage?: number
+  maxCardsCount?: number
+  minCardsCount?: number
+  name?: string
+  orderBy?: string
 }

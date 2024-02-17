@@ -1,15 +1,12 @@
 import { ComponentPropsWithoutRef, FC } from 'react'
 
 import { Table } from '@/components/ui/tables/Table'
-// eslint-disable-next-line import/namespace
 import { Column } from '@/features/decks/Decks'
 
 type Sort = {
   direction: 'asc' | 'desc'
   key: string
 } | null
-
-// const [sort, setSort] = useState<Sort>(null)
 
 export const TableHeader: FC<
   Omit<

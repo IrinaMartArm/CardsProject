@@ -1,3 +1,6 @@
+import { useState } from 'react'
+
+import { Input } from '@/components/ui/input'
 import { Table } from '@/components/ui/tables/Table'
 import { TableHeader } from '@/components/ui/tables/TableHeader'
 import { useGetDecksQuery } from '@/services/Api'
@@ -26,10 +29,15 @@ export const columns: Column[] = [
     key: 'createdBy',
     title: 'Created by',
   },
+  {
+    key: '',
+    title: '',
+  },
 ]
 
 export const Decks = () => {
-  const { data, error, isLoading } = useGetDecksQuery
+  const [search, setSearch] = useState('')
+  const { data, error, isLoading } = useGetDecksQuery({ name: search })
 
   // const handleSort = (key: string) => {
   //   if (sort && sort.key === key) {
@@ -54,6 +62,7 @@ export const Decks = () => {
 
   return (
     <div className={s.root}>
+      <Input onChange={setSearch} type={'text'} value={search} />
       <Table.Root className={s.container}>
         <TableHeader columns={columns} />
         {data?.items?.map(item => {
