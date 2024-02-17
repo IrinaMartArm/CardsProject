@@ -103,9 +103,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={s.box}>
-        <span className={classNames.label}>
-          <Label label={label} />
-        </span>
+        <Label label={label} />
         <div className={classNames.input_wrapper}>
           {type === 'search' && (
             <span className={s.iconStart}>
@@ -137,39 +135,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       </div>
     )
   }
-
-  // if (type === 'password') {
-  //   return (
-  //     <div className={s.box}>
-  //       <span className={classNames.label}>
-  //         <Label label={label} />
-  //       </span>
-  //       <div className={s.input_wrapper}>
-  //         <input
-  //           className={classNames.input}
-  //           onKeyDown={handleKeyDown}
-  //           type={type}
-  //           {...rest}
-  //           disabled
-  //         />
-  //         <span className={s.iconEnd}>
-  //           <Eye />
-  //         </span>
-  //       </div>
-  //       {showError && <Typography.Error>{errorMessage}</Typography.Error>}
-  //     </div>
-  //   )
-  // }
-
-  // return (
-  //   <div className={s.box}>
-  //     <span className={classNames.label}>
-  //       <Label label={label} />
-  //     </span>
-  //     <div className={s.input_wrapper}>
-  //       <input className={classNames.input} onKeyDown={handleKeyDown} type={type} {...rest} />
-  //     </div>
-  //     {showError && <Typography.Error>{errorMessage}</Typography.Error>}
-  //   </div>
-  // )
 )

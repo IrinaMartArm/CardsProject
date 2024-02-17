@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { Pen } from '@/components/assets/icons'
-import { COVER_SCHEMA } from '@/components/constants'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -11,6 +10,8 @@ import { FileUploader } from '@/components/ui/uploader'
 import { convertFileToBase64 } from '@/utils/convertFile'
 
 import s from './personInfo.module.scss'
+
+import { COVER_SCHEMA } from '../../../constants'
 export const PersonInfo = () => {
   const [editNicknameMode, setEditNicknameMode] = useState(false)
   const [nickname, setNickname] = useState('nick')

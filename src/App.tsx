@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
+import { ALLOWED_IMAGES_FORMATS, COVER_SCHEMA } from 'constants'
+
 import { Edit } from '@/components/assets/icons'
-import { ALLOWED_IMAGES_FORMATS, COVER_SCHEMA } from '@/components/constants'
 import { Button } from '@/components/ui/button'
 import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
 import { Input } from '@/components/ui/input'

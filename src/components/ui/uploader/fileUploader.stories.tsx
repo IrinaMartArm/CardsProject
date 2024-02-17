@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import { Edit } from '@/components/assets/icons'
-import { ALLOWED_IMAGES_FORMATS, MAX_SIZE_IMAGE } from '@/components/constants'
 import { z } from 'zod'
 
+import { ALLOWED_IMAGES_FORMATS, MAX_SIZE_IMAGE } from '../../../constants'
 import { FileUploader } from './FileUploader'
 
 const meta = {
