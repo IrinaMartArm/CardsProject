@@ -102,7 +102,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <div className={s.box}>
+      <div className={s.box + ' ' + classNames.root}>
         <Label label={label} />
         <div className={classNames.input_wrapper}>
           {type === 'search' && (
@@ -131,7 +131,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
-        {showError && <Typography variant={'error'}>{errorMessage}</Typography>}
+        <Typography className={s.errorMessage} variant={'error'}>
+          {errorMessage}
+        </Typography>
       </div>
     )
   }

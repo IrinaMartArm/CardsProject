@@ -2,6 +2,12 @@ import { PersonInfo } from '@/features/personInfo/ui/PersonInfo'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
+  argTypes: {
+    variant: {
+      control: { type: 'radio' },
+      options: ['primary', 'secondary'],
+    },
+  },
   component: PersonInfo,
   tags: ['autodocs'],
   title: 'Components/PersonInfo',

@@ -8,6 +8,7 @@ import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Select } from '@/components/ui/select/Select'
 import { CreateNewPassword } from '@/features/auth/ui/password/CreateNewPassword'
 import { ForgotPassword } from '@/features/auth/ui/password/ForgotPassword'
+import { PersonInfo } from '@/features/personInfo'
 
 export const items = [{ name: '1' }, { name: '2' }, { name: '3' }, { name: '4' }]
 
@@ -45,6 +46,7 @@ export function App() {
         padding: '100px',
       }}
     >
+      <PersonInfo />
       <DropdownMenuDemo />
       <Select items={items} name={'items'} onChange={() => {}} />
       <Pagination

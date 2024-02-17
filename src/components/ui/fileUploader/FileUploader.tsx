@@ -8,18 +8,17 @@ import {
 } from 'react'
 
 import { Typography } from '@/components/ui/typography/Typography'
-import { ZodEffects, ZodError } from 'zod'
+import { ZodError } from 'zod'
 
-import s from './fileUploader.module.scss'
+import s from './FileUploader.module.scss'
 
 type Props = {
   setFile: (file: File) => void
   trigger: ReactNode
-  validationSchema: ZodEffects<any>
 } & ComponentPropsWithoutRef<'input'>
 
 export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
-  ({ className, name, setFile, trigger, validationSchema, ...rest }, ref) => {
+  ({ className, name, setFile, trigger, ...rest }, ref) => {
     const [error, setError] = useState<null | string>(null)
 
     const handleChangeCover = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +32,6 @@ export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
         if (file) {
           setFile(file)
           setError(null)
-          validationSchema.parse(file)
         }
       } catch (e) {
         const error = e as Error | ZodError
@@ -57,9 +55,6 @@ export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
           type={'file'}
           {...rest}
         />
-        <Typography as={'span'} className={s.error} variant={'caption'}>
-          {error}
-        </Typography>
       </Typography>
     )
   }
