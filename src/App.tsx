@@ -1,13 +1,7 @@
-import { useState } from 'react'
+import { Provider } from 'react-redux'
 
-import { Edit } from '@/components/assets/icons'
-import { Button } from '@/components/ui/button'
-import { DropdownMenuDemo } from '@/components/ui/dropDownMenu/DropDown'
-import { Input } from '@/components/ui/input'
-import { Pagination } from '@/components/ui/pagination/Pagination'
-import { Select } from '@/components/ui/select/Select'
-import { CreateNewPassword } from '@/features/auth/ui/password/CreateNewPassword'
-import { ForgotPassword } from '@/features/auth/ui/password/ForgotPassword'
+import { Router } from '@/Router'
+import { store } from '@/services/store'
 
 export const items = [{ name: '1' }, { name: '2' }, { name: '3' }, { name: '4' }]
 
@@ -27,45 +21,17 @@ export const answerVariants = [
 ]
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const PageChangeHandle = (page: number) => {
-    setCurrentPage(page)
-  }
-
-  const [inputValue, setInputValue] = useState('')
+  // const [currentPage, setCurrentPage] = useState(1)
+  //
+  // const PageChangeHandle = (page: number) => {
+  //   setCurrentPage(page)
+  // }
+  //
+  // const [inputValue, setInputValue] = useState('')
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '35px',
-        justifyContent: 'center',
-        padding: '100px',
-      }}
-    >
-      <DropdownMenuDemo />
-      <Select items={items} name={'items'} onChange={() => {}} />
-      <Pagination
-        currentPage={currentPage}
-        onPageChange={PageChangeHandle}
-        pageSize={10}
-        siblingCount={1}
-        totalCount={44}
-      />
-      <ForgotPassword />
-      <Button icon={<Edit />}>hi</Button>
-      <CreateNewPassword />
-      <Input
-        isShowButton
-        onChange={e => {
-          setInputValue(e.currentTarget.value)
-        }}
-        onClearClick={setInputValue}
-        type={'search'}
-        value={inputValue}
-      />
-    </div>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   )
 }
