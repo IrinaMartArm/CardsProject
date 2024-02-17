@@ -1,0 +1,43 @@
+.root {
+  width: 420px;
+  height: 420px;
+}
+
+.title {
+  margin: 0 0 30px 0;
+}
+
+.nickName  {
+  display: flex;
+  margin: 0 0 10px 0;
+
+  .editNick {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+  }
+}
+
+.nickNameInput {
+  margin: 0 0 10px 0;
+}
+
+.AvatarUploader {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  margin: 0 0 30px 0;
+
+  .pen {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background: var(--color-accent-500);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
