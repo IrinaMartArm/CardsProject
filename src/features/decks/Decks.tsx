@@ -62,20 +62,22 @@ export const Decks = () => {
 
   return (
     <div className={s.root}>
-      <Input onChange={setSearch} type={'text'} value={search} />
+      <Input type={'text'} value={search} />
       <Table.Root className={s.container}>
         <TableHeader columns={columns} />
-        {data?.items?.map(item => {
-          return (
-            <Table.Row key={item.id}>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.cardsCount}</Table.Cell>
-              <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
-              <Table.Cell>{item.author.name}</Table.Cell>
-              <Table.Cell></Table.Cell>
-            </Table.Row>
-          )
-        })}
+        <Table.Body>
+          {data?.items?.map(item => {
+            return (
+              <Table.Row key={item.id}>
+                <Table.Cell>{item.name}</Table.Cell>
+                <Table.Cell>{item.cardsCount}</Table.Cell>
+                <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
+                <Table.Cell>{item.author.name}</Table.Cell>
+                <Table.Cell></Table.Cell>
+              </Table.Row>
+            )
+          })}
+        </Table.Body>
       </Table.Root>
     </div>
   )
