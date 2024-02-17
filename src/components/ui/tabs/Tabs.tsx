@@ -8,16 +8,21 @@ type OptionsType = {
 }
 
 type TabsType = {
+  onChange: () => void
   tabsOptions: OptionsType[]
+  value?: string
 }
-export const Tabs = ({ tabsOptions }: TabsType) => {
-  const onValueChangeHandler = () => {}
+export const Tabs = ({ onChange, tabsOptions, value }: TabsType) => {
+  const onValueChangeHandler = () => {
+    onChange()
+  }
 
   return (
     <TabsRadix.Root
       className={s.TabsRoot}
       defaultValue={tabsOptions[0].option}
       onValueChange={onValueChangeHandler}
+      value={value}
     >
       <TabsRadix.List aria-label={'Manage your account'} className={s.TabsList}>
         {tabsOptions.map((el, index) => {

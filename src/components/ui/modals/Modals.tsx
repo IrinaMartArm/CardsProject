@@ -24,7 +24,9 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <Button variant={'primary'}>{title}</Button>
+        <Button onChange={() => {}} variant={'primary'}>
+          {title}
+        </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.DialogOverlay} />
@@ -34,7 +36,7 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
               <Typography variant={'h3'}>{title}</Typography>
             </Dialog.Title>
             <Dialog.Close asChild>
-              <button aria-label={'Close'} className={'IconButton'}>
+              <button aria-label={'Close'} className={'IconButton'} onChange={() => {}}>
                 <Close />
               </button>
             </Dialog.Close>
@@ -55,15 +57,21 @@ export const Modals = ({ buttons, title }: ModalsProps) => {
             <div>
               {buttons ? (
                 <div className={classNames.footer}>
-                  <Button variant={'secondary'}>Button secondary</Button>
+                  <Button onChange={() => {}} variant={'secondary'}>
+                    Button secondary
+                  </Button>
                   <Dialog.Close asChild>
-                    <Button variant={'primary'}>Button primary</Button>
+                    <Button onChange={() => {}} variant={'primary'}>
+                      Button primary
+                    </Button>
                   </Dialog.Close>
                 </div>
               ) : (
                 <div className={classNames.footer}>
                   <Dialog.Close asChild>
-                    <Button variant={'secondary'}>Button secondary</Button>
+                    <Button onChange={() => {}} variant={'secondary'}>
+                      Button secondary
+                    </Button>
                   </Dialog.Close>
                 </div>
               )}

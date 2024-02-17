@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { tabsOptions } from '@/App'
-import { Tabs } from '@/components/ui/tabs/TabsDemo'
+import { Tabs } from '@/components/ui/tabs/Tabs'
 
 const meta = {
   argTypes: {},
