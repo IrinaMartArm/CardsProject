@@ -100,7 +100,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       setShowPassword(!showPassword)
     }
 
-    const isShowButton = !!value
+    const isShowButton = type === 'search' && !!value
 
     return (
       <div className={s.box + ' ' + classNames.root}>

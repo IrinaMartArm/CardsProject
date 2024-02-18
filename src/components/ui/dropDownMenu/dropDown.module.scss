@@ -38,23 +38,23 @@ button {
   animation-name: slideRightAndFade;
 }
 
-.DropdownMenuItem {
-  user-select: none;
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  padding: 5px;
-
-  font-size: 16px;
-  line-height: 1.2;
-  color: var(--color-light-100);
-
-  border-radius: 3px;
-  outline: none;
-}
+//.DropdownMenuItem {
+//  user-select: none;
+//
+//  position: relative;
+//
+//  display: flex;
+//  align-items: center;
+//  justify-content: start;
+//
+//  font-size: 16px;
+//  line-height: 1.2;
+//  color: var(--color-light-100);
+//
+//  border: 1px solid red;
+//  border-radius: 3px;
+//  outline: none;
+//}
 
 //.DropdownMenuItem[data-highlighted] {
 //  color: var(--color-light-100);
@@ -63,7 +63,7 @@ button {
 
 .DropdownMenuSeparator {
   height: 1px;
-  margin: 5px;
+  margin: 5px 0;
   background-color: var(--color-dark-500);
 }
 
@@ -89,6 +89,7 @@ button {
 
   width: 35px;
   height: 35px;
+  padding: 3px;
 
   font-family: inherit;
   color: var(--color-light-100);
@@ -105,14 +106,20 @@ button {
   display: flex;
   gap: 5px;
   align-items: center;
-  justify-content: center;
+
+  padding: 0;
+
+  color: var(--color-light-100);
+  text-align: start;
 }
 
 .photoBox {
   display: flex;
   gap: 10px;
   align-items: center;
+
   width: fit-content;
+  padding-bottom: 5px;
 }
 
 .infoBox {
