@@ -20,7 +20,7 @@
 }
 
 .subtitle1 {
-  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-medium));
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-semi-bold));
 }
 
 .subtitle2 {
