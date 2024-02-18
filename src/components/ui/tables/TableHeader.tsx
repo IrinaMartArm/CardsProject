@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, FC } from 'react'
 import { Table } from '@/components/ui/tables/Table'
 import { Column } from '@/features/decks/Decks'
 
-type Sort = {
+export type Sort = {
   direction: 'asc' | 'desc'
   key: string
 } | null
@@ -43,7 +43,7 @@ export const TableHeader: FC<
         {columns.map(({ key, sortable, title }) => (
           <Table.HeadCell key={key} onClick={handleSort(key, sortable)}>
             {title}
-            {sort && sort.key === key && <span>{sort.direction === 'asc' ? '▲' : '▼'}</span>}
+            {sort && sort.key === key && <span>{sort.direction === 'asc' ? '  ▲' : '  ▼'}</span>}
           </Table.HeadCell>
         ))}
       </Table.Row>
