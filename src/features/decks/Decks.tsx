@@ -37,6 +37,7 @@ export const columns: Column[] = [
 
 export const Decks = () => {
   const [search, setSearch] = useState('')
+  // const debouncedSearch = useDebounce()
   const { data, error, isLoading } = useGetDecksQuery({ name: search })
 
   // const handleSort = (key: string) => {
@@ -62,7 +63,7 @@ export const Decks = () => {
 
   return (
     <div className={s.root}>
-      <Input type={'text'} value={search} />
+      <Input onChange={e => setSearch(e.target.value)} type={'text'} value={search} />
       <Table.Root className={s.container}>
         <TableHeader columns={columns} />
         <Table.Body>
