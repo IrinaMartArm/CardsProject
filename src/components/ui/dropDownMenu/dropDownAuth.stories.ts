@@ -13,5 +13,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const DropdownMenu: Story = {
-  args: {},
+  args: {
+    email: 'fhfgg@mail.ru',
+    name: 'Bob',
+  },
 }

@@ -1,11 +1,17 @@
 import { Out } from '@/components/assets/icons/Out'
 import { Person } from '@/components/assets/icons/Person'
 import { Avatar } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { Typography } from '@/components/ui/typography/Typography'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import s from './dropDown.module.scss'
 
-export const DropDownAuth = () => {
+type Props = {
+  email: string
+  name: string
+}
+export const DropDownAuth = ({ email, name }: Props) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -16,22 +22,22 @@ export const DropDownAuth = () => {
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content align={'end'} className={s.DropdownMenuContent} sideOffset={5}>
-          <DropdownMenu.Item className={s.DropdownMenuItem}>
-            <Photo />
+          <DropdownMenu.Item>
+            <Photo email={email} name={name} />
           </DropdownMenu.Item>
           <DropdownMenu.Separator className={s.DropdownMenuSeparator} />
-          <DropdownMenu.Item className={s.DropdownMenuItem}>
-            <div className={s.itemBox}>
+          <DropdownMenu.Item>
+            <Button className={s.itemBox} variant={'link'}>
               <Person size={16} />
-              Edit
-            </div>
+              <Typography variant={'caption'}>Edit</Typography>
+            </Button>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className={s.DropdownMenuSeparator} />
-          <DropdownMenu.Item className={s.DropdownMenuItem}>
-            <div className={s.itemBox}>
+          <DropdownMenu.Item>
+            <Button className={s.itemBox} variant={'link'}>
               <Out size={16} />
-              Sign Out
-            </div>
+              <Typography variant={'caption'}>Sign Out</Typography>
+            </Button>
           </DropdownMenu.Item>
           <DropdownMenu.Arrow className={s.DropdownMenuArrow} />
         </DropdownMenu.Content>
@@ -40,13 +46,15 @@ export const DropDownAuth = () => {
   )
 }
 
-const Photo = () => {
+const Photo = ({ email, name }: Props) => {
   return (
     <div className={s.photoBox}>
       <Avatar title={'Av'} />
       <div className={s.infoBox}>
-        <div className={s.name}>Irina</div>
-        <div className={s.mail}>nvhffh@ncb.com</div>
+        <Typography variant={'subtitle1'}>{name}</Typography>
+        <Typography className={s.mail} variant={'caption'}>
+          {email}
+        </Typography>
       </div>
     </div>
   )

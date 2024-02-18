@@ -1,20 +1,19 @@
-import { Avatar } from '@/components/ui/avatar'
+import { Logo } from '@/components/assets/icons/Logo'
 import { Button } from '@/components/ui/button'
+import { DropDownAuth } from '@/components/ui/dropDownMenu/DropDownAuth'
 import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './header.module.scss'
 
 type HeaderProps = {
-  name?: string
+  name: string
   photo?: string
   withBtn?: boolean
 }
 export const Header = ({ name, withBtn }: HeaderProps) => {
   return (
     <div className={s.header}>
-      <div>
-        <img alt={'IT-Incubator'} src={''} />
-      </div>
+      <Logo />
       {withBtn ? (
         <div>
           <Button variant={'secondary'}>Sign In</Button>
@@ -24,7 +23,7 @@ export const Header = ({ name, withBtn }: HeaderProps) => {
           <Typography className={s.name} variant={'subtitle1'}>
             {name}
           </Typography>
-          <Avatar title={'avatar'} />
+          <DropDownAuth email={'dkishye@mail.ru'} name={name} />
         </div>
       )}
     </div>
