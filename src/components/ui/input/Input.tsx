@@ -11,7 +11,6 @@ import { Close } from '@/components/assets/icons/Close'
 import { Eye } from '@/components/assets/icons/Eye'
 import { EyeOff } from '@/components/assets/icons/EyeOff'
 import { Search } from '@/components/assets/icons/Search'
-import { Label } from '@/components/ui/label/Label'
 import { Typography } from '@/components/ui/typography/Typography'
 import { clsx } from 'clsx'
 
@@ -51,7 +50,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       disabled,
       errorMessage,
       fullWidth,
-      isShowButton = false,
+      // isShowButton = false,
       label,
       onChange,
       onClearClick,
@@ -101,9 +100,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       setShowPassword(!showPassword)
     }
 
+    const isShowButton = !!value
+
     return (
       <div className={s.box + ' ' + classNames.root}>
-        <Label label={label} />
+        <Typography variant={'body2'}>{label}</Typography>
         <div className={classNames.input_wrapper}>
           {type === 'search' && (
             <span className={s.iconStart}>

@@ -63,7 +63,7 @@ export const Decks = () => {
 
   return (
     <div className={s.root}>
-      <Input onChange={e => setSearch(e.target.value)} type={'text'} value={search} />
+      <Input onChange={e => setSearch(e.target.value)} type={'search'} value={search} />
       <Table.Root className={s.container}>
         <TableHeader columns={columns} />
         <Table.Body>

@@ -28,44 +28,34 @@ export const PersonInfo = () => {
   }
   const onKeyDownHandler = (key: string) => {
     if (key === 'Escape') {
-      setError('')
       setEditNicknameMode(!editNicknameMode)
       setNickname('nick') // сделано, чтобы не багалось пока нету rtk!! убрать!!!
     }
-    if (key === 'Enter') {
-      onSubmitHandler()
-    }
-  }
-
-  const onNicknameChangeHandler = (value: string) => {
-    setError('')
-    setNickname(value)
   }
 
   return (
     <Card as={'div'} className={s.root}>
-      <Typography className={s.title} variant={'h3'}>
-        Personal Information
-      </Typography>
-      <div className={s.AvatarUploader}>
-        <Avatar size={'large'} src={avatar} title={'Avatar'} />
-        <FileUploader
-          className={s.pen}
-          setFile={(file: File) => {
-            convertFileToBase64(file, setAvatar)
-          }}
-          trigger={<Pen />}
-        />
-      </div>
+      <Typography variant={'h3'}>Personal Information</Typography>
+      <FileUploader
+        setFile={(file: File) => {
+          convertFileToBase64(file, setAvatar)
+        }}
+        trigger={
+          <div className={s.AvatarUploader}>
+            <Avatar size={'large'} src={avatar} title={'Avatar'} />
+            <Pen className={s.pen} size={25} />
+          </div>
+        }
+      />
 
       {editNicknameMode ? (
         <>
           <Input
             autoFocus
-            className={s.nickNameInput}
             errorMessage={error}
             label={'Nickname'}
-            onChange={e => onNicknameChangeHandler(e.currentTarget.value)}
+            onChange={e => setNickname(e.currentTarget.value)}
+            onEnter={onSubmitHandler}
             onKeyDown={e => onKeyDownHandler(e.key)}
             type={'text'}
             value={nickname}
@@ -78,13 +68,7 @@ export const PersonInfo = () => {
         <>
           <Typography className={s.nickName} variant={'body1'}>
             {nickname}
-            <Button
-              className={s.editNick}
-              onClick={() => setEditNicknameMode(true)}
-              variant={'link'}
-            >
-              <Pen size={21} />
-            </Button>
+            <Pen onClick={() => setEditNicknameMode(true)} size={21} />
           </Typography>
           <Typography variant={'body2'}>email</Typography>
         </>

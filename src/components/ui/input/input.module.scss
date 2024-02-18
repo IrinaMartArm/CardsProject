@@ -65,6 +65,10 @@ input {
 
   background-color: transparent;
 
+  &.slider {
+    text-align: center;
+  }
+
   &.error {
     &::placeholder {
       color: var(--color-danger-300);

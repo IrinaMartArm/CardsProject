@@ -60,7 +60,7 @@ export const ForgotPassword = ({ className }: Props) => {
         </div>
         <div className={classNames.buttonBox}>
           <Button type={'submit'} variant={'primary'}>
-            Send Instructions
+            <Typography variant={'body2'}>Send Instructions</Typography>
           </Button>
           <Typography className={classNames.light} variant={'body2'}>
             Did you remember your password?

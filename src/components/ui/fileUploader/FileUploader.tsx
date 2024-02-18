@@ -15,6 +15,7 @@ import s from './FileUploader.module.scss'
 type Props = {
   setFile: (file: File) => void
   trigger: ReactNode
+  // validationSchema?: ZodEffects<any>
 } & ComponentPropsWithoutRef<'input'>
 
 export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
@@ -55,6 +56,9 @@ export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
           type={'file'}
           {...rest}
         />
+        <Typography as={'span'} className={s.error} variant={'caption'}>
+          {error}
+        </Typography>
       </Typography>
     )
   }
