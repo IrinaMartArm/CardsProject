@@ -90,6 +90,11 @@ input {
   border: 1px solid var(--color-dark-500);
 }
 
+.contentBox {
+  position: relative;
+  padding: 23px 24px 36px;
+}
+
 .Button.violet:hover {
   background-color: var(--mauve-3);
 }
