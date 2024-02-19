@@ -103,7 +103,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const isShowButton = type === 'search' && !!value
 
     return (
-      <div className={s.box + ' ' + classNames.root}>
+      <div className={classNames.root}>
         <Typography variant={'body2'}>{label}</Typography>
         <div className={classNames.input_wrapper}>
           {type === 'search' && (
