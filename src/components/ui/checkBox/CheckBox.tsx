@@ -26,37 +26,35 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
     }
 
     return (
-      <form>
-        <div className={classNames.container}>
-          <LabelRadix.Root asChild className={classNames.label}>
-            <Typography variant={'body2'}>
-              <div className={classNames.buttonWrapper}>
-                <CheckboxRadix.Root
-                  checked={checked}
-                  className={s.root}
-                  disabled={disabled}
-                  onCheckedChange={onCheckedChange}
-                  ref={ref}
-                  {...rest}
-                >
-                  <AnimatePresence initial={false}>
-                    {/*{checked && (*/}
-                    <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
-                      <Check
-                        color={classNames.checkColor}
-                        colorB={classNames.checkColorB}
-                        size={20}
-                      />
-                    </CheckboxRadix.Indicator>
-                    {/*)}*/}
-                  </AnimatePresence>
-                </CheckboxRadix.Root>
-              </div>
-              {label}
-            </Typography>
-          </LabelRadix.Root>
-        </div>
-      </form>
+      <div className={classNames.container}>
+        <LabelRadix.Root asChild className={classNames.label}>
+          <Typography variant={'body2'}>
+            <div className={classNames.buttonWrapper}>
+              <CheckboxRadix.Root
+                checked={checked}
+                className={s.root}
+                disabled={disabled}
+                onCheckedChange={onCheckedChange}
+                ref={ref}
+                {...rest}
+              >
+                <AnimatePresence initial={false}>
+                  {/*{checked && (*/}
+                  <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
+                    <Check
+                      color={classNames.checkColor}
+                      colorB={classNames.checkColorB}
+                      size={20}
+                    />
+                  </CheckboxRadix.Indicator>
+                  {/*)}*/}
+                </AnimatePresence>
+              </CheckboxRadix.Root>
+            </div>
+            {label}
+          </Typography>
+        </LabelRadix.Root>
+      </div>
     )
   }
 )

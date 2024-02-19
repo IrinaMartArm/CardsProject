@@ -2,34 +2,28 @@ import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
+import { signUpSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './SignUpForm.module.scss'
 
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3),
-  rememberMe: z.boolean().default(false),
-})
-
-type FormValues = z.infer<typeof loginSchema>
+type FormValues = z.infer<typeof signUpSchema>
 
 interface Props {
   className?: string
 }
 export const SignUpForm = ({ className }: Props) => {
   const {
+    control,
     formState: { errors },
     handleSubmit,
-    register,
   } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(signUpSchema),
   })
 
-  console.log('errors: ', errors)
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }
@@ -39,25 +33,25 @@ export const SignUpForm = ({ className }: Props) => {
       <Typography className={s.headerText} variant={'h1'}>
         Sign Up
       </Typography>
-      <Input
-        className={s.input}
-        {...register('email')}
+      <ControlledTextField
+        control={control}
         errorMessage={errors.email?.message}
         label={'Email'}
-        type={'text'}
+        name={'email'}
+        type={'email'}
       />
-      <Input
-        className={s.input}
-        {...register('password')}
+      <ControlledTextField
+        control={control}
         errorMessage={errors.password?.message}
         label={'Password'}
+        name={'password'}
         type={'password'}
       />
-      <Input
-        className={s.input}
-        {...register('password')}
+      <ControlledTextField
+        control={control}
         errorMessage={errors.password?.message}
-        label={'Confirm Password'}
+        label={'Confirm password'}
+        name={'confirmPassword'}
         type={'password'}
       />
       <Button className={s.signUpBtn} fullWidth type={'submit'}>

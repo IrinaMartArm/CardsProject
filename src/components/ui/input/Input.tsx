@@ -16,7 +16,7 @@ import { clsx } from 'clsx'
 
 import s from './input.module.scss'
 
-type InputTypes = 'password' | 'search' | 'text'
+type InputTypes = 'email' | 'password' | 'search' | 'text'
 
 export type InputProps = {
   errorMessage?: string
