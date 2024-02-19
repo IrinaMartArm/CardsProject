@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
-import { emailSchema, passwordSchema } from '@/utils/Validation'
+import { emailSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import { z } from 'zod'
@@ -32,7 +32,7 @@ export const ForgotPassword = ({ className }: Props) => {
     handleSubmit,
   } = useForm<EmailValues>({
     defaultValues: { email: '' },
-    resolver: zodResolver(passwordSchema),
+    resolver: zodResolver(emailSchema),
   })
 
   const onSubmitHandler = (value: EmailValues) => {
@@ -49,7 +49,6 @@ export const ForgotPassword = ({ className }: Props) => {
           <ControlledTextField
             control={control}
             errorMessage={errors.email?.message}
-            fullWidth
             label={'Email'}
             name={'email'}
             type={'text'}
