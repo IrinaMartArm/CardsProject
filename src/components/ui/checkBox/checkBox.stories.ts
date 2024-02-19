@@ -16,10 +16,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {},
+  args: {
+    checked: false,
+  },
 }
 export const Disabled: Story = {
   args: {
+    checked: false,
     disabled: true,
   },
 }
