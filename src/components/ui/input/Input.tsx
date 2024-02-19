@@ -1,6 +1,7 @@
 import {
   ChangeEvent,
   ComponentPropsWithoutRef,
+  ElementRef,
   KeyboardEvent,
   ReactNode,
   forwardRef,
@@ -16,7 +17,7 @@ import { clsx } from 'clsx'
 
 import s from './input.module.scss'
 
-type InputTypes = 'password' | 'search' | 'text'
+type InputTypes = 'email' | 'password' | 'search' | 'text'
 
 export type InputProps = {
   errorMessage?: string
@@ -38,19 +39,20 @@ const InputType = (
     return showPassword ? 'text' : 'password'
   } else if (type === 'search') {
     return 'search'
+  } else if (type === 'email') {
+    return 'email'
   } else {
     return 'text'
   }
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<ElementRef<'input'>, InputProps>(
   (
     {
       className,
       disabled,
       errorMessage,
       fullWidth,
-      // isShowButton = false,
       label,
       onChange,
       onClearClick,

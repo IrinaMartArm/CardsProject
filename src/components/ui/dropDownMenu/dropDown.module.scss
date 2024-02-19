@@ -1,6 +1,10 @@
 /* reset */
 button {
   all: unset;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .DropdownMenuContent,
@@ -102,6 +106,20 @@ button {
   background-color: var(--color-dark-100);
 }
 
+.item {
+  &:hover {
+    background-color: var(--color-dark-300);
+  }
+
+  &:active {
+    background-color: var(--color-dark-500);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
 .itemBox {
   display: flex;
   gap: 5px;
@@ -111,6 +129,10 @@ button {
 
   color: var(--color-light-100);
   text-align: start;
+
+  &:hover {
+    color: var(--color-light-100);
+  }
 }
 
 .photoBox {

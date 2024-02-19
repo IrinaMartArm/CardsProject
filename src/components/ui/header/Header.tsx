@@ -1,5 +1,7 @@
 import { Logo } from '@/components/assets/icons/Logo'
+// import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+// import { DropdownMenu } from '@/components/ui/dropDownMenu/DropDown'
 import { DropDownAuth } from '@/components/ui/dropDownMenu/DropDownAuth'
 import { Typography } from '@/components/ui/typography/Typography'
 

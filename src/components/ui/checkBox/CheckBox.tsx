@@ -10,8 +10,12 @@ import { AnimatePresence } from 'framer-motion'
 import s from './checkBox.module.scss'
 
 export type CheckboxProps = {
+  checked: boolean
   className?: string
+  disabled?: boolean
   label?: string
+  onCheckedChange: (checked: boolean) => void
+  required?: boolean
 } & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
 export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckboxProps>(
@@ -22,7 +26,7 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
       checkColor: clsx(disabled ? 'var(--color-dark-100)' : 'var(--color-light-900)'),
       checkColorB: clsx(disabled ? 'var(--color-light-900)' : 'var(--color-dark-900)'),
       container: clsx(s.container, className),
-      label: clsx(s.label, disabled && s.disabled),
+      label: clsx(s.label, disabled && s.disabled), // root: clsx(s.root, checked)
     }
 
     return (
@@ -41,11 +45,7 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
                 <AnimatePresence initial={false}>
                   {checked && (
                     <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
-                      <Check
-                        color={classNames.checkColor}
-                        colorB={classNames.checkColorB}
-                        size={20}
-                      />
+                      <Check color={classNames.checkColor} colorB={classNames.checkColorB} />
                     </CheckboxRadix.Indicator>
                   )}
                 </AnimatePresence>
@@ -58,6 +58,4 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
     )
   }
 )
-
-// export const CheckBox = forwardRef(CheckBoxWithoutRef)
 CheckBox.displayName = 'CheckBox'

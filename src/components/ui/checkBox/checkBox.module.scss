@@ -43,10 +43,6 @@ button {
   border: 2px solid var(--color-light-900);
   border-radius: 2px;
 
-  //&:focus-within {
-  //  background-color: transparent;
-  //}
-
   &:disabled {
     cursor: initial;
     border-color: var(--color-dark-100);

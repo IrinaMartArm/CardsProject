@@ -19,5 +19,5 @@ export const ControlledRadioGroup = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  return <RadioGroup variants={rest.variants} {...field} />
+  return <RadioGroup {...rest} variants={rest.variants} {...field} />
 }

@@ -1,20 +1,15 @@
-import { useController, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { CheckBox } from '@/components/ui/checkBox'
-import { Input } from '@/components/ui/input'
+import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
+import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
+import { loginSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './SignInForm.module.scss'
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3),
-  rememberMe: z.boolean().default(false),
-})
 
 type FormValues = z.infer<typeof loginSchema>
 
@@ -31,48 +26,40 @@ export const SignInForm = ({ ClassName }: Props) => {
     control,
     formState: { errors },
     handleSubmit,
-    register,
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
 
-  console.log('errors: ', errors)
+  console.log(control)
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }
-
-  const {
-    field: { onChange, value },
-  } = useController({
-    control,
-    defaultValue: false,
-    name: 'rememberMe',
-  })
 
   return (
     <Card as={'form'} className={`${s.form} ${ClassName}`} onSubmit={handleSubmit(onSubmit)}>
       <Typography className={s.headerText} variant={'h1'}>
         Sign In
       </Typography>
-      <Input
-        className={s.input}
-        {...register('email')}
+      <ControlledTextField
+        control={control}
         errorMessage={errors.email?.message}
         label={'Email'}
+        name={'email'}
         type={'text'}
       />
-      <Input
+      <ControlledTextField
         className={s.input}
-        {...register('password')}
+        control={control}
         errorMessage={errors.password?.message}
         label={'Password'}
+        name={'password'}
         type={'password'}
       />
-      <CheckBox
-        checked={value}
+      <ControlledCheckBox
         className={s.checkbox}
+        control={control}
         label={'remember me'}
-        onCheckedChange={onChange}
+        name={'rememberMe'}
       />
       <Typography className={s.forgotNav} variant={'body2'}>
         Forgot Password?

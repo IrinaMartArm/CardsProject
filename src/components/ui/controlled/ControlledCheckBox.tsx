@@ -6,7 +6,7 @@ type PropsType<T extends FieldValues> = Omit<
   UseControllerProps<T>,
   'defaultValue' | 'disabled' | 'rules'
 > &
-  Omit<CheckboxProps, 'checked' | 'onValueChange'>
+  Omit<CheckboxProps, 'checked' | 'onCheckedChange'>
 export const ControlledCheckBox = <T extends FieldValues>({
   control,
   label,

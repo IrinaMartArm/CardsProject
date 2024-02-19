@@ -1,56 +1,65 @@
-import { ComponentProps, FC } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
 import { clsx } from 'clsx'
 
 import s from './table.module.scss'
 
-export type RootProps = ComponentProps<'table'>
+export const Root = forwardRef<HTMLTableElement, ComponentPropsWithoutRef<'table'>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = {
+      table: clsx(className, s.table),
+    }
 
-export const Root: FC<RootProps> = ({ className, ...rest }) => {
-  const classNames = {
-    table: clsx(className, s.table),
+    return <table className={classNames.table} {...rest} ref={ref} />
   }
+)
 
-  return <table className={classNames.table} {...rest} />
-}
-
-export type HeadProps = ComponentProps<'thead'>
-
-export const Head: FC<HeadProps> = props => {
-  return <thead {...props} />
-}
-
-export type BodyProps = ComponentProps<'tbody'>
-
-export const Body: FC<BodyProps> = props => {
-  return <tbody {...props} />
-}
-
-export type RowProps = ComponentProps<'tr'>
-
-export const Row: FC<RowProps> = props => {
-  return <tr {...props} />
-}
-
-export type HeadCellProps = ComponentProps<'th'>
-
-export const HeadCell: FC<HeadCellProps> = ({ className, ...rest }) => {
-  const classNames = {
-    headCell: clsx(className, s.headCell),
+export const Head = forwardRef<ElementRef<'thead'>, ComponentPropsWithoutRef<'thead'>>(
+  ({ ...rest }, ref) => {
+    return <thead {...rest} ref={ref} />
   }
+)
 
-  return <th className={classNames.headCell} {...rest} />
-}
-
-export type CellProps = ComponentProps<'td'>
-
-export const Cell: FC<CellProps> = ({ className, ...rest }) => {
-  const classNames = {
-    cell: clsx(className, s.tableCell),
+export const Body = forwardRef<ElementRef<'tbody'>, ComponentPropsWithoutRef<'tbody'>>(
+  ({ ...rest }, ref) => {
+    return <tbody {...rest} ref={ref} />
   }
+)
 
-  return <td className={classNames.cell} {...rest} />
-}
+export const Row = forwardRef<ElementRef<'tr'>, ComponentPropsWithoutRef<'tr'>>(
+  ({ ...rest }, ref) => {
+    return <tr {...rest} ref={ref} />
+  }
+)
+
+export type HeadCellProps = {
+  children: ReactNode
+  className?: string
+} & ComponentPropsWithoutRef<'th'>
+
+export const HeadCell = forwardRef<ElementRef<'th'>, HeadCellProps>(
+  ({ children, className, ...rest }, ref) => {
+    const classNames = {
+      headCell: clsx(className, s.headCell),
+    }
+
+    return (
+      <th className={classNames.headCell} {...rest} ref={ref}>
+        <span>{children}</span>
+      </th>
+    )
+  }
+)
+
+export const Cell = forwardRef<ElementRef<'td'>, ComponentPropsWithoutRef<'td'>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = {
+      cell: clsx(className, s.tableCell),
+    }
+
+    return <td className={classNames.cell} {...rest} ref={ref} />
+  }
+)
 
 export const Table = {
   Body,
