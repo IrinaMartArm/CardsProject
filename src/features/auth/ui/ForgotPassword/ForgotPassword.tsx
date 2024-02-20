@@ -43,34 +43,30 @@ export const ForgotPassword = ({ className }: Props) => {
 
   return (
     <Card as={'form'} className={`${s.root} ${className}`} onSubmit={handleSubmit(onSubmitHandler)}>
-      <div className={classNames.container}>
-        <Typography variant={'h1'}>Forgot your password?</Typography>
-        <div className={classNames.inputBox}>
-          <ControlledTextField
-            control={control}
-            errorMessage={errors.email?.message}
-            label={'Email'}
-            name={'email'}
-            type={'text'}
-          />
-          <Typography variant={'body2'}>
-            Enter your email address and we will send you further instructions{' '}
-          </Typography>
-        </div>
-        <div className={classNames.buttonBox}>
-          <Button fullWidth type={'submit'} variant={'primary'}>
-            <Typography variant={'body2'}>Send Instructions</Typography>
-          </Button>
-          <Typography className={classNames.light} variant={'body2'}>
-            Did you remember your password?
-          </Typography>
-          <Button as={'a'} className={classNames.link} onClick={onClickHandler} variant={'link'}>
-            <Typography className={classNames.link} variant={'link1'}>
-              Try logging in
-            </Typography>
-          </Button>
-        </div>
-      </div>
+      <Typography className={s.title} variant={'h1'}>
+        Forgot your password?
+      </Typography>
+      <ControlledTextField
+        control={control}
+        errorMessage={errors.email?.message}
+        label={'Email'}
+        name={'email'}
+        type={'text'}
+      />
+      <Typography className={s.subtitle} variant={'body2'}>
+        Enter your email address and we will send you further instructions
+      </Typography>
+      <Button fullWidth type={'submit'} variant={'primary'}>
+        <Typography variant={'body2'}>Send Instructions</Typography>
+      </Button>
+      <Typography className={s.subtitle2} variant={'body2'}>
+        Did you remember your password?
+      </Typography>
+      <Button as={'a'} className={classNames.link} onClick={onClickHandler} variant={'link'}>
+        <Typography className={classNames.link} variant={'link1'}>
+          Try logging in
+        </Typography>
+      </Button>
     </Card>
   )
 }

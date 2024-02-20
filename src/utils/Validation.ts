@@ -18,3 +18,7 @@ export const emailSchema = z.object({
 export const passwordSchema = z.object({
   password: z.string().min(3).max(20),
 })
+
+export const nikNameSchema = z.object({
+  nickName: z.string().min(3).max(15),
+})

@@ -55,8 +55,8 @@ export const CreateNewPassword = ({ className }: Props) => {
             </Typography>
           </div>
           <div className={classNames.buttonBox}>
-            <Button type={'submit'} variant={'primary'}>
-              Create New Password
+            <Button fullWidth type={'submit'} variant={'primary'}>
+              <Typography variant={'body2'}>Create New Password</Typography>
             </Button>
           </div>
         </div>

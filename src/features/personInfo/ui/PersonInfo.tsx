@@ -1,15 +1,21 @@
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 import { Pen } from '@/components/assets/icons'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { FileUploader } from '@/components/ui/fileUploader'
-import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography/Typography'
+import { nikNameSchema } from '@/utils/Validation'
 import { convertFileToBase64 } from '@/utils/convertFile'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 import s from './PersonInfo.module.scss'
+
+type FormValues = z.infer<typeof nikNameSchema>
 
 export const PersonInfo = () => {
   const [editNicknameMode, setEditNicknameMode] = useState(false)
@@ -17,14 +23,18 @@ export const PersonInfo = () => {
   const [avatar, setAvatar] = useState(
     'https://as2.ftcdn.net/v2/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg'
   )
-  const [error, setError] = useState('')
+  // const [error, setError] = useState('')
+
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormValues>({
+    resolver: zodResolver(nikNameSchema),
+  })
 
   const onSubmitHandler = () => {
-    if (nickname.length === 0) {
-      setError('Nickname required!')
-    } else {
-      setEditNicknameMode(!editNicknameMode)
-    }
+    setEditNicknameMode(!editNicknameMode)
   }
   const onKeyDownHandler = (key: string) => {
     if (key === 'Escape') {
@@ -34,7 +44,7 @@ export const PersonInfo = () => {
   }
 
   return (
-    <Card as={'div'} className={s.root}>
+    <Card as={'form'} className={s.root} onSubmit={handleSubmit(onSubmitHandler)}>
       <Typography variant={'h3'}>Personal Information</Typography>
       <FileUploader
         setFile={(file: File) => {
@@ -50,17 +60,17 @@ export const PersonInfo = () => {
 
       {editNicknameMode ? (
         <>
-          <Input
+          <ControlledTextField
             autoFocus
-            errorMessage={error}
+            control={control}
+            errorMessage={errors.root?.message}
             label={'Nickname'}
-            onChange={e => setNickname(e.currentTarget.value)}
+            name={'nickName'}
             onEnter={onSubmitHandler}
             onKeyDown={e => onKeyDownHandler(e.key)}
             type={'text'}
-            value={nickname}
           />
-          <Button onClick={onSubmitHandler} variant={'primary'}>
+          <Button type={'submit'} variant={'primary'}>
             Save Changes
           </Button>
         </>
