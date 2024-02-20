@@ -13,11 +13,6 @@ import s from './SignInForm.module.scss'
 
 type FormValues = z.infer<typeof loginSchema>
 
-/*type FormValues = {
-  email: string
-  password: string
-  rememberMe: boolean
-}*/
 interface Props {
   ClassName?: string
 }
@@ -29,8 +24,6 @@ export const SignInForm = ({ ClassName }: Props) => {
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
-
-  console.log(control)
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }

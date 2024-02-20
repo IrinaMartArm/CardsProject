@@ -29,7 +29,6 @@ export type InputProps = {
   type: InputTypes
   value?: string
 } & ComponentPropsWithoutRef<'input'>
-// onChange
 
 const InputType = (
   type: InputTypes & Omit<ComponentPropsWithoutRef<'input'>, keyof InputProps>,
