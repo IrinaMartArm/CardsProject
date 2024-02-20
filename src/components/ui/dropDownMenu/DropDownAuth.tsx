@@ -33,8 +33,9 @@ export const Photo = ({ email, name }: Props) => {
     </div>
   )
 }
+
 export const DropDownAuth = ({ email, name }: Props) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const onOpen = () => setOpen(!open)
 
   return (

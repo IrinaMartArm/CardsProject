@@ -2,6 +2,7 @@ import { ChangeEvent, useMemo, useState } from 'react'
 
 import { TrashBin } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
+import { CheckBox } from '@/components/ui/checkBox'
 import { Header } from '@/components/ui/header/Header'
 import { Input } from '@/components/ui/input'
 import { Pagination } from '@/components/ui/pagination/Pagination'
@@ -10,7 +11,7 @@ import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
 import { Tabs } from '@/components/ui/tabs/Tabs'
 import { Typography } from '@/components/ui/typography/Typography'
-import { ForgotPassword, SignInForm } from '@/features/auth'
+import { CreateNewPassword } from '@/features/auth'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useGetDecksQuery } from '@/services/Api'
 
@@ -134,8 +135,8 @@ export const Decks = () => {
             totalCount={50}
           />
         </div>
-        <ForgotPassword />
-        <SignInForm />
+        <CheckBox />
+        <CreateNewPassword />
       </div>
     </div>
   )
