@@ -23,7 +23,5 @@ export const ControlledTextField = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  console.log(field)
-
   return <Input {...rest} {...field} errorMessage={error?.message} label={label} />
 }

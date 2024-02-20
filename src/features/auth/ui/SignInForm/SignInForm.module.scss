@@ -4,18 +4,20 @@
   margin: 0 auto;
   padding: 33px 36px 28px;
 }
+
 .headerText {
   user-select: none;
   margin-bottom: 27px;
 }
 
 .input {
-  /*margin-top: 27px;*/
+  /* margin-top: 27px; */
 }
 
 .checkbox {
   align-self: flex-start;
-  /*margin-top: 18px;*/
+
+  /* margin-top: 18px; */
 }
 
 .forgotNav {
@@ -33,7 +35,6 @@
 }
 
 .signInBtn {
-  width: 290px;
   margin-top: 60px;
 }
 
@@ -49,4 +50,3 @@
   color: var(--color-accent-500);
   text-decoration: underline 1px;
 }
-

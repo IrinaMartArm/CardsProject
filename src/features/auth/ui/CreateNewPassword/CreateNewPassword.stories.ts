@@ -1,5 +1,6 @@
-import { CreateNewPassword } from '@/features/auth/ui/CreateNewPassword/CreateNewPassword'
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
+
+import { CreateNewPassword } from '@/features/auth'
 
 const meta = {
   component: CreateNewPassword,
@@ -10,10 +11,4 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const PasswordStory: Story = {
-  args: {},
-}
-
-// export const ForgotPasswordStory: Story = {
-//   args: {},
-// }
+export const CreateNewPasswordStory: Story = {}

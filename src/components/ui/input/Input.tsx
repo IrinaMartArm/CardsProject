@@ -105,7 +105,9 @@ export const Input = forwardRef<ElementRef<'input'>, InputProps>(
 
     return (
       <div className={classNames.root}>
-        <Typography variant={'body2'}>{label}</Typography>
+        <Typography className={classNames.label} variant={'body2'}>
+          {label}
+        </Typography>
         <div className={classNames.input_wrapper}>
           {type === 'search' && (
             <span className={s.iconStart}>
