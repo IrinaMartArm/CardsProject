@@ -10,8 +10,7 @@ import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
 import { Tabs } from '@/components/ui/tabs/Tabs'
 import { Typography } from '@/components/ui/typography/Typography'
-import { SignInForm } from '@/features/auth'
-import { ForgotPassword } from '@/features/auth/ui/password/ForgotPassword'
+import { ForgotPassword, SignInForm } from "@/features/auth";
 import { useDebounce } from '@/hooks/useDebounce'
 import { useGetDecksQuery } from '@/services/Api'
 
