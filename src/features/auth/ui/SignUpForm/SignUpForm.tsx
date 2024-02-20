@@ -50,7 +50,7 @@ export const SignUpForm = ({ className }: Props) => {
       <ControlledTextField
         control={control}
         errorMessage={errors.password?.message}
-        label={'Confirm Password'}
+        label={'Confirm CreateNewPassword'}
         name={'confirmPassword'}
         type={'password'}
       />

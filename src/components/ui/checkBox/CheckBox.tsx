@@ -10,12 +10,8 @@ import { AnimatePresence } from 'framer-motion'
 import s from './checkBox.module.scss'
 
 export type CheckboxProps = {
-  checked: boolean
   className?: string
-  disabled?: boolean
   label?: string
-  onCheckedChange: (checked: boolean) => void
-  required?: boolean
 } & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
 export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckboxProps>(
@@ -26,7 +22,7 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
       checkColor: clsx(disabled ? 'var(--color-dark-100)' : 'var(--color-light-900)'),
       checkColorB: clsx(disabled ? 'var(--color-light-900)' : 'var(--color-dark-900)'),
       container: clsx(s.container, className),
-      label: clsx(s.label, disabled && s.disabled), // root: clsx(s.root, checked)
+      label: clsx(s.label, disabled && s.disabled),
     }
 
     return (
@@ -43,11 +39,15 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
                 {...rest}
               >
                 <AnimatePresence initial={false}>
-                  {checked && (
-                    <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
-                      <Check color={classNames.checkColor} colorB={classNames.checkColorB} />
-                    </CheckboxRadix.Indicator>
-                  )}
+                  {/*{checked && (*/}
+                  <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
+                    <Check
+                      color={classNames.checkColor}
+                      colorB={classNames.checkColorB}
+                      size={20}
+                    />
+                  </CheckboxRadix.Indicator>
+                  {/*)}*/}
                 </AnimatePresence>
               </CheckboxRadix.Root>
             </div>
@@ -58,4 +58,6 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
     )
   }
 )
+
+// export const CheckBox = forwardRef(CheckBoxWithoutRef)
 CheckBox.displayName = 'CheckBox'

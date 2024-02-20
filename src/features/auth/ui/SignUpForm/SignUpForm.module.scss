@@ -6,10 +6,11 @@
 }
 .headerText {
   user-select: none;
+  margin-bottom: 27px;
 }
 
 .input {
-  margin-top: 27px;
+  /*margin-top: 27px;*/
 }
 
 .signUpBtn {
@@ -24,7 +25,7 @@
 }
 
 .form .signInNav {
-  margin-top: 10px;
+ /* margin-top: 10px;*/
   padding: 0;
   color: var(--color-accent-500);
   text-decoration: underline 1px;

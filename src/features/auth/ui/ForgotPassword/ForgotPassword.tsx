@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import { z } from 'zod'
 
-import s from './password.module.scss'
+import s from './ForgotPassword.module.scss'
 
 type EmailValues = z.infer<typeof emailSchema>
 
@@ -58,7 +58,7 @@ export const ForgotPassword = ({ className }: Props) => {
           </Typography>
         </div>
         <div className={classNames.buttonBox}>
-          <Button type={'submit'} variant={'primary'}>
+          <Button fullWidth type={'submit'} variant={'primary'}>
             <Typography variant={'body2'}>Send Instructions</Typography>
           </Button>
           <Typography className={classNames.light} variant={'body2'}>

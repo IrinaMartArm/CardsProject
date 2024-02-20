@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form'
+import { useController, useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
+import { CheckBox } from '@/components/ui/checkBox'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
 import { loginSchema } from '@/utils/Validation'
@@ -24,9 +24,18 @@ export const SignInForm = ({ ClassName }: Props) => {
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
+
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }
+
+  const {
+    field: { onChange, value },
+  } = useController({
+    control,
+    defaultValue: false,
+    name: 'rememberMe',
+  })
 
   return (
     <Card as={'form'} className={`${s.form} ${ClassName}`} onSubmit={handleSubmit(onSubmit)}>
@@ -38,21 +47,20 @@ export const SignInForm = ({ ClassName }: Props) => {
         errorMessage={errors.email?.message}
         label={'Email'}
         name={'email'}
-        type={'text'}
+        type={'email'}
       />
       <ControlledTextField
-        className={s.input}
         control={control}
         errorMessage={errors.password?.message}
         label={'Password'}
         name={'password'}
         type={'password'}
       />
-      <ControlledCheckBox
+      <CheckBox
+        checked={value}
         className={s.checkbox}
-        control={control}
-        label={'remember me'}
-        name={'rememberMe'}
+        label={'Remember me'}
+        onCheckedChange={onChange}
       />
       <Typography className={s.forgotNav} variant={'body2'}>
         Forgot Password?
