@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import { z } from 'zod'
 
-import s from './password.module.scss'
+import s from './CreateNewPassword.module.scss'
 
 type PasswordForm = {
   password: string

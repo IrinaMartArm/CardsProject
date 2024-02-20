@@ -1,3 +1,5 @@
 export { CheckEmailForm } from './ui/CheckEmailForm/CheckEmailForm'
+export { CreateNewPassword } from './ui/CreateNewPassword/CreateNewPassword'
+export { ForgotPassword } from './ui/ForgotPassword/ForgotPassword'
 export { SignInForm } from './ui/SignInForm/SignInForm'
 export { SignUpForm } from './ui/SignUpForm/SignUpForm'
