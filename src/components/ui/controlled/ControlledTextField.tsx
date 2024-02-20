@@ -6,7 +6,7 @@ type PropsType<T extends FieldValues> = Omit<
   UseControllerProps<T>,
   'defaultValue' | 'disabled' | 'rules'
 > &
-  Omit<InputProps, 'onValueChange' | 'value'>
+  Omit<InputProps, 'onChange' | 'value'>
 export const ControlledTextField = <T extends FieldValues>({
   control,
   label,
@@ -22,6 +22,8 @@ export const ControlledTextField = <T extends FieldValues>({
     name: rest.name,
     shouldUnregister,
   })
+
+  console.log(field)
 
   return <Input {...rest} {...field} errorMessage={error?.message} label={label} />
 }

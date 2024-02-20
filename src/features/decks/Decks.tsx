@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { ChangeEvent, useMemo, useState } from 'react'
 
 import { TrashBin } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
@@ -10,7 +10,7 @@ import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
 import { Tabs } from '@/components/ui/tabs/Tabs'
 import { Typography } from '@/components/ui/typography/Typography'
-import { ForgotPassword, SignInForm } from "@/features/auth";
+import { ForgotPassword, SignInForm } from '@/features/auth'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useGetDecksQuery } from '@/services/Api'
 
@@ -72,6 +72,11 @@ export const Decks = () => {
     orderBy: sortedString,
   })
 
+  const onSearchChanfeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.currentTarget.value)
+    setSearch(event.currentTarget.value)
+  }
+
   if (isLoading) {
     return <h2>Loading...</h2>
   }
@@ -92,7 +97,7 @@ export const Decks = () => {
         <div className={s.filters}>
           <Input
             className={s.input}
-            onChange={e => setSearch(e.target.value)}
+            onChange={onSearchChanfeHandler}
             type={'search'}
             value={search}
           />
