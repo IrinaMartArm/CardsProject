@@ -10,6 +10,7 @@ type OptionsType = {
 
 type TabsType = {
   label?: string
+  name?: string
   onChange: () => void
   tabsOptions: OptionsType[]
   value?: string
