@@ -39,15 +39,15 @@ export const CheckBox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, Checkb
                 {...rest}
               >
                 <AnimatePresence initial={false}>
-                  {/*{checked && (*/}
-                  <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
-                    <Check
-                      color={classNames.checkColor}
-                      colorB={classNames.checkColorB}
-                      size={20}
-                    />
-                  </CheckboxRadix.Indicator>
-                  {/*)}*/}
+                  {checked && (
+                    <CheckboxRadix.Indicator asChild className={s.indicator} forceMount>
+                      <Check
+                        color={classNames.checkColor}
+                        colorB={classNames.checkColorB}
+                        size={20}
+                      />
+                    </CheckboxRadix.Indicator>
+                  )}
                 </AnimatePresence>
               </CheckboxRadix.Root>
             </div>
