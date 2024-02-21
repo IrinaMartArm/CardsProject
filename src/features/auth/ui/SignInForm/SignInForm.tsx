@@ -63,7 +63,7 @@ export const SignInForm = ({ ClassName }: Props) => {
       <Typography className={s.signUpText} variant={'body2'}>
         Don`t have an account?
       </Typography>
-      <Typography className={s.signUpNav} variant={'subtitle-link'}>
+      <Typography className={s.signUpNav} variant={'link1'}>
         Sign Up
       </Typography>
     </Card>

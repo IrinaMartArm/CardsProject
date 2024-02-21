@@ -10,7 +10,23 @@ export const baseApi = createApi({
   }),
   endpoints: builder => {
     return {
-      getDecks: builder.query<Response, GetDecksArgs | void>({
+      createDeck: builder.mutation<Deck, CreateDeckArgs>({
+        invalidatesTags: ['Decks'],
+        query: args => ({
+          body: args,
+          method: 'POST',
+          url: `v1/decks`,
+        }),
+      }),
+      deleteDeck: builder.mutation<Deck, DeleteDeckArgs>({
+        invalidatesTags: ['Decks'],
+        query: args => ({
+          method: 'DELETE',
+          url: `v1/decks/${args.id}`,
+        }),
+      }),
+      getDecks: builder.query<DeckResponse, GetDecksArgs | void>({
+        providesTags: ['Decks'],
         query: args => ({
           params: args ? args : undefined,
           url: `v2/decks`,
@@ -19,9 +35,10 @@ export const baseApi = createApi({
     }
   },
   reducerPath: 'baseApi',
+  tagTypes: ['Decks'],
 })
 
-export const { useGetDecksQuery } = baseApi
+export const { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } = baseApi
 
 export type Pagination = {
   currentPage: number
@@ -30,13 +47,13 @@ export type Pagination = {
   totalPages: number
 }
 
-export type ResponseType = {
-  items: RootObject[]
+export type DeckResponse = {
+  items: Deck[]
   pagination: Pagination
 }
 
-export type RootObject = {
-  author: RootObjectAuthor
+export type Deck = {
+  author: Author
   cardsCount: number
   cover: string
   created: string
@@ -46,7 +63,7 @@ export type RootObject = {
   updated: string
   userId: string
 }
-export type RootObjectAuthor = {
+export type Author = {
   id: string
   name: string
 }
@@ -58,4 +75,12 @@ type GetDecksArgs = {
   minCardsCount?: number
   name?: string
   orderBy?: null | string
+}
+type CreateDeckArgs = {
+  cover?: File | null
+  isPrivate?: boolean
+  name: string
+}
+type DeleteDeckArgs = {
+  id: string
 }

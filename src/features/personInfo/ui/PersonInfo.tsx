@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Pen } from '@/components/assets/icons'
+import { Edit } from '@/components/assets/icons'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -53,7 +53,7 @@ export const PersonInfo = () => {
         trigger={
           <div className={s.AvatarUploader}>
             <Avatar size={'large'} src={avatar} title={'Avatar'} />
-            <Pen className={s.pen} size={25} />
+            <Edit className={s.pen} size={25} />
           </div>
         }
       />
@@ -78,7 +78,7 @@ export const PersonInfo = () => {
         <>
           <Typography className={s.nickName} variant={'body1'}>
             {nickname}
-            <Pen onClick={() => setEditNicknameMode(true)} size={21} />
+            <Edit onClick={() => setEditNicknameMode(true)} size={21} />
           </Typography>
           <Typography variant={'body2'}>email</Typography>
         </>

@@ -16,7 +16,7 @@ import s from '@/features/decks/decks.module.scss'
 
 type Props = {
   onChange: (value: string) => void
-  search: string
+  value: string
 }
 
 const tabOptions = [
@@ -24,7 +24,7 @@ const tabOptions = [
   { disabled: false, option: 'All Cards' },
 ]
 
-export const DecksFilters = ({ onChange, search }: Props) => {
+export const DecksFilters = ({ onChange, value }: Props) => {
   // const { handleSubmit, register } = useForm<FormValues>()
   const onSearchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.currentTarget.value)
@@ -42,7 +42,7 @@ export const DecksFilters = ({ onChange, search }: Props) => {
         onChange={onSearchChangeHandler}
         onClearClick={onClearClick}
         type={'search'}
-        value={search}
+        value={value}
       />
       <Tabs
         label={'Show decks cards'}

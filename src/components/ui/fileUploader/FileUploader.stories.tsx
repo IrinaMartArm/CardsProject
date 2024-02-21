@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
-import { Pen } from '@/components/assets/icons'
+import { Edit } from '@/components/assets/icons'
 
 import { FileUploader } from './FileUploader'
 
@@ -23,7 +23,7 @@ const ControlledUploader = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '500px' }}>
-      <FileUploader setFile={setCover} trigger={<Pen />} />
+      <FileUploader setFile={setCover} trigger={<Edit />} />
       {coverIsValidImage && <img alt={'cover'} src={URL.createObjectURL(cover)} />}
     </div>
   )
