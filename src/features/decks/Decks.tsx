@@ -9,11 +9,12 @@ import { Typography } from '@/components/ui/typography/Typography'
 import { DecksFilters } from '@/features/decks/DecksFilters'
 import { DecksTable } from '@/features/decks/DecksTable'
 import { useDebounce } from '@/hooks/useDebounce'
-import { useGetDecksQuery } from '@/services/Api'
+import { useCreateDeckMutation, useGetDecksQuery } from '@/services/Api'
 
 import s from './decks.module.scss'
 
 export const Decks = () => {
+  const [skip, setSkip] = useState(true)
   const [name, setName] = useState('')
   const [search, setSearch] = useSearchParams()
 
@@ -21,6 +22,10 @@ export const Decks = () => {
   const setOrderBy = (value: Sort) => {
     search.set('orderBy', JSON.stringify(value))
     setSearch(search)
+  }
+
+  const onSkipChange = () => {
+    setSkip(false)
   }
 
   const sortedString = useMemo(() => {
@@ -33,14 +38,24 @@ export const Decks = () => {
 
   const debouncedSearch = useDebounce(name, 1000)
 
-  const { data, error, isLoading } = useGetDecksQuery({
-    name: debouncedSearch,
-    orderBy: sortedString,
-  })
+  const { data, error, isLoading } = useGetDecksQuery(
+    {
+      name: debouncedSearch,
+      orderBy: sortedString,
+    },
+    { skip: skip }
+  )
+
+  const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
+
+  const onAddDeck = () => {
+    createDeck({ name: '' })
+  }
 
   if (isLoading) {
     return <h2>Loading...</h2>
   }
+
   if (error) {
     return <h2>Error: {JSON.stringify(error)}</h2>
   }
@@ -51,7 +66,7 @@ export const Decks = () => {
       <div className={s.wrapper}>
         <div className={s.title}>
           <Typography variant={'h1'}>Decks list</Typography>
-          <Button variant={'primary'}>
+          <Button disabled={isDeckBeingCreated} onClick={onAddDeck} variant={'primary'}>
             <Typography variant={'subtitle2'}>Add New Deck</Typography>
           </Button>
         </div>

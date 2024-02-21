@@ -1,6 +1,8 @@
+import { Edit, Play, TrashBin } from '@/components/assets/icons'
+import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
-import { Response } from '@/services/Api'
+import { DeckResponse, useDeleteDeckMutation } from '@/services/Api'
 
 import s from '@/features/decks/decks.module.scss'
 
@@ -11,7 +13,7 @@ export type Column = {
 }
 
 type Props = {
-  data: Response | undefined
+  data: DeckResponse | undefined
   onSort: (value: Sort) => void
   orderBy: Sort
 }
@@ -45,6 +47,8 @@ export const columns: Column[] = [
 ]
 
 export const DecksTable = ({ data, onSort, orderBy }: Props) => {
+  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
+
   return (
     <Table.Root className={s.tableContainer}>
       <TableHeader columns={columns} onSort={onSort} sort={orderBy} />
@@ -56,7 +60,19 @@ export const DecksTable = ({ data, onSort, orderBy }: Props) => {
               <Table.Cell>{item.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
               <Table.Cell>{item.author.name}</Table.Cell>
-              <Table.Cell></Table.Cell>
+              <Table.Cell>
+                <Button icon={<Play />} />
+                <Button icon={<Edit />} />
+                <Button
+                  desabled={isDeckBeingDeleted}
+                  icon={<TrashBin />}
+                  onClick={() => {
+                    deleteDeck({
+                      id: item.id,
+                    })
+                  }}
+                />
+              </Table.Cell>
             </Table.Row>
           )
         })}

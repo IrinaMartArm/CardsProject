@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC, ReactNode, useState } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, FC, ReactNode, forwardRef, useState } from 'react'
 
 import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
@@ -12,44 +12,42 @@ export type DropdownProps = {
   children: ReactNode
   className?: string
   trigger?: ReactNode
-}
+} & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
-export const Dropdown = ({ align = 'end', children, className, trigger }: DropdownProps) => {
-  const [open, setOpen] = useState(false)
+export const Dropdown = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, DropdownProps>(
+  (props, ref) => {
+    const { align = 'end', children, className, trigger, ...rest } = props
+    const [open, setOpen] = useState(false)
 
-  const classNames = {
-    arrow: s.arrow,
-    arrowBox: s.arrowBox,
-    button: s.button,
-    content: clsx(s.content, className),
-    itemsBox: s.itemsBox,
+    const classNames = {
+      arrow: s.arrow,
+      arrowBox: s.arrowBox,
+      button: s.button,
+      content: clsx(s.content, className),
+      itemsBox: s.itemsBox,
+    }
+
+    return (
+      <DropdownMenuRadix.Root onOpenChange={setOpen} open={open} {...rest}>
+        <DropdownMenuRadix.Trigger asChild>{trigger}</DropdownMenuRadix.Trigger>
+        {open && (
+          <DropdownMenuRadix.Portal forceMount>
+            <DropdownMenuRadix.Content
+              align={align}
+              className={classNames.content}
+              forceMount
+              onClick={event => event.stopPropagation()}
+              ref={ref}
+              sideOffset={8}
+            >
+              {children}
+            </DropdownMenuRadix.Content>
+          </DropdownMenuRadix.Portal>
+        )}
+      </DropdownMenuRadix.Root>
+    )
   }
-
-  return (
-    <DropdownMenuRadix.Root onOpenChange={setOpen} open={open}>
-      <DropdownMenuRadix.Trigger asChild>
-        {trigger ?? <button className={classNames.button}>{trigger}</button>}
-      </DropdownMenuRadix.Trigger>
-      {open && (
-        <DropdownMenuRadix.Portal forceMount>
-          <DropdownMenuRadix.Content
-            align={align}
-            asChild
-            className={classNames.content}
-            forceMount
-            onClick={event => event.stopPropagation()}
-            sideOffset={8}
-          >
-            <DropdownMenuRadix.Arrow asChild className={classNames.arrowBox}>
-              <div className={classNames.arrow} />
-            </DropdownMenuRadix.Arrow>
-            <div className={classNames.itemsBox}>{children}</div>
-          </DropdownMenuRadix.Content>
-        </DropdownMenuRadix.Portal>
-      )}
-    </DropdownMenuRadix.Root>
-  )
-}
+)
 
 export type DropdownItemProps = {
   children?: ReactNode
@@ -69,12 +67,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   }
 
   return (
-    <DropdownMenuRadix.Item
-      asChild
-      className={classNames.item}
-      disabled={disabled}
-      onSelect={onSelect}
-    >
+    <DropdownMenuRadix.Item className={classNames.item} disabled={disabled} onSelect={onSelect}>
       {children}
     </DropdownMenuRadix.Item>
   )

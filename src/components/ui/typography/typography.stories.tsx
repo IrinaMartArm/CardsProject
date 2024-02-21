@@ -3,17 +3,19 @@ import type { Meta } from '@storybook/react'
 import { Typography, TypographyVariantTypes } from './Typography'
 
 const variants: TypographyVariantTypes[] = [
-  'body1',
-  'body2',
-  'caption',
-  'error',
   'h1',
   'h2',
   'h3',
-  'link1',
-  'overline',
+  'h4',
+  'body1',
+  'body2',
+  'caption',
   'subtitle1',
   'subtitle2',
+  'error',
+  'link1',
+  'link2',
+  'overline',
 ]
 
 // const meta = {
