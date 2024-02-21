@@ -4,10 +4,10 @@ import { Router } from '@/Router'
 import { store } from '@/services/store'
 
 export const items = [
-  { title: 'title1', value: 'title1' },
-  { title: 'title2', value: 'title2' },
-  { title: 'title3', value: 'title3' },
-  { title: 'title4', value: 'title4' },
+  { id: '1', value: '1' },
+  { id: '2', value: '2' },
+  { id: '3', value: '3' },
+  { id: '4', value: '4' },
 ]
 
 export const tabsOptions = [
