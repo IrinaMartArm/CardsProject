@@ -60,7 +60,7 @@ export const SignUpForm = ({ className }: Props) => {
       <Typography className={s.haveAnAccountText} variant={'body2'}>
         Already have an account?
       </Typography>
-      <Typography className={s.signInNav} variant={'subtitle-link'}>
+      <Typography className={s.signInNav} variant={'link1'}>
         Sign In
       </Typography>
     </Card>

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components/ui/header/Header'
@@ -13,8 +14,14 @@ import { useGetDecksQuery } from '@/services/Api'
 import s from './decks.module.scss'
 
 export const Decks = () => {
-  const [search, setSearch] = useState('')
-  const [orderBy, setOrderBy] = useState<Sort | null>(null)
+  const [name, setName] = useState('')
+  const [search, setSearch] = useSearchParams()
+
+  const orderBy = JSON.parse(search.get('orderBy') ?? 'null')
+  const setOrderBy = (value: Sort) => {
+    search.set('orderBy', JSON.stringify(value))
+    setSearch(search)
+  }
 
   const sortedString = useMemo(() => {
     if (!orderBy) {
@@ -24,7 +31,7 @@ export const Decks = () => {
     return `${orderBy.key}-${orderBy.direction}`
   }, [orderBy])
 
-  const debouncedSearch = useDebounce(search, 1000)
+  const debouncedSearch = useDebounce(name, 1000)
 
   const { data, error, isLoading } = useGetDecksQuery({
     name: debouncedSearch,
@@ -48,8 +55,8 @@ export const Decks = () => {
             <Typography variant={'subtitle2'}>Add New Deck</Typography>
           </Button>
         </div>
-        <DecksFilters onChange={setSearch} search={search} />
-        <DecksTable data={data} orderBy={orderBy} setOrderBy={setOrderBy} />
+        <DecksFilters onChange={setName} value={name} />
+        <DecksTable data={data} onSort={setOrderBy} orderBy={orderBy} />
         <div className={s.pagination}>
           <Pagination
             currentPage={1}
@@ -63,12 +70,7 @@ export const Decks = () => {
     </div>
   )
 }
-// const [params, setParams] = useSearchParams()
-//
-// const orderBy = JSON.parse(params.get('orderBy'))
-// const setOrderBy = (value: Sort) => {
-//   params.set(orderBy, JSON.stringify(value))
-// }
+
 // const handleSort = (key: string) => {
 //   if (orderBy && orderBy.key === key) {
 //     setSort({

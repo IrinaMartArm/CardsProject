@@ -1,7 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
-
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
+import { Response } from '@/services/Api'
 
 import s from '@/features/decks/decks.module.scss'
 
@@ -12,9 +11,9 @@ export type Column = {
 }
 
 type Props = {
-  data: any
+  data: Response | undefined
+  onSort: (value: Sort) => void
   orderBy: Sort
-  setOrderBy: Dispatch<SetStateAction<Sort>>
 }
 
 export const columns: Column[] = [
@@ -45,10 +44,10 @@ export const columns: Column[] = [
   },
 ]
 
-export const DecksTable = ({ data, orderBy, setOrderBy }: Props) => {
+export const DecksTable = ({ data, onSort, orderBy }: Props) => {
   return (
     <Table.Root className={s.tableContainer}>
-      <TableHeader columns={columns} onSort={setOrderBy} sort={orderBy} />
+      <TableHeader columns={columns} onSort={onSort} sort={orderBy} />
       <Table.Body>
         {data?.items?.map(item => {
           return (

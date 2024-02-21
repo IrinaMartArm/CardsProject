@@ -30,7 +30,7 @@ export type Pagination = {
   totalPages: number
 }
 
-export type ResponseType = {
+export type Response = {
   items: RootObject[]
   pagination: Pagination
 }
