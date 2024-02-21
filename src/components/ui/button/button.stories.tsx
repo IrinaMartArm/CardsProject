@@ -93,26 +93,18 @@ export const FullWidth: Story = {
 }
 export const FullWidthDisabled: Story = {
   args: {
-    children: (
-      <>
-        <Out />
-        Full Width Disabled
-      </>
-    ),
+    children: 'Full Width Disabled',
     disabled: true,
     fullWidth: true,
+    icon: <Out />,
     variant: 'primary',
   },
 }
 
 export const AsLink: Story = {
   args: {
-    children: (
-      <>
-        <Out />
-        AsLink
-      </>
-    ),
+    children: 'AsLink',
+    icon: <Out />,
     variant: 'primary',
   },
 }

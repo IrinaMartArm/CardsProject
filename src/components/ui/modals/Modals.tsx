@@ -1,49 +1,45 @@
-import { ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import { Close } from '@/components/assets/icons/Close'
-import { Button } from '@/components/ui/button/Button'
+import { Close } from '@/components/assets/icons'
+import { IconButton } from '@/components/ui/IconButton'
+import { Card } from '@/components/ui/card/Card'
 import { Typography } from '@/components/ui/typography/Typography'
-import * as Dialog from '@radix-ui/react-dialog'
+import * as RadixModal from '@radix-ui/react-dialog'
 
-import s from './modals.module.scss'
+import s from './Modals.module.scss'
 
-type ModalsProps = {
-  buttons?: boolean
-  children: ReactNode
-  closeButton: boolean
-  onOpenChange: () => void
-  open?: boolean
-  title: string
-}
+import { ModalClose } from './ModalClose'
 
-export const Modals = ({ children, closeButton, onOpenChange, open, title }: ModalsProps) => {
+export type Props = {
+  className?: string
+  title?: string
+  trigger: ReactNode
+} & ComponentPropsWithoutRef<typeof RadixModal.Root>
+
+export const Modal = forwardRef<ElementRef<typeof RadixModal.Root>, Props>((props, ref) => {
+  const { children, className, title, trigger, ...rest } = props
+
   return (
-    <Dialog.Root onOpenChange={onOpenChange} open={open}>
-      <Dialog.Trigger asChild>
-        <Button onChange={() => {}} variant={'primary'}>
-          <Typography variant={'body2'}>{title}</Typography>
-        </Button>
-      </Dialog.Trigger>
-      {open && (
-        <Dialog.Portal>
-          <Dialog.Overlay className={s.DialogOverlay} />
-          <Dialog.Content className={s.DialogContent}>
-            <div className={s.titleBox}>
-              <Dialog.Title>
-                <Typography variant={'h2'}>{title}</Typography>
-              </Dialog.Title>
-              {closeButton && (
-                <Dialog.Close asChild>
-                  <button aria-label={'Close'} className={'IconButton'} onChange={() => {}}>
-                    <Close />
-                  </button>
-                </Dialog.Close>
-              )}
-            </div>
-            <div className={s.contentBox}>{children}</div>
-          </Dialog.Content>
-        </Dialog.Portal>
-      )}
-    </Dialog.Root>
+    <RadixModal.Root {...rest}>
+      <RadixModal.Trigger asChild>{trigger}</RadixModal.Trigger>
+      <RadixModal.Portal>
+        <RadixModal.Overlay className={s.overlay} />
+        <RadixModal.Content asChild className={`${s.main} ${className}`} ref={ref}>
+          <Card style={{ padding: '0' }}>
+            {title && (
+              <div className={s.title}>
+                <Typography as={'h2'} variant={'h2'}>
+                  {title}
+                </Typography>
+                <ModalClose>
+                  <IconButton icon={<Close />} />
+                </ModalClose>
+              </div>
+            )}
+            {children}
+          </Card>
+        </RadixModal.Content>
+      </RadixModal.Portal>
+    </RadixModal.Root>
   )
-}
+})

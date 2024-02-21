@@ -3,7 +3,12 @@ import { Provider } from 'react-redux'
 import { Router } from '@/Router'
 import { store } from '@/services/store'
 
-export const items = [{ name: '1' }, { name: '2' }, { name: '3' }, { name: '4' }]
+export const items = [
+  { title: 'title1', value: 'title1' },
+  { title: 'title2', value: 'title2' },
+  { title: 'title3', value: 'title3' },
+  { title: 'title4', value: 'title4' },
+]
 
 export const tabsOptions = [
   { disabled: false, option: 'Switcher' },

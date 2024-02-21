@@ -1,13 +1,15 @@
-import { ElementRef, Ref, forwardRef, useState } from 'react'
+import { ElementRef, ReactNode, Ref, forwardRef, useState } from 'react'
 
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
 import s from './select.module.scss'
+import { Typography } from "@/components/ui/typography/Typography";
 
 type ItemsType = {
-  name: string
+  title: ReactNode
+  value: string
 }
 
 type SelectType = {
@@ -17,7 +19,7 @@ type SelectType = {
   isPagination?: boolean
   items: ItemsType[]
   label?: string
-  name: string
+  name?: string
   onChange: (value: string) => void
   value?: string
 }
@@ -50,7 +52,7 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
 
     return (
       <SelectRadix.Root
-        defaultValue={defaultValue || items[0].name}
+        defaultValue={defaultValue || items[0].value}
         name={name}
         onOpenChange={toggle}
         onValueChange={ValueChangeHandler}
@@ -58,6 +60,11 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
         {...rest}
       >
         <div className={classNames.Container}>
+          {label && (
+            <Typography className={s.label} variant={'body2'}>
+              {label}
+            </Typography>
+          )}
           <SelectRadix.Trigger aria-label={label} className={classNames.SelectTrigger}>
             <SelectRadix.Value ref={ref} />
             {open ? (
@@ -75,8 +82,12 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
               <SelectRadix.Viewport className={s.SelectViewport}>
                 <SelectRadix.Group>
                   {items.map((el, index) => (
-                    <SelectRadix.Item className={classNames.selectItem} key={index} value={el.name}>
-                      <SelectRadix.ItemText>{el.name}</SelectRadix.ItemText>
+                    <SelectRadix.Item
+                      className={classNames.selectItem}
+                      key={index}
+                      value={el.value}
+                    >
+                      <SelectRadix.ItemText>{el.value}</SelectRadix.ItemText>
                     </SelectRadix.Item>
                   ))}
                 </SelectRadix.Group>
