@@ -1,14 +1,14 @@
-import { ElementRef, ReactNode, Ref, forwardRef, useState } from 'react'
+import { ElementRef, Ref, forwardRef, useState } from 'react'
 
+import { Typography } from '@/components/ui/typography/Typography'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { clsx } from 'clsx'
 
 import s from './select.module.scss'
-import { Typography } from "@/components/ui/typography/Typography";
 
 type ItemsType = {
-  title: ReactNode
+  id: string
   value: string
 }
 

@@ -46,10 +46,10 @@ export const ModalWithChildren: Story = {
 }
 
 const options = [
-  { title: 'title1', value: 'title1' },
-  { title: 'title2', value: 'title2' },
-  { title: 'title3', value: 'title3' },
-  { title: 'title4', value: 'title4' },
+  { id: '1', value: 'title1' },
+  { id: '2', value: 'title2' },
+  { id: '3', value: 'title3' },
+  { id: '4', value: 'title4' },
 ]
 
 export const ModalWithSelectAndInput: Story = {

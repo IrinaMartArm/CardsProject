@@ -46,14 +46,12 @@ export const Pagination = <T extends ElementType = 'a'>(
     <div className={s.root}>
       <div className={s.paginationContainer}>
         <LeftArrowButton disabled={isFirstPage} onClick={onPrevious} />
-
         <PaginationButtons
           currentPage={currentPage}
           onClick={onPageChange}
           paginationRange={paginationRange}
           {...rest}
         />
-
         <RightArrowButton disabled={isLastPage} onClick={onNext} />
       </div>
       <div className={s.selectWrapper}>
