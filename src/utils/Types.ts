@@ -1,4 +1,4 @@
-import { HTMLProps, LegacyRef } from 'react'
+import { HTMLProps, LegacyRef, ReactNode } from 'react'
 
 export type AnswerVariantType = {
   disabled: boolean
@@ -12,3 +12,12 @@ export type IconProps = {
   ref?: LegacyRef<SVGSVGElement>
   size?: number
 } & Omit<HTMLProps<HTMLSpanElement>, 'color' | 'size'>
+
+// DropDown
+export type DropDownItemType = {
+  foo: () => void
+  icon: ReactNode
+  separator: boolean
+  text: string
+}
+export type DropDownItemsType = DropDownItemType[]

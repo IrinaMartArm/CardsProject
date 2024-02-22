@@ -49,7 +49,7 @@ export const Decks = () => {
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
 
   const onAddDeck = () => {
-    createDeck({ name: '' })
+    createDeck({ name: 'yo' })
   }
 
   if (isLoading) {

@@ -1,12 +1,10 @@
-import { ReactNode } from 'react'
-
-import { Out, Person } from '@/components/assets/icons'
-import { Logo } from '@/components/assets/icons/Logo'
+import { Logo, Out, Person } from '@/components/assets/icons'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropDown, DropdownItem, DropdownItemWithIcon } from '@/components/ui/dropDownMenu/DropDown'
 import { Typography } from '@/components/ui/typography/Typography'
+import { DropDownItemsType } from '@/utils/Types'
 
 import s from './header.module.scss'
 
@@ -15,14 +13,6 @@ type HeaderProps = {
   photo?: string
   withBtn?: boolean
 }
-
-type DropDownItemType = {
-  foo: () => void
-  icon: ReactNode
-  separator: boolean
-  text: string
-}
-type DropDownItemsType = DropDownItemType[]
 
 const dropDownItems: DropDownItemsType = [
   { foo: () => {}, icon: <Person />, separator: true, text: 'My Profile' },
