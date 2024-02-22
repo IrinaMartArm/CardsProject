@@ -60,10 +60,11 @@ export const DecksTable = ({ data, onSort, orderBy }: Props) => {
               <Table.Cell>{item.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
               <Table.Cell>{item.author.name}</Table.Cell>
-              <Table.Cell>
-                <Button icon={<Play />} />
-                <Button icon={<Edit />} />
+              <Table.Cell className={s.iconButtons}>
+                <Button className={s.iconButton} icon={<Play />} variant={'link'} />
+                <Button className={s.iconButton} icon={<Edit />} variant={'link'} />
                 <Button
+                  className={s.iconButton}
                   desabled={isDeckBeingDeleted}
                   icon={<TrashBin />}
                   onClick={() => {
@@ -71,6 +72,7 @@ export const DecksTable = ({ data, onSort, orderBy }: Props) => {
                       id: item.id,
                     })
                   }}
+                  variant={'link'}
                 />
               </Table.Cell>
             </Table.Row>

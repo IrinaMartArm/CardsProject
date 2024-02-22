@@ -71,6 +71,10 @@ export const Decks = () => {
           </Button>
         </div>
         <DecksFilters onChange={setName} value={name} />
+        <Button onClick={onSkipChange} variant={'secondary'}>
+          search
+        </Button>
+        <span>это временная кнопка</span>
         <DecksTable data={data} onSort={setOrderBy} orderBy={orderBy} />
         <div className={s.pagination}>
           <Pagination
