@@ -14,18 +14,10 @@ export type DropdownProps = {
   trigger?: ReactNode
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
-export const Dropdown = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, DropdownProps>(
+export const DropDown = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, DropdownProps>(
   (props, ref) => {
     const { align = 'end', children, className, trigger, ...rest } = props
     const [open, setOpen] = useState(false)
-
-    const classNames = {
-      arrow: s.arrow,
-      arrowBox: s.arrowBox,
-      button: s.button,
-      content: clsx(s.content, className),
-      itemsBox: s.itemsBox,
-    }
 
     return (
       <DropdownMenuRadix.Root onOpenChange={setOpen} open={open} {...rest}>
@@ -34,11 +26,11 @@ export const Dropdown = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, Dr
           <DropdownMenuRadix.Portal forceMount>
             <DropdownMenuRadix.Content
               align={align}
-              className={classNames.content}
+              className={s.content}
               forceMount
               onClick={event => event.stopPropagation()}
               ref={ref}
-              sideOffset={8}
+              sideOffset={10}
             >
               {children}
             </DropdownMenuRadix.Content>
@@ -54,24 +46,31 @@ export type DropdownItemProps = {
   className?: string
   disabled?: boolean
   onSelect: (event: Event) => void
-}
+  separator: boolean
+} & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Item>
 
-export const DropdownItem: FC<DropdownItemProps> = ({
-  children,
-  className,
-  disabled,
-  onSelect,
-}) => {
+export const DropdownItem = forwardRef<
+  ElementRef<typeof DropdownMenuRadix.Item>,
+  DropdownItemProps
+>(({ children, className, disabled, onSelect, separator }, ref) => {
   const classNames = {
     item: clsx(s.item, className),
   }
 
   return (
-    <DropdownMenuRadix.Item className={classNames.item} disabled={disabled} onSelect={onSelect}>
-      {children}
-    </DropdownMenuRadix.Item>
+    <>
+      <DropdownMenuRadix.Item
+        className={classNames.item}
+        disabled={disabled}
+        onSelect={onSelect}
+        ref={ref}
+      >
+        {children}
+      </DropdownMenuRadix.Item>
+      {separator && <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />}
+    </>
   )
-}
+})
 
 export type DropdownItemWithIconProps = Omit<DropdownItemProps, 'children'> & {
   icon: ReactNode
@@ -83,6 +82,7 @@ export const DropdownItemWithIcon: FC<DropdownItemWithIconProps> = ({
   disabled,
   icon,
   onSelect,
+  separator,
   style,
   text,
   ...rest
@@ -90,20 +90,27 @@ export const DropdownItemWithIcon: FC<DropdownItemWithIconProps> = ({
   const classNames = {
     item: clsx(s.item, className),
     itemIcon: s.itemIcon,
+    itemsBox: s.itemsBox,
   }
 
   return (
-    <DropdownMenuRadix.Item
-      asChild
-      className={classNames.item}
-      disabled={disabled}
-      onClick={event => event.stopPropagation()}
-      onSelect={onSelect}
-      style={style}
-      {...rest}
-    >
-      <div className={classNames.itemIcon}>{icon}</div>
-      <Typography variant={'caption'}>{text}</Typography>
-    </DropdownMenuRadix.Item>
+    <>
+      <DropdownMenuRadix.Item
+        asChild
+        className={classNames.item}
+        disabled={disabled}
+        onSelect={onSelect}
+        style={style}
+        {...rest}
+      >
+        <div className={classNames.itemsBox}>
+          <div className={classNames.itemIcon}>{icon}</div>
+          <Typography className={s.text} variant={'caption'}>
+            {text}
+          </Typography>
+        </div>
+      </DropdownMenuRadix.Item>
+      {separator && <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />}
+    </>
   )
 }
