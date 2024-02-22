@@ -49,7 +49,7 @@ export const Decks = () => {
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
 
   const onAddDeck = () => {
-    createDeck({ name: '' })
+    createDeck({ name: 'yo' })
   }
 
   if (isLoading) {
@@ -71,6 +71,10 @@ export const Decks = () => {
           </Button>
         </div>
         <DecksFilters onChange={setName} value={name} />
+        <Button onClick={onSkipChange} variant={'secondary'}>
+          search
+        </Button>
+        <span>это временная кнопка</span>
         <DecksTable data={data} onSort={setOrderBy} orderBy={orderBy} />
         <div className={s.pagination}>
           <Pagination
