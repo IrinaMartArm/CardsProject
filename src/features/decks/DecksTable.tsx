@@ -2,7 +2,8 @@ import { Edit, Play, TrashBin } from '@/components/assets/icons'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
-import { DeckResponse, useDeleteDeckMutation } from '@/services/Api'
+import { useDeleteDeckMutation } from '@/services/decks/decks.service'
+import { DeckResponse } from '@/services/decks/decks.types'
 
 import s from '@/features/decks/decks.module.scss'
 

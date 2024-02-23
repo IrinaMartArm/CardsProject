@@ -9,7 +9,7 @@ import { Typography } from '@/components/ui/typography/Typography'
 import { DecksFilters } from '@/features/decks/DecksFilters'
 import { DecksTable } from '@/features/decks/DecksTable'
 import { useDebounce } from '@/hooks/useDebounce'
-import { useCreateDeckMutation, useGetDecksQuery } from '@/services/Api'
+import { useCreateDeckMutation, useGetDecksQuery } from '@/services/decks/decks.service'
 
 import s from './decks.module.scss'
 
