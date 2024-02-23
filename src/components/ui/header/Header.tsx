@@ -1,76 +1,47 @@
-import { Logo, Out, Person } from '@/components/assets/icons'
-import { Avatar } from '@/components/ui/avatar'
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
+
+import Logo from '@/components/assets/images/logo.png'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { DropDown, DropdownItem, DropdownItemWithIcon } from '@/components/ui/dropDownMenu/DropDown'
+import {
+  UserDropdown,
+  UserDropdownProps,
+} from '@/components/ui/dropDownMenu/userDropdown/UserDropdown'
 import { Typography } from '@/components/ui/typography/Typography'
-import { DropDownItemsType } from '@/utils/Types'
 
 import s from './header.module.scss'
 
-type HeaderProps = {
-  name: string
-  photo?: string
-  withBtn?: boolean
-}
+export type HeaderProps =
+  | (Partial<UserDropdownProps> & {
+      isLoggedIn: false
+    })
+  | (UserDropdownProps & {
+      isLoggedIn: true
+    })
 
-const dropDownItems: DropDownItemsType = [
-  { foo: () => {}, icon: <Person />, separator: true, text: 'My Profile' },
-  { foo: () => {}, icon: <Out />, separator: false, text: 'Sign Out' },
-]
+// const dropDownItems: DropDownItemsType = [
+//   { foo: () => {}, icon: <Person />, separator: true, text: 'My Profile' },
+//   { foo: () => {}, icon: <Out />, separator: false, text: 'Sign Out' },
+// ]
 
-export const Header = ({ name, withBtn }: HeaderProps) => {
+export const Header = memo(({ avatar, email, isLoggedIn, onLogout, userName }: HeaderProps) => {
   return (
     <div className={s.header}>
-      <Logo />
-      {withBtn ? (
-        <div>
-          <Button variant={'secondary'}>Sign In</Button>
-        </div>
+      <Link className={s.mainLink} to={'/'}>
+        <img alt={'logo'} className={s.logo} src={Logo} />
+      </Link>
+      {!isLoggedIn ? (
+        <Button as={Link} to={'/sign-in'} variant={'secondary'}>
+          <Typography variant={'body2'}>Sign In</Typography>
+        </Button>
       ) : (
         <div className={s.auth}>
           <Typography className={s.name} variant={'subtitle1'}>
-            {name}
+            {userName}
           </Typography>
-          <DropDown trigger={<Avatar title={name} />}>
-            <Card className={s.dropdown}>
-              <DropdownItem onSelect={() => {}} separator>
-                <InfoItem email={'jfhfg@mn.ru'} name={'Bob'} />
-              </DropdownItem>
-              {dropDownItems.map((el, i) => {
-                return (
-                  <DropdownItemWithIcon
-                    icon={el.icon}
-                    key={i}
-                    onSelect={el.foo}
-                    separator={el.separator}
-                    text={el.text}
-                  />
-                )
-              })}
-            </Card>
-          </DropDown>
+          <UserDropdown avatar={avatar} email={email} onLogout={onLogout} userName={userName} />
         </div>
       )}
     </div>
   )
-}
-
-type Props = {
-  email: string
-  name: string
-}
-
-export const InfoItem = ({ email, name }: Props) => {
-  return (
-    <div className={s.photoBox}>
-      <Avatar title={'Av'} />
-      <div className={s.infoBox}>
-        <Typography variant={'subtitle2'}>{name}</Typography>
-        <Typography className={s.mail} variant={'caption'}>
-          {email}
-        </Typography>
-      </div>
-    </div>
-  )
-}
+})

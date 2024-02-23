@@ -1,12 +1,17 @@
 .header {
+  position: fixed;
+  z-index: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
-  max-width: 1980px;
   height: 60px;
-  padding: 12px 135px;
+  padding: 12px 130px;
 
   color: var(--color-light-100);
 
@@ -24,41 +29,18 @@
   border-bottom: 1px dashed var(--color-light-100);
 }
 
-.photoBox {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-
-  width: fit-content;
-  padding-bottom: 5px;
+.logo {
+  max-height: 36px;
 }
 
-.infoBox {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+@media screen and (width <= 1024px) {
+  .logo {
+    max-height: 28px;
+  }
 }
 
-.mail {
-  color: var(--color-dark-100);
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: fit-content;
-  padding: 0;
-
-  &::before {
-    content: '';
-
-    position: absolute;
-    bottom: 100%;
-    left: 88%;
-    transform: translateX(-50%);
-
-    border-color: transparent transparent var(--color-dark-500);
-    border-style: solid;
-    border-width: 8px;
+@media screen and (width <= 640px) {
+  .logo {
+    max-height: 22.4px;
   }
 }
