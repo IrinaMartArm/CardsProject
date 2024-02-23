@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
 
 import { Router } from '@/Router'
 import { store } from '@/services/store'
@@ -13,8 +14,6 @@ export const items = [
 export const tabsOptions = [
   { disabled: false, option: 'Switcher' },
   { disabled: false, option: 'Switcher' },
-  { disabled: true, option: 'Switcher' },
-  { disabled: false, option: 'Switcher' },
 ]
 
 export const answerVariants = [
@@ -26,16 +25,9 @@ export const answerVariants = [
 ]
 
 export function App() {
-  // const [currentPage, setCurrentPage] = useState(1)
-  //
-  // const PageChangeHandle = (page: number) => {
-  //   setCurrentPage(page)
-  // }
-  //
-  // const [inputValue, setInputValue] = useState('')
-
   return (
     <Provider store={store}>
+      <ToastContainer />
       <Router />
     </Provider>
   )
