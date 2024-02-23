@@ -12,5 +12,9 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const SliderExample: Story = {
-  args: {},
+  args: {
+    name: 'slider',
+    title: 'slider',
+    value: [1, 50],
+  },
 }

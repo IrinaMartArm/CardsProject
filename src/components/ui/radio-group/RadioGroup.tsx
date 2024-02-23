@@ -7,13 +7,14 @@ import s from './radio-group.module.scss'
 
 export type RadioGroupType = {
   disabled?: boolean
+  id?: string
   name?: string
   onChange?: () => void
   onValueChange?: () => void
   variants: AnswerVariantType[]
 }
 export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, RadioGroupType>(
-  ({ disabled, name, onChange, variants }: RadioGroupType, ref: Ref<HTMLDivElement>) => {
+  ({ disabled, id, name, onChange, variants }: RadioGroupType, ref: Ref<HTMLDivElement>) => {
     return (
       <form>
         <RadioGroupRadix.Root
@@ -21,6 +22,7 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, Ra
           className={`${s.radioGroupRoot} ${disabled ? s.disabled : ''}`}
           defaultValue={'1'}
           disabled={disabled}
+          id={id}
           name={name}
           onChange={onChange}
           ref={ref}
