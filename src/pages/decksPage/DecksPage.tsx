@@ -1,19 +1,23 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
+import { Page } from '@/components/ui'
 import { Button } from '@/components/ui/button'
-import { Header } from '@/components/ui/header/Header'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Sort } from '@/components/ui/tables/TableHeader'
 import { Typography } from '@/components/ui/typography/Typography'
-import { DecksFilters } from '@/features/decks/DecksFilters'
-import { DecksTable } from '@/features/decks/DecksTable'
 import { useDebounce } from '@/hooks/useDebounce'
-import { useCreateDeckMutation, useGetDecksQuery } from '@/services/decks/decks.service'
+import { DecksFilters } from '@/pages/decksPage/DecksFilters'
+import { DecksTable } from '@/pages/decksPage/DecksTable'
+import {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+} from '@/services/decks/decks.service'
 
 import s from './decks.module.scss'
 
-export const Decks = () => {
+export const DecksPage = () => {
   const [skip, setSkip] = useState(true)
   const [name, setName] = useState('')
   const [search, setSearch] = useSearchParams()
@@ -37,7 +41,7 @@ export const Decks = () => {
   }, [orderBy])
 
   const debouncedSearch = useDebounce(name, 1000)
-
+  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
   const { data, error, isLoading } = useGetDecksQuery(
     {
       name: debouncedSearch,
@@ -49,7 +53,13 @@ export const Decks = () => {
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
 
   const onAddDeck = () => {
-    createDeck({ name: 'yo' })
+    createDeck({ name: 'yo🦋' })
+  }
+
+  const onDeleteClick = (id: string) => {
+    deleteDeck({
+      id: id,
+    })
   }
 
   if (isLoading) {
@@ -61,32 +71,40 @@ export const Decks = () => {
   }
 
   return (
-    <div className={s.root}>
-      <Header name={'Bob'} />
-      <div className={s.wrapper}>
-        <div className={s.title}>
-          <Typography variant={'h1'}>Decks list</Typography>
-          <Button disabled={isDeckBeingCreated} onClick={onAddDeck} variant={'primary'}>
-            <Typography variant={'subtitle2'}>Add New Deck</Typography>
+    <Page>
+      <div className={s.root}>
+        <div className={s.wrapper}>
+          <div className={s.title}>
+            <Typography variant={'h1'}>Decks list</Typography>
+            <Button disabled={isDeckBeingCreated} onClick={onAddDeck} variant={'primary'}>
+              <Typography variant={'subtitle2'}>Add New Deck</Typography>
+            </Button>
+          </div>
+          <DecksFilters decks={data} onChange={setName} value={name} />
+          <Button onClick={onSkipChange} variant={'secondary'}>
+            search
           </Button>
-        </div>
-        <DecksFilters onChange={setName} value={name} />
-        <Button onClick={onSkipChange} variant={'secondary'}>
-          search
-        </Button>
-        <span>это временная кнопка</span>
-        <DecksTable data={data} onSort={setOrderBy} orderBy={orderBy} />
-        <div className={s.pagination}>
-          <Pagination
-            currentPage={1}
-            onPageChange={() => {}}
-            pageSize={10}
-            siblingCount={1}
-            totalCount={50}
+          <span>это временная кнопка</span>
+          <DecksTable
+            decks={data}
+            disabled={isDeckBeingDeleted}
+            onDeleteClick={onDeleteClick}
+            onEditClick={() => {}}
+            onSort={setOrderBy}
+            orderBy={orderBy}
           />
+          <div className={s.pagination}>
+            <Pagination
+              currentPage={data?.pagination.currentPage || 1}
+              onPageChange={() => {}}
+              pageSize={data?.pagination.totalItems || 10}
+              siblingCount={1}
+              totalCount={data?.pagination.totalPages || 1}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Page>
   )
 }
 

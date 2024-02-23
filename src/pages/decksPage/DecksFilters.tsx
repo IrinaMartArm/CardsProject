@@ -6,15 +6,13 @@ import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider/Slider'
 import { Tabs } from '@/components/ui/tabs/Tabs'
 import { Typography } from '@/components/ui/typography/Typography'
+import { useGetMinMaxCardsQuery } from '@/services/decks/decks.service'
+import { DeckResponse } from '@/services/decks/decks.types'
 
-import s from '@/features/decks/decks.module.scss'
-
-// type FormValues = {
-//   onChange: (value: string) => void
-//   search: string
-// }
+import s from '@/pages/decksPage/decks.module.scss'
 
 type Props = {
+  decks: DeckResponse | undefined
   onChange: (value: string) => void
   value: string
 }
@@ -24,8 +22,8 @@ const tabOptions = [
   { disabled: false, option: 'All Cards' },
 ]
 
-export const DecksFilters = ({ onChange, value }: Props) => {
-  // const { handleSubmit, register } = useForm<FormValues>()
+export const DecksFilters = ({ decks, onChange, value }: Props) => {
+  const {} = useGetMinMaxCardsQuery
   const onSearchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.currentTarget.value)
   }
@@ -33,6 +31,8 @@ export const DecksFilters = ({ onChange, value }: Props) => {
   const onClearClick = () => {
     onChange('')
   }
+
+  const onValueChange = () => {}
 
   return (
     <div className={s.filters}>
@@ -50,7 +50,13 @@ export const DecksFilters = ({ onChange, value }: Props) => {
         onChange={() => {}}
         tabsOptions={tabOptions}
       />
-      <Slider label={'Number of cards'} name={'numberOfCards'} />
+      <Slider
+        label={'Number of cards'}
+        max={decks?.maxCardsCount || 0}
+        min={0}
+        onValueChange={onValueChange}
+        value={[0, decks?.maxCardsCount || 0]}
+      />
       <Button variant={'secondary'}>
         <TrashBin />
         <Typography variant={'subtitle2'}>Clear Filter</Typography>

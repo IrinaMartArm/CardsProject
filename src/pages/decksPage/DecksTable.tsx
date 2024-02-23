@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom'
+
 import { Edit, Play, TrashBin } from '@/components/assets/icons'
+import { Typography } from '@/components/ui'
 import { Button } from '@/components/ui/button'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
-import { useDeleteDeckMutation } from '@/services/decks/decks.service'
 import { DeckResponse } from '@/services/decks/decks.types'
 
-import s from '@/features/decks/decks.module.scss'
+import s from '@/pages/decksPage/decks.module.scss'
 
 export type Column = {
   key: string
@@ -14,7 +16,10 @@ export type Column = {
 }
 
 type Props = {
-  data: DeckResponse | undefined
+  decks: DeckResponse | undefined
+  disabled: boolean
+  onDeleteClick: (id: string) => void
+  onEditClick: (id: string) => void
   onSort: (value: Sort) => void
   orderBy: Sort
 }
@@ -47,32 +52,55 @@ export const columns: Column[] = [
   },
 ]
 
-export const DecksTable = ({ data, onSort, orderBy }: Props) => {
-  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
+export const DecksTable = ({
+  decks,
+  disabled,
+  onDeleteClick,
+  onEditClick,
+  onSort,
+  orderBy,
+}: Props) => {
+  const deleteClickHandler = (id: string) => () => {
+    onDeleteClick(id)
+  }
+  const editClickHandler = (id: string) => () => {
+    onEditClick(id)
+  }
 
   return (
     <Table.Root className={s.tableContainer}>
       <TableHeader columns={columns} onSort={onSort} sort={orderBy} />
       <Table.Body>
-        {data?.items?.map(item => {
+        {decks?.items?.map(item => {
           return (
             <Table.Row key={item.id}>
-              <Table.Cell>{item.name}</Table.Cell>
+              <Table.Cell>
+                <Typography as={Link} to={`/decks/${item.id}`} variant={'body2'}>
+                  {item.name}
+                </Typography>
+              </Table.Cell>
               <Table.Cell>{item.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
               <Table.Cell>{item.author.name}</Table.Cell>
               <Table.Cell className={s.iconButtons}>
-                <Button className={s.iconButton} icon={<Play />} variant={'link'} />
-                <Button className={s.iconButton} icon={<Edit />} variant={'link'} />
+                <Button
+                  as={Link}
+                  className={s.iconButton}
+                  icon={<Play />}
+                  to={`/decks/${item.id}/learn`}
+                  variant={'link'}
+                />
                 <Button
                   className={s.iconButton}
-                  desabled={isDeckBeingDeleted}
+                  icon={<Edit />}
+                  onClick={editClickHandler(item.id)}
+                  variant={'link'}
+                />
+                <Button
+                  className={s.iconButton}
+                  disabled={disabled}
                   icon={<TrashBin />}
-                  onClick={() => {
-                    deleteDeck({
-                      id: item.id,
-                    })
-                  }}
+                  onClick={deleteClickHandler(item.id)}
                   variant={'link'}
                 />
               </Table.Cell>
