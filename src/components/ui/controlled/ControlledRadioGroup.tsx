@@ -12,12 +12,22 @@ export const ControlledRadioGroup = <T extends FieldValues>({
   shouldUnregister,
   ...rest
 }: PropsType<T>) => {
-  const { field } = useController({
+  const {
+    field: { onChange, ...field },
+  } = useController({
     control,
     disabled: rest.disabled,
     name: rest.name,
     shouldUnregister,
   })
 
-  return <RadioGroup {...rest} variants={rest.variants} {...field} />
+  return (
+    <RadioGroup
+      {...rest}
+      {...field}
+      // id={rest.name}
+      onValueChange={onChange}
+      variants={rest.variants}
+    />
+  )
 }

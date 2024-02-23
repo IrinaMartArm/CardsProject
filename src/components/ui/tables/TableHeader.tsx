@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, FC } from 'react'
 
 import { Table } from '@/components/ui/tables/Table'
-import { Column } from '@/features/decks/DecksTable'
+import { Column } from '@/pages/decksPage/DecksTable'
 
 export type Sort = {
   direction: 'asc' | 'desc'

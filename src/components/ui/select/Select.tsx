@@ -102,18 +102,3 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
     )
   }
 )
-
-// const SelectItem = ({ children, className, ...props }: SelectItemType) => {
-//   const classNames = {
-//     selectItem: clsx(s.SelectItem, className),
-//   }
-//
-//   return (
-//     <SelectRadix.Item className={classNames.selectItem} {...props}>
-//       <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
-//       {/*<Select.ItemIndicator className={s.SelectItemIndicator}>*/}
-//       {/*  <CheckIcon />*/}
-//       {/*</Select.ItemIndicator>*/}
-//     </SelectRadix.Item>
-//   )
-// }

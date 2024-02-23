@@ -1,33 +1,27 @@
-import { useForm } from 'react-hook-form'
-
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
-import { loginSchema } from '@/utils/Validation'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
+import { SignInFormData, useSignInForm } from '@/features/auth/model/hooks/useSignInForm'
 
 import s from './SignInForm.module.scss'
 
-type FormValues = z.infer<typeof loginSchema>
-
 interface Props {
   ClassName?: string
+  isLoading: boolean
+  onSubmit: (data: SignInFormData) => void
 }
-export const SignInForm = ({ ClassName }: Props) => {
+export const SignInForm = ({ ClassName, isLoading, onSubmit }: Props) => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
-  })
+  } = useSignInForm()
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data)
-  }
+  /*  const onSubmit = (data: FormValues) => {
+	  console.log(data)
+	}*/
 
   return (
     <Card as={'form'} className={`${s.form} ${ClassName}`} onSubmit={handleSubmit(onSubmit)}>
@@ -36,6 +30,7 @@ export const SignInForm = ({ ClassName }: Props) => {
       </Typography>
       <ControlledTextField
         control={control}
+        disabled={isLoading}
         errorMessage={errors.email?.message}
         label={'Email'}
         name={'email'}
@@ -43,6 +38,7 @@ export const SignInForm = ({ ClassName }: Props) => {
       />
       <ControlledTextField
         control={control}
+        disabled={isLoading}
         errorMessage={errors.password?.message}
         label={'Password'}
         name={'password'}
@@ -51,6 +47,7 @@ export const SignInForm = ({ ClassName }: Props) => {
       <ControlledCheckBox
         className={s.checkbox}
         control={control}
+        disabled={isLoading}
         label={'Remember me'}
         name={'rememberMe'}
       />
