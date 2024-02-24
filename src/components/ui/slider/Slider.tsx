@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef, useEffect } from 'react'
 
 // import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -14,6 +14,12 @@ export const Slider = forwardRef<
     value: (null | number)[]
   }
 >(({ label, max, onValueChange, value, ...rest }, ref) => {
+  useEffect(() => {
+    if (value?.[1] === undefined || value?.[1] === null) {
+      onValueChange?.([value?.[0] ?? 0, max ?? 0])
+    }
+  }, [max, value, onValueChange])
+
   return (
     <div>
       <Typography variant={'body2'}>{label}</Typography>
