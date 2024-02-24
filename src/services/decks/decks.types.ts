@@ -56,3 +56,5 @@ export type CardsResponse = {
   items: Card[]
   pagination: Pagination
 }
+
+export type UpdateDeckArgs = Partial<CreateDeckArgs> & { id: Deck['id'] }

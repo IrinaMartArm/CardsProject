@@ -55,7 +55,8 @@ export const DecksFilters = ({ decks, onChange, value }: Props) => {
         max={decks?.maxCardsCount || 0}
         min={0}
         onValueChange={onValueChange}
-        value={[0, decks?.maxCardsCount || 0]}
+        // value={[0, decks?.maxCardsCount || 0]}
+        value={[1, 9]}
       />
       <Button variant={'secondary'}>
         <TrashBin />
