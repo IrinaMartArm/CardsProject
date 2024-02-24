@@ -11,4 +11,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const DefaultSignInForm: Story = {}
+export const Default: Story = {
+  args: {
+    isLoading: false,
+    onSubmit: () => new Promise(res => res({ error: null, fieldErrors: null })),
+  },
+}

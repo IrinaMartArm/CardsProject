@@ -31,9 +31,7 @@ export const Layout = () => {
       onLogout={() => {}}
       userName={data?.name ?? ''}
     >
-      <main>
-        <Outlet context={{ isAuthenticated } satisfies AuthContext} />
-      </main>
+      <Outlet context={{ isAuthenticated } satisfies AuthContext} />
     </LayoutContent>
   )
 }

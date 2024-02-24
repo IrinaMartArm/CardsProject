@@ -1,6 +1,6 @@
 import { Table } from '@/components/ui/tables/Table'
 import { TableHeader } from '@/components/ui/tables/TableHeader'
-import { Column } from '@/pages/decksPage/DecksTable'
+import { Column } from '@/features/decks/ui/DecksTable'
 import { Card } from '@/services/decks/decks.types'
 
 const columns: Column[] = [

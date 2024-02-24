@@ -9,7 +9,7 @@ import { Typography } from '@/components/ui/typography/Typography'
 import { useGetMinMaxCardsQuery } from '@/services/decks/decks.service'
 import { DeckResponse } from '@/services/decks/decks.types'
 
-import s from '@/pages/decksPage/decks.module.scss'
+import s from '@/features/decks/ui/decks.module.scss'
 
 type Props = {
   decks: DeckResponse | undefined

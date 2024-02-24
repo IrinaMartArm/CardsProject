@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card'
 import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
-import { SignInFormData, useSignInForm } from '@/features/auth/model/hooks/useSignInForm'
+import { SignInFormData, useSignInForm } from '@/features/auth/hooks/useSignInForm'
 
 import s from './SignInForm.module.scss'
 

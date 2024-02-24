@@ -7,7 +7,7 @@ import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
 import { DeckResponse } from '@/services/decks/decks.types'
 
-import s from '@/pages/decksPage/decks.module.scss'
+import s from '@/features/decks/ui/decks.module.scss'
 
 export type Column = {
   key: string
