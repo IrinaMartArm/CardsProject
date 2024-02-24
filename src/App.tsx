@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 
-import { Router } from '@/Router'
+import { Router } from '@/app/routes/config/Router'
 import { store } from '@/services/store'
 
 export const items = [
