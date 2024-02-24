@@ -4,10 +4,14 @@
 
 .trigger {
   gap: 14px;
-  align-items: center;
+  color: var(--color-light-100);
 }
 
 .name {
   text-decoration: underline dashed var(--color-light-100) 1px;
   text-underline-offset: 6px;
+}
+
+.infoItem {
+  margin-left: 5px;
 }

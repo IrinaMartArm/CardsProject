@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropDownMenu/Test'
@@ -25,7 +24,7 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className={s.trigger} variant={'link'}>
+        <Button className={s.trigger} variant={'icon'}>
           <Typography className={s.name} variant={'subtitle1'}>
             {userName}
           </Typography>
@@ -33,7 +32,7 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>
+        <DropdownMenuItem>
           <Avatar src={avatar} title={userName} />
           <div>
             <Typography variant={'subtitle2'}>{userName}</Typography>
@@ -41,7 +40,7 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
               {email}
             </Typography>
           </div>
-        </DropdownMenuLabel>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link to={'/profile'}>
