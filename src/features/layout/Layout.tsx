@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useOutletContext } from 'react-router-dom'
 
 import { Header, HeaderProps } from '@/components/ui/header/Header'
 import { Preloader } from '@/components/ui/preloader'
@@ -8,13 +8,13 @@ import { useMeQuery } from '@/services/auth/auth.service'
 
 import s from './layout.module.scss'
 
-/*type AuthContext = {
+type AuthContext = {
   isAuthenticated: boolean
 }
 
 export function useAuthContext() {
   return useOutletContext<AuthContext>()
-}*/
+}
 
 export const Layout = () => {
   const { data, isError, isLoading } = useMeQuery()
