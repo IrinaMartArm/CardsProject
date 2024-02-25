@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { useAppOutletContext } from '@/features/layout/useAppOutletContext'
 
 export const PrivateRedirect = () => {
-  const { isAuth } = useAppOutletContext()
+  const { isAuthenticated } = useAppOutletContext()
 
-  return isAuth ? <Outlet /> : <Navigate to={'/login'} />
+  return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
