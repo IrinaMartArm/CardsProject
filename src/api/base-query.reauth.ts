@@ -1,4 +1,6 @@
-import { router } from '@/Router'
+// import { router } from '@/Router'
+
+import { router } from '@/app/routes/config/Router'
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { Mutex } from 'async-mutex'
 

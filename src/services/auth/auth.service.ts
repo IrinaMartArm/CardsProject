@@ -1,5 +1,5 @@
 import { baseApi } from '@/api/base-api'
-import { LoginArgs, User, UserArgs } from '@/services/auth/auth.types'
+import { LoginArgs, User } from '@/services/auth/auth.types'
 
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -22,15 +22,7 @@ export const authService = baseApi.injectEndpoints({
       }),
       me: builder.query<User, void>({
         providesTags: ['Me'],
-        query: () => `/v1/auth/me`,
-      }),
-      updateMe: builder.mutation<User, UserArgs>({
-        invalidatesTags: ['Me'],
-        query: body => ({
-          body,
-          method: 'PATCH',
-          url: '/v1/auth/me',
-        }),
+        query: () => 'v1/auth/me',
       }),
     }
   },
