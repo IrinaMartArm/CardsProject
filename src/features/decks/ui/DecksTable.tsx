@@ -16,6 +16,7 @@ export type Column = {
 }
 
 type Props = {
+  currentUserId: string
   decks: DeckResponse | undefined
   disabled: boolean
   onDeleteClick: (id: string) => void
@@ -53,6 +54,7 @@ export const columns: Column[] = [
 ]
 
 export const DecksTable = ({
+  currentUserId,
   decks,
   disabled,
   onDeleteClick,
@@ -90,19 +92,23 @@ export const DecksTable = ({
                   to={`/decks/${item.id}/learn`}
                   variant={'link'}
                 />
-                <Button
-                  className={s.iconButton}
-                  icon={<Edit />}
-                  onClick={editClickHandler(item.id)}
-                  variant={'link'}
-                />
-                <Button
-                  className={s.iconButton}
-                  disabled={disabled}
-                  icon={<TrashBin />}
-                  onClick={deleteClickHandler(item.id)}
-                  variant={'link'}
-                />
+                {item.author.id === currentUserId && (
+                  <>
+                    <Button
+                      className={s.iconButton}
+                      icon={<Edit />}
+                      onClick={editClickHandler(item.id)}
+                      variant={'link'}
+                    />
+                    <Button
+                      className={s.iconButton}
+                      disabled={disabled}
+                      icon={<TrashBin />}
+                      onClick={deleteClickHandler(item.id)}
+                      variant={'link'}
+                    />
+                  </>
+                )}
               </Table.Cell>
             </Table.Row>
           )
