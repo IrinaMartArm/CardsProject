@@ -20,12 +20,31 @@ import s from './decks.module.scss'
 export const Decks = () => {
   // const [skip, setSkip] = useState(true)
   const [name, setName] = useState('')
-  const [search, setSearch] = useSearchParams()
+  const [currentPage, setCurrentPage] = useState(1)
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const orderBy = JSON.parse(search.get('orderBy') ?? 'null')
+  const orderBy = JSON.parse(searchParams.get('orderBy') ?? 'null')
+  const maxCardsCount = Number(searchParams.get('maxCardsCount')) || 100
+  const minCardsCount = Number(searchParams.get('minCardsCount')) || 1
+  const page = Number(searchParams.get('page')) || 1
   const setOrderBy = (value: Sort) => {
-    search.set('orderBy', JSON.stringify(value))
-    setSearch(search)
+    searchParams.set('orderBy', JSON.stringify(value))
+    setSearchParams(searchParams)
+  }
+
+  // const setMaxCardsCount = (maxValue: number) => {
+  //   searchParams.set('max', JSON.stringify(maxValue))
+  //   setSearchParams(searchParams)
+  // }
+  // const setMinCardsCount = (minValue: number) => {
+  //   searchParams.set('max', JSON.stringify(minValue))
+  //   setSearchParams(searchParams)
+  // }
+
+  const onChangeFilter = (key: string, value: string) => {
+    console.log(key, value)
+    searchParams.set(key, JSON.stringify(value))
+    setSearchParams(searchParams)
   }
 
   // const onSkipChange = () => {
@@ -44,6 +63,7 @@ export const Decks = () => {
   const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
   const { data, error, isLoading } = useGetDecksQuery(
     {
+      currentPage: page,
       name: debouncedSearch,
       orderBy: sortedString,
     }
@@ -63,6 +83,7 @@ export const Decks = () => {
       id: id,
     })
   }
+  const onsetPage = (page: number) => setCurrentPage(page)
 
   if (isLoading) {
     return <h2>Loading...</h2>
@@ -79,11 +100,14 @@ export const Decks = () => {
           <Typography variant={'h1'}>Decks list</Typography>
           <AddNewDeckDialog onAddDeck={data => createDeck(data)} />
         </div>
-        <DecksFilters decks={data} onChange={setName} value={name} />
-        {/*<Button onClick={onSkipChange} variant={'secondary'}>*/}
-        {/*  search*/}
-        {/*</Button>*/}
-        {/*<span>это временная кнопка</span>*/}
+        <DecksFilters
+          decks={data}
+          maxCardsCount={maxCardsCount}
+          minCardsCount={minCardsCount}
+          onChange={setName}
+          onChangeFilter={onChangeFilter}
+          value={name}
+        />
         <DecksTable
           currentUserId={currentUserId}
           decks={data}
@@ -96,7 +120,8 @@ export const Decks = () => {
         <div className={s.pagination}>
           <Pagination
             currentPage={data?.pagination.currentPage || 1}
-            onPageChange={() => {}}
+            onFilterChange={onChangeFilter}
+            onPageChange={onsetPage}
             pageSize={data?.pagination.totalItems || 10}
             siblingCount={1}
             totalCount={data?.pagination.totalPages || 1}

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, useEffect } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 // import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -11,14 +11,11 @@ export const Slider = forwardRef<
   ElementRef<typeof SliderRadix.Root>,
   Omit<ComponentPropsWithoutRef<typeof SliderRadix.Root>, 'value'> & {
     label?: string
+    onChangeFilter: (key: string, value: string) => void
     value: (null | number)[]
   }
->(({ label, max, onValueChange, value, ...rest }, ref) => {
-  useEffect(() => {
-    if (value?.[1] === undefined || value?.[1] === null) {
-      onValueChange?.([value?.[0] ?? 0, max ?? 0])
-    }
-  }, [max, value, onValueChange])
+>(({ label, max, onChangeFilter, value, ...rest }, ref) => {
+  // const onChangeFilterHandler = () => {}
 
   return (
     <div>
@@ -29,9 +26,9 @@ export const Slider = forwardRef<
         <SliderRadix.Root
           className={s.SliderRoot}
           max={max}
-          onValueChange={onValueChange}
+          // onChangeFilter={onChangeFilterHandler}
           ref={ref}
-          value={[value?.[0] ?? 0, value?.[1] ?? max ?? 0]}
+          value={[value?.[0] ?? 0, value?.[1] ?? max ?? 1]}
           {...rest}
         >
           <SliderRadix.Track className={s.SliderTrack}>

@@ -7,10 +7,9 @@ import s from './pagination.module.scss'
 type PaginationButtonsType<T extends ElementType> = {
   as?: T
   currentPage: number
-  disabled?: boolean
-  onClick: (pageNumber: number) => void
+  onClick: (key: string, value: string) => void
   paginationRange: (number | string)[]
-} & ComponentPropsWithoutRef<T>
+} & Omit<ComponentPropsWithoutRef<T>, 'onClick'>
 
 const classNames = {
   dots: s.dots,
@@ -20,10 +19,7 @@ const classNames = {
   },
 }
 
-export const PaginationButtons = <T extends ElementType = 'a'>(
-  props: PaginationButtonsType<T> &
-    Omit<ComponentPropsWithoutRef<T>, keyof PaginationButtonsType<T>>
-) => {
+export const PaginationButtons = <T extends ElementType = 'a'>(props: PaginationButtonsType<T>) => {
   const { as: Component = 'button', currentPage, onClick, paginationRange, ...rest } = props
 
   return (
@@ -35,7 +31,7 @@ export const PaginationButtons = <T extends ElementType = 'a'>(
           return <Dots key={index} />
         }
 
-        const onClickHandler = () => () => onClick(page)
+        const onClickHandler = () => onClick('page', page + '')
 
         return (
           <Component

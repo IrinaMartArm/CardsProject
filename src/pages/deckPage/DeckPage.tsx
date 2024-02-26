@@ -24,6 +24,7 @@ export const DeckPage = () => {
       <CardsTable cards={cardsData?.items} />
       <Pagination
         currentPage={currentPage}
+        onFilterChange={onChangeFilter}
         onPageChange={p => setCurrentPage(p)}
         pageSize={10}
         siblingCount={1}

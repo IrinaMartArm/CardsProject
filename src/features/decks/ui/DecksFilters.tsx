@@ -13,7 +13,10 @@ import s from '@/features/decks/ui/decks.module.scss'
 
 type Props = {
   decks: DeckResponse | undefined
+  maxCardsCount: number
+  minCardsCount: number
   onChange: (value: string) => void
+  onChangeFilter: (key: string, value: string) => void
   value: string
 }
 
@@ -22,7 +25,13 @@ const tabOptions = [
   { disabled: false, option: 'All Cards' },
 ]
 
-export const DecksFilters = ({ onChange, value }: Props) => {
+export const DecksFilters = ({
+  maxCardsCount,
+  minCardsCount,
+  onChange,
+  onChangeFilter,
+  value,
+}: Props) => {
   const {} = useGetMinMaxCardsQuery
   const onSearchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.currentTarget.value)
@@ -31,8 +40,6 @@ export const DecksFilters = ({ onChange, value }: Props) => {
   const onClearClick = () => {
     onChange('')
   }
-
-  const onValueChange = () => {}
 
   return (
     <div className={s.filters}>
@@ -52,11 +59,8 @@ export const DecksFilters = ({ onChange, value }: Props) => {
       />
       <Slider
         label={'Number of cards'}
-        max={9}
-        min={0}
-        onValueChange={onValueChange}
-        // value={[0, decks?.maxCardsCount || 0]}
-        value={[1, 9]}
+        onChangeFilter={onChangeFilter}
+        value={[minCardsCount, maxCardsCount]}
       />
       <Button variant={'secondary'}>
         <TrashBin />
