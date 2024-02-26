@@ -8,6 +8,7 @@ import { Typography } from '@/components/ui/typography/Typography'
 import { DecksFilters } from '@/features/decks/ui/DecksFilters'
 import { DecksTable } from '@/features/decks/ui/DecksTable'
 import { useDebounce } from '@/hooks/useDebounce'
+import { useMeQuery } from '@/services/auth/auth.service'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
@@ -48,6 +49,8 @@ export const Decks = () => {
     },
     { skip: skip }
   )
+  const { data: me } = useMeQuery()
+  const currentUserId = me?.id
 
   const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
 
@@ -84,6 +87,7 @@ export const Decks = () => {
         </Button>
         <span>это временная кнопка</span>
         <DecksTable
+          currentUserId={currentUserId}
           decks={data}
           disabled={isDeckBeingDeleted}
           onDeleteClick={onDeleteClick}

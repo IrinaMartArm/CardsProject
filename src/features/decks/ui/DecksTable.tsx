@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 
-import { Edit, Play, TrashBin } from '@/components/assets/icons'
+import { Edit, Play } from '@/components/assets/icons'
 import { Typography } from '@/components/ui'
 import { Button } from '@/components/ui/button'
+import { DeleteCardDialog } from '@/components/ui/modals/DeleteCardDialog'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
 import { DeckResponse } from '@/services/decks/decks.types'
@@ -16,6 +17,7 @@ export type Column = {
 }
 
 type Props = {
+  currentUserId?: string
   decks: DeckResponse | undefined
   disabled: boolean
   onDeleteClick: (id: string) => void
@@ -53,6 +55,7 @@ export const columns: Column[] = [
 ]
 
 export const DecksTable = ({
+  currentUserId,
   decks,
   disabled,
   onDeleteClick,
@@ -77,6 +80,7 @@ export const DecksTable = ({
               <Table.Cell>
                 <Typography as={Link} to={`/decks/${item.id}`} variant={'body2'}>
                   {item.name}
+                  <img alt={''} src={item.cover} width={40} />
                 </Typography>
               </Table.Cell>
               <Table.Cell>{item.cardsCount}</Table.Cell>
@@ -90,19 +94,24 @@ export const DecksTable = ({
                   to={`/decks/${item.id}/learn`}
                   variant={'link'}
                 />
+                {item.author.id === currentUserId && (
+                  <>
+                    <Button
+                      className={s.iconButton}
+                      icon={<Edit />}
+                      onClick={editClickHandler(item.id)}
+                      variant={'link'}
+                    />
+                    <DeleteCardDialog disabled={disabled} onClick={deleteClickHandler(item.id)} />
+                  </>
+                )}
                 <Button
                   className={s.iconButton}
                   icon={<Edit />}
                   onClick={editClickHandler(item.id)}
                   variant={'link'}
                 />
-                <Button
-                  className={s.iconButton}
-                  disabled={disabled}
-                  icon={<TrashBin />}
-                  onClick={deleteClickHandler(item.id)}
-                  variant={'link'}
-                />
+                <DeleteCardDialog disabled={disabled} onClick={deleteClickHandler(item.id)} />
               </Table.Cell>
             </Table.Row>
           )

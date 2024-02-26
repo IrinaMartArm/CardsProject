@@ -22,7 +22,7 @@ const tabOptions = [
   { disabled: false, option: 'All Cards' },
 ]
 
-export const DecksFilters = ({ decks, onChange, value }: Props) => {
+export const DecksFilters = ({ onChange, value }: Props) => {
   const {} = useGetMinMaxCardsQuery
   const onSearchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.currentTarget.value)
@@ -52,7 +52,7 @@ export const DecksFilters = ({ decks, onChange, value }: Props) => {
       />
       <Slider
         label={'Number of cards'}
-        max={decks?.maxCardsCount || 0}
+        max={9}
         min={0}
         onValueChange={onValueChange}
         // value={[0, decks?.maxCardsCount || 0]}
