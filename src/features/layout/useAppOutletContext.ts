@@ -1,7 +1,7 @@
 import { useOutletContext } from 'react-router-dom'
 
 export interface AppOutletContext {
-  isAuth: boolean
+  isAuthenticated: boolean
 }
 
 export const useAppOutletContext = () => {

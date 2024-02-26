@@ -1,5 +1,5 @@
 import { baseApi } from '@/api/base-api'
-import { LoginArgs, User, UserArgs } from '@/services/auth/auth.types'
+import { LoginArgs, User } from '@/services/auth/auth.types'
 
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -20,19 +20,25 @@ export const authService = baseApi.injectEndpoints({
           url: `/v1/auth/login`,
         }),
       }),
+      logout: builder.mutation<void, void>({
+        invalidatesTags: ['Me'],
+        async onQueryStarted(_, { dispatch, queryFulfilled }) {
+          const patchResult = dispatch(authService.util.updateQueryData('me', _, () => {}))
+
+          try {
+            await queryFulfilled
+            dispatch(baseApi.util.resetApiState())
+          } catch (e) {
+            patchResult.undo()
+          }
+        },
+        query: () => ({ method: 'POST', url: '/v1/auth/logout' }),
+      }),
       me: builder.query<User, void>({
         providesTags: ['Me'],
-        query: () => `/v1/auth/me`,
-      }),
-      updateMe: builder.mutation<User, UserArgs>({
-        invalidatesTags: ['Me'],
-        query: body => ({
-          body,
-          method: 'PATCH',
-          url: '/v1/auth/me',
-        }),
+        query: () => 'v1/auth/me',
       }),
     }
   },
 })
-export const { useLoginMutation, useMeQuery } = authService
+export const { useLoginMutation, useLogoutMutation, useMeQuery } = authService

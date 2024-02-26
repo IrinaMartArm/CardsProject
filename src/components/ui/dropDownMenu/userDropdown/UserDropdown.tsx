@@ -1,4 +1,3 @@
-import { ComponentPropsWithoutRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Out, Person } from '@/components/assets/icons'
@@ -16,7 +15,7 @@ import s from './userDropdown.module.scss'
 export type UserDropdownProps = {
   avatar: string
   email: string
-  onLogout: ComponentPropsWithoutRef<typeof DropdownMenuItem>['onSelect']
+  onLogout: () => void
   userName: string
 }
 
