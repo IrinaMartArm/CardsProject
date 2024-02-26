@@ -1,22 +1,15 @@
 import { ReactNode } from 'react'
-import { Outlet, useOutletContext } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 import { Header, HeaderProps } from '@/components/ui/header/Header'
 import { Preloader } from '@/components/ui/preloader'
 import { AppOutletContext } from '@/features/layout/useAppOutletContext'
-import { useMeQuery } from '@/services/auth/auth.service'
+import { useLogoutMutation, useMeQuery } from '@/services/auth/auth.service'
 
 import s from './layout.module.scss'
 
-type AuthContext = {
-  isAuthenticated: boolean
-}
-
-export function useAuthContext() {
-  return useOutletContext<AuthContext>()
-}
-
 export const Layout = () => {
+  const [logout, {}] = useLogoutMutation()
   const { data, isError, isLoading } = useMeQuery()
   const isAuthenticated = !isError && !isLoading
 
@@ -29,7 +22,7 @@ export const Layout = () => {
       avatar={data?.avatar ?? ''}
       email={data?.email ?? ''}
       isLoggedIn={isAuthenticated}
-      onLogout={() => {}}
+      onLogout={logout}
       userName={data?.name ?? ''}
     >
       <Outlet context={{ isAuthenticated } satisfies AppOutletContext} />
