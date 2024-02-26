@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Button } from '@/components/ui/button'
+import { AddNewDeckDialog } from '@/components/ui/modals/dialogs/AddNewDeckDialog'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Sort } from '@/components/ui/tables/TableHeader'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -18,7 +18,7 @@ import {
 import s from './decks.module.scss'
 
 export const Decks = () => {
-  const [skip, setSkip] = useState(true)
+  // const [skip, setSkip] = useState(true)
   const [name, setName] = useState('')
   const [search, setSearch] = useSearchParams()
 
@@ -28,9 +28,9 @@ export const Decks = () => {
     setSearch(search)
   }
 
-  const onSkipChange = () => {
-    setSkip(false)
-  }
+  // const onSkipChange = () => {
+  //   setSkip(false)
+  // }
 
   const sortedString = useMemo(() => {
     if (!orderBy) {
@@ -46,17 +46,17 @@ export const Decks = () => {
     {
       name: debouncedSearch,
       orderBy: sortedString,
-    },
-    { skip: skip }
+    }
+    // { skip: skip }
   )
   const { data: me } = useMeQuery()
   const currentUserId = me?.id
 
-  const [createDeck, { isLoading: isDeckBeingCreated }] = useCreateDeckMutation()
+  const [createDeck] = useCreateDeckMutation()
 
-  const onAddDeck = () => {
-    createDeck({ name: 'yo🦋' })
-  }
+  // const onAddDeck = () => {
+  //   createDeck({ name: 'yo🦋' })
+  // }
 
   const onDeleteClick = (id: string) => {
     deleteDeck({
@@ -77,15 +77,13 @@ export const Decks = () => {
       <div className={s.wrapper}>
         <div className={s.title}>
           <Typography variant={'h1'}>Decks list</Typography>
-          <Button disabled={isDeckBeingCreated} onClick={onAddDeck} variant={'primary'}>
-            <Typography variant={'subtitle2'}>Add New Deck</Typography>
-          </Button>
+          <AddNewDeckDialog onAddDeck={data => createDeck(data)} />
         </div>
         <DecksFilters decks={data} onChange={setName} value={name} />
-        <Button onClick={onSkipChange} variant={'secondary'}>
-          search
-        </Button>
-        <span>это временная кнопка</span>
+        {/*<Button onClick={onSkipChange} variant={'secondary'}>*/}
+        {/*  search*/}
+        {/*</Button>*/}
+        {/*<span>это временная кнопка</span>*/}
         <DecksTable
           currentUserId={currentUserId}
           decks={data}

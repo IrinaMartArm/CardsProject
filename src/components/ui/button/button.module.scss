@@ -141,7 +141,7 @@
 .icon {
   @include button;
 
-  padding: 0;
+  padding: 2px;
 
   &:focus-visible {
     outline: none;

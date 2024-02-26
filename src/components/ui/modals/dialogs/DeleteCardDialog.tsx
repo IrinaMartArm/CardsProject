@@ -2,7 +2,7 @@ import { TrashBin } from '@/components/assets/icons'
 import { Button, Modal, Typography } from '@/components/ui'
 import { ModalClose } from '@/components/ui/modals/ModalClose'
 
-import s from '@/features/decks/ui/decks.module.scss'
+import s from '../Modals.module.scss'
 
 type Props = {
   disabled: boolean
@@ -14,9 +14,7 @@ export const DeleteCardDialog = ({ disabled, onClick }: Props) => {
   return (
     <Modal
       title={'Delete Card'}
-      trigger={
-        <Button className={s.iconButton} disabled={disabled} icon={<TrashBin />} variant={'link'} />
-      }
+      trigger={<Button disabled={disabled} icon={<TrashBin />} variant={'icon'} />}
     >
       <div className={s.child}>
         <Typography variant={'body2'}>
