@@ -6,11 +6,10 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Layout } from '@/features/layout'
-import { useAppOutletContext } from '@/features/layout/useAppOutletContext'
+import { Layout, useAuthContext } from '@/features/layout'
+import { SignInPage } from '@/pages/Auth/SignInPage/SignInPage'
 import { DeckPage } from '@/pages/deckPage/DeckPage'
 import { DecksPage } from '@/pages/decksPage/DecksPage'
-import { SignInPage } from '@/pages/signInPage/SignInPage'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -53,7 +52,7 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const { isAuthenticated } = useAppOutletContext()
+  const { isAuthenticated } = useAuthContext()
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }

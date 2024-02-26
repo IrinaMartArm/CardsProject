@@ -17,3 +17,12 @@ export type UserArgs = {
   avatar: string
   name: string
 }
+
+export type SignUpArgs = {
+  email: string
+  html?: string
+  name?: string
+  password: string
+  sendConfirmationEmail?: boolean
+  subject?: string
+}
