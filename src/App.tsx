@@ -1,8 +1,10 @@
 import { Provider } from 'react-redux'
-import { ToastContainer } from 'react-toastify'
+import { Bounce, ToastContainer } from 'react-toastify'
 
 import { Router } from '@/app/routes/config/Router'
 import { store } from '@/services/store'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 // import { Router } from './Router'
 
@@ -29,8 +31,20 @@ export const answerVariants = [
 export function App() {
   return (
     <Provider store={store}>
-      <ToastContainer />
       <Router />
+      <ToastContainer
+        autoClose={5000}
+        closeOnClick
+        draggable={false}
+        hideProgressBar={false}
+        newestOnTop
+        pauseOnFocusLoss={false}
+        pauseOnHover
+        position={'bottom-left'}
+        rtl={false}
+        theme={'dark'}
+        transition={Bounce}
+      />
     </Provider>
   )
 }

@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom'
 
 import { Layout, useAuthContext } from '@/features/layout'
+import { SignInPage } from '@/pages/Auth/SignInPage/SignInPage'
 import { DeckPage } from '@/pages/deckPage/DeckPage'
 import { DecksPage } from '@/pages/decksPage/DecksPage'
-import { SignInPage } from '@/pages/signInPage/SignInPage'
 
 const publicRoutes: RouteObject[] = [
   {

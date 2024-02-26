@@ -11,4 +11,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const DefaultSignUpForm: Story = {}
+export const Default: Story = {
+  args: {
+    isLoading: false,
+    onSubmit: () => new Promise(res => res({ error: null, fieldErrors: null })),
+  },
+}
+
+export const IsLoading: Story = {
+  args: {
+    isLoading: true,
+    onSubmit: () => new Promise(res => res({ error: null, fieldErrors: null })),
+  },
+}

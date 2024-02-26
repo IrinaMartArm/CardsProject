@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
@@ -18,10 +20,6 @@ export const SignInForm = ({ ClassName, isLoading, onSubmit }: Props) => {
     formState: { errors },
     handleSubmit,
   } = useSignInForm()
-
-  /*  const onSubmit = (data: FormValues) => {
-	  console.log(data)
-	}*/
 
   return (
     <Card as={'form'} className={`${s.form} ${ClassName}`} onSubmit={handleSubmit(onSubmit)}>
@@ -60,9 +58,15 @@ export const SignInForm = ({ ClassName, isLoading, onSubmit }: Props) => {
       <Typography className={s.signUpText} variant={'body2'}>
         Don`t have an account?
       </Typography>
-      <Typography className={s.signUpNav} variant={'link1'}>
+      <Button
+        as={Link}
+        className={s.signUpNav}
+        disabled={isLoading}
+        to={'/sign-up'}
+        variant={'link'}
+      >
         Sign Up
-      </Typography>
+      </Button>
     </Card>
   )
 }

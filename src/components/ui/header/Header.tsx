@@ -7,7 +7,6 @@ import {
   UserDropdown,
   UserDropdownProps,
 } from '@/components/ui/dropDownMenu/userDropdown/UserDropdown'
-import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './header.module.scss'
 
@@ -32,8 +31,8 @@ export const Header = memo(({ avatar, email, isLoggedIn, onLogout, userName }: H
           <img alt={'logo'} className={s.logo} src={Logo} />
         </Link>
         {!isLoggedIn ? (
-          <Button as={Link} to={'/sign-in'} variant={'secondary'}>
-            <Typography variant={'body2'}>Sign In</Typography>
+          <Button as={Link} to={'/login'} variant={'secondary'}>
+            Sign In
           </Button>
         ) : (
           <div className={s.auth}>
