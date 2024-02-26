@@ -6,7 +6,8 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Layout, useAuthContext } from '@/features/layout'
+import { Layout } from '@/features/layout'
+import { useAppOutletContext } from '@/features/layout/useAppOutletContext'
 import { SignInPage } from '@/pages/Auth/SignInPage/SignInPage'
 import { DeckPage } from '@/pages/deckPage/DeckPage'
 import { DecksPage } from '@/pages/decksPage/DecksPage'
@@ -52,7 +53,7 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const { isAuthenticated } = useAuthContext()
+  const { isAuthenticated } = useAppOutletContext()
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }
