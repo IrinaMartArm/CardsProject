@@ -49,7 +49,7 @@ export const SignInForm = ({ ClassName, isLoading, onSubmit }: Props) => {
         label={'Remember me'}
         name={'rememberMe'}
       />
-      <Typography className={s.forgotNav} variant={'body2'}>
+      <Typography as={Link} className={s.forgotNav} to={'/forgot-password'} variant={'body2'}>
         Forgot Password?
       </Typography>
       <Button className={s.signInBtn} fullWidth type={'submit'}>
