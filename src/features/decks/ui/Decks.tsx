@@ -83,6 +83,11 @@ export const Decks = () => {
     setSearchParametersHandler('page', '1')
   }
 
+  const onFiltersReset = () => {
+    setSearchParametersHandler('minCardsCount', String(sliderData?.min))
+    setSearchParametersHandler('maxCardsCount', String(sliderData?.max))
+  }
+
   if (isLoading || isSliderLoading || !sliderData) {
     return <h2>Loading...</h2>
   }
@@ -104,6 +109,7 @@ export const Decks = () => {
           minCardsCount={minCardsCount}
           onChange={setName}
           onChangeFilter={setSearchParametersHandler}
+          onFiltersReset={onFiltersReset}
           originMaxCount={sliderData.max}
           value={name}
         />

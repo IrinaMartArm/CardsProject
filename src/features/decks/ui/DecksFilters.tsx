@@ -16,6 +16,7 @@ type Props = {
   minCardsCount: number
   onChange: (value: string) => void
   onChangeFilter: (key: string, value: string) => void
+  onFiltersReset: () => void
   originMaxCount: number
   value: string
 }
@@ -30,6 +31,7 @@ export const DecksFilters = ({
   minCardsCount,
   onChange,
   onChangeFilter,
+  onFiltersReset,
   originMaxCount,
   value,
 }: Props) => {
@@ -74,7 +76,7 @@ export const DecksFilters = ({
         onValueChange={onValueChangeHandler}
         value={[minCardsCount, maxCardsCount]}
       />
-      <Button variant={'secondary'}>
+      <Button onClick={onFiltersReset} variant={'secondary'}>
         <TrashBin />
         <Typography variant={'subtitle2'}>Clear Filter</Typography>
       </Button>
