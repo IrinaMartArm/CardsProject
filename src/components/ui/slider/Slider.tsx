@@ -11,10 +11,9 @@ export const Slider = forwardRef<
   ElementRef<typeof SliderRadix.Root>,
   Omit<ComponentPropsWithoutRef<typeof SliderRadix.Root>, 'value'> & {
     label?: string
-    onChangeFilter: (key: string, value: string) => void
     value: (null | number)[]
   }
->(({ label, max, onChangeFilter, value, ...rest }, ref) => {
+>(({ label, max, value, ...rest }, ref) => {
   // const onChangeFilterHandler = () => {}
 
   return (

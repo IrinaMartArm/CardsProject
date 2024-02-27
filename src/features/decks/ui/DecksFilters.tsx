@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider/Slider'
 import { Tabs } from '@/components/ui/tabs/Tabs'
 import { Typography } from '@/components/ui/typography/Typography'
-import { useGetMinMaxCardsQuery } from '@/services/decks/decks.service'
 import { DeckResponse } from '@/services/decks/decks.types'
 
 import s from '@/features/decks/ui/decks.module.scss'
@@ -17,6 +16,7 @@ type Props = {
   minCardsCount: number
   onChange: (value: string) => void
   onChangeFilter: (key: string, value: string) => void
+  originMaxCount: number
   value: string
 }
 
@@ -30,11 +30,22 @@ export const DecksFilters = ({
   minCardsCount,
   onChange,
   onChangeFilter,
+  originMaxCount,
   value,
 }: Props) => {
-  const {} = useGetMinMaxCardsQuery
   const onSearchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.currentTarget.value)
+    const value = e.currentTarget.value
+
+    onChange(value)
+    onChangeFilter('searchValue', value)
+  }
+
+  const onValueChangeHandler = (value: number[]) => {
+    const firstValue = value[0]
+    const secondValue = value[1]
+
+    onChangeFilter('minCardsCount', String(firstValue))
+    onChangeFilter('maxCardsCount', String(secondValue))
   }
 
   const onClearClick = () => {
@@ -59,7 +70,8 @@ export const DecksFilters = ({
       />
       <Slider
         label={'Number of cards'}
-        onChangeFilter={onChangeFilter}
+        max={originMaxCount}
+        onValueChange={onValueChangeHandler}
         value={[minCardsCount, maxCardsCount]}
       />
       <Button variant={'secondary'}>

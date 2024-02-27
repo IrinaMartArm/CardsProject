@@ -48,10 +48,6 @@ export const Pagination = <T extends ElementType = 'button'>(
     return null
   }
 
-  const onChangeHandler = (value: string) => {
-    console.log(value)
-  }
-
   return (
     <div className={s.root}>
       <div className={s.paginationContainer}>
@@ -66,7 +62,13 @@ export const Pagination = <T extends ElementType = 'button'>(
       </div>
       <div className={s.selectWrapper}>
         <Typography variant={'body2'}>Показать</Typography>
-        <Select isPagination items={items} name={'page'} onChange={onChangeHandler} />
+        <Select
+          isPagination
+          items={items}
+          name={'page'}
+          onChange={onFilterChange}
+          value={String(pageSize)}
+        />
         <Typography variant={'body2'}>на странице</Typography>
       </div>
     </div>

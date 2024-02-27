@@ -20,7 +20,7 @@ type SelectType = {
   items: ItemsType[]
   label?: string
   name?: string
-  onChange: (value: string) => void
+  onChange: (key: string, value: string) => void
   value?: string
 }
 export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType>(
@@ -48,11 +48,11 @@ export const Select = forwardRef<ElementRef<typeof SelectRadix.Root>, SelectType
     const toggle = () => {
       setOpen(!open)
     }
-    const ValueChangeHandler = (value: string) => onChange(value)
+    const ValueChangeHandler = (newValue: string) => onChange('itemsPerPage', newValue ?? '10')
 
     return (
       <SelectRadix.Root
-        defaultValue={defaultValue || items[0].value}
+        defaultValue={!value ? defaultValue : undefined}
         name={name}
         onOpenChange={toggle}
         onValueChange={ValueChangeHandler}
