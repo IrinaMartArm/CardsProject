@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 
 import { Button, Input, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination/Pagination'
@@ -11,8 +11,14 @@ export const DeckPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const { data: deckData } = useGetDeckByIdQuery({ id: deckId || '' })
   const { data: cardsData } = useGetDeckCardsQuery({ id: deckId || '' })
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const learnLink = `/decks/${deckId}/learn`
+
+  const setSearchParametersHandler = (key: string, value: string) => {
+    searchParams.set(key, value)
+    setSearchParams(searchParams)
+  }
 
   return (
     <div>
@@ -24,7 +30,7 @@ export const DeckPage = () => {
       <CardsTable cards={cardsData?.items} />
       <Pagination
         currentPage={currentPage}
-        onFilterChange={onChangeFilter}
+        onFilterChange={setSearchParametersHandler}
         onPageChange={p => setCurrentPage(p)}
         pageSize={10}
         siblingCount={1}

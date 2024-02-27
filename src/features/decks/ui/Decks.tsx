@@ -34,8 +34,7 @@ export const Decks = () => {
     setSearchParams(searchParams)
   }
 
-  const setSearchParametrHandler = (key: string, value: string) => {
-    console.log(key, value)
+  const setSearchParametersHandler = (key: string, value: string) => {
     searchParams.set(key, value)
     setSearchParams(searchParams)
   }
@@ -67,12 +66,11 @@ export const Decks = () => {
 
   useEffect(() => {
     if (sliderData) {
-      setSearchParametrHandler('minCardsCount', String(sliderData?.min))
-      setSearchParametrHandler('maxCardsCount', String(sliderData?.max))
+      setSearchParametersHandler('minCardsCount', String(sliderData?.min))
+      setSearchParametersHandler('maxCardsCount', String(sliderData?.max))
     }
   }, [sliderData])
 
-  console.log(sliderData)
   const [createDeck] = useCreateDeckMutation()
 
   const onDeleteClick = (id: string) => {
@@ -102,7 +100,7 @@ export const Decks = () => {
           maxCardsCount={maxCardsCount}
           minCardsCount={minCardsCount}
           onChange={setName}
-          onChangeFilter={setSearchParametrHandler}
+          onChangeFilter={setSearchParametersHandler}
           originMaxCount={sliderData.max}
           value={name}
         />
@@ -118,7 +116,7 @@ export const Decks = () => {
         <div className={s.pagination}>
           <Pagination
             currentPage={data?.pagination.currentPage || 1}
-            onFilterChange={setSearchParametrHandler}
+            onFilterChange={setSearchParametersHandler}
             onPageChange={onsetPage}
             pageSize={+itemsPerPage}
             siblingCount={1}
