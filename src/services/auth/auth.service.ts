@@ -38,6 +38,17 @@ export const authService = baseApi.injectEndpoints({
         providesTags: ['Me'],
         query: () => 'v1/auth/me',
       }),
+      recoverPassword: builder.mutation<void, string>({
+        query: email => ({
+          body: {
+            email,
+            html: '<h1>Hi, ##name##</h1><p>Click <a href="http://localhost:5173/create-new-password/##token##">here</a> to create new password</p>',
+            // subject: 'Recover password',
+          },
+          method: 'POST',
+          url: '/v1/auth/recover-password',
+        }),
+      }),
       signUp: builder.mutation<User, SignUpArgs>({
         query: body => ({
           body,
@@ -49,4 +60,10 @@ export const authService = baseApi.injectEndpoints({
   },
 })
 
-export const { useLoginMutation, useLogoutMutation, useMeQuery, useSignUpMutation } = authService
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useMeQuery,
+  useRecoverPasswordMutation,
+  useSignUpMutation,
+} = authService
