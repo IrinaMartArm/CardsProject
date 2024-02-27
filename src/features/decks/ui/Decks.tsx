@@ -15,19 +15,19 @@ import {
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
 } from '@/services/decks/decks.service'
+import { CreateDeckArgs } from '@/services/decks/decks.types'
 
 import s from './decks.module.scss'
 
 export const Decks = () => {
   // const [skip, setSkip] = useState(true)
   const [name, setName] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
   const [searchParams, setSearchParams] = useSearchParams()
 
   const orderBy = JSON.parse(searchParams.get('orderBy') ?? 'null')
   const maxCardsCount = Number(searchParams.get('maxCardsCount'))
   const minCardsCount = Number(searchParams.get('minCardsCount'))
-  const page = Number(searchParams.get('page')) || currentPage
+  const page = Number(searchParams.get('page')) || 1
   const itemsPerPage = searchParams.get('itemsPerPage') ?? '10'
   const setOrderBy = (value: Sort) => {
     searchParams.set('orderBy', JSON.stringify(value))
@@ -78,7 +78,10 @@ export const Decks = () => {
       id: id,
     })
   }
-  const onsetPage = (page: number) => setCurrentPage(page)
+  const onAddDeckHandler = (data: CreateDeckArgs) => {
+    createDeck(data)
+    setSearchParametersHandler('page', '1')
+  }
 
   if (isLoading || isSliderLoading || !sliderData) {
     return <h2>Loading...</h2>
@@ -93,7 +96,7 @@ export const Decks = () => {
       <div className={s.wrapper}>
         <div className={s.title}>
           <Typography variant={'h1'}>Decks list</Typography>
-          <AddNewDeckDialog onAddDeck={data => createDeck(data)} />
+          <AddNewDeckDialog onAddDeck={onAddDeckHandler} />
         </div>
         <DecksFilters
           decks={data}
@@ -117,7 +120,6 @@ export const Decks = () => {
           <Pagination
             currentPage={data?.pagination.currentPage || 1}
             onFilterChange={setSearchParametersHandler}
-            onPageChange={onsetPage}
             pageSize={+itemsPerPage}
             siblingCount={1}
             totalCount={data?.pagination.totalPages || 1}

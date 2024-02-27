@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Picture } from '@/components/assets/icons'
@@ -23,6 +24,7 @@ export const AddNewDeckDialog = ({
   defaultValues = { isPrivate: false, name: '' },
   onAddDeck,
 }: Props) => {
+  const [open, setOpen] = useState(false)
   const { control, handleSubmit, reset } = useForm<FormValues>({
     defaultValues,
     resolver: zodResolver(newDeckSchema),
@@ -30,12 +32,16 @@ export const AddNewDeckDialog = ({
 
   const onSubmit = handleSubmit(data => {
     onAddDeck(data)
+    setOpen(!open)
+    onCancel()
   })
-
+  const onOpenChange = () => setOpen(!open)
   const onCancel = () => reset()
 
   return (
     <Modal
+      onOpenChange={onOpenChange}
+      open={open}
       title={'Add New Deck'}
       trigger={
         <Button variant={'primary'}>

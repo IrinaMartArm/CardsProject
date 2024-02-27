@@ -16,7 +16,6 @@ type PaginationType<T extends ElementType> = {
   className?: string
   currentPage: number
   onFilterChange: (key: string, value: string) => void
-  onPageChange: (page: number) => void
   pageSize: number
   siblingCount: number
   totalCount: number
@@ -25,20 +24,11 @@ type PaginationType<T extends ElementType> = {
 export const Pagination = <T extends ElementType = 'button'>(
   props: PaginationType<T> & Omit<ComponentPropsWithoutRef<T>, keyof PaginationType<T>>
 ) => {
-  const {
-    as,
-    currentPage,
-    onFilterChange,
-    onPageChange,
-    pageSize,
-    siblingCount = 1,
-    totalCount,
-    ...rest
-  } = props
+  const { as, currentPage, onFilterChange, pageSize, siblingCount = 1, totalCount, ...rest } = props
 
   const { isFirstPage, isLastPage, onNext, onPrevious, paginationRange } = usePagination({
     currentPage,
-    onPageChange,
+    onFilterChange,
     pageSize,
     siblingCount,
     totalCount,

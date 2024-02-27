@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 
 import { Button, Input, Typography } from '@/components/ui'
@@ -8,7 +7,6 @@ import { useGetDeckByIdQuery, useGetDeckCardsQuery } from '@/services/decks/deck
 
 export const DeckPage = () => {
   const { deckId } = useParams()
-  const [currentPage, setCurrentPage] = useState(1)
   const { data: deckData } = useGetDeckByIdQuery({ id: deckId || '' })
   const { data: cardsData } = useGetDeckCardsQuery({ id: deckId || '' })
   const [searchParams, setSearchParams] = useSearchParams()
@@ -29,10 +27,9 @@ export const DeckPage = () => {
       <Input placeholder={'Search cards'} type={'search'} />
       <CardsTable cards={cardsData?.items} />
       <Pagination
-        currentPage={currentPage}
+        currentPage={cardsData?.pagination.currentPage || 1}
         onFilterChange={setSearchParametersHandler}
-        onPageChange={p => setCurrentPage(p)}
-        pageSize={10}
+        pageSize={cardsData?.pagination.itemsPerPage || 10}
         siblingCount={1}
         totalCount={cardsData?.pagination?.totalPages || 1}
       />

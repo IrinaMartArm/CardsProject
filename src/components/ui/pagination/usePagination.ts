@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react'
 
 type UsePaginationParamType = {
   currentPage: number
-  onPageChange: (page: number) => void
+  onFilterChange: (key: string, value: string) => void
   pageSize: number
   siblingCount?: number
   totalCount: number
@@ -19,7 +19,7 @@ const Range = (start: number, end: number) => {
 
 export const usePagination = ({
   currentPage,
-  onPageChange,
+  onFilterChange,
   pageSize,
   siblingCount = 1,
   totalCount,
@@ -90,12 +90,12 @@ export const usePagination = ({
   const isLastPage = currentPage === lastPage
 
   const onNext = useCallback(() => {
-    onPageChange(currentPage + 1)
-  }, [currentPage, onPageChange])
+    onFilterChange('page', String(currentPage + 1))
+  }, [currentPage, onFilterChange])
 
   const onPrevious = useCallback(() => {
-    onPageChange(currentPage - 1)
-  }, [currentPage, onPageChange])
+    onFilterChange('page', String(currentPage - 1))
+  }, [currentPage, onFilterChange])
 
   // function handlePageClicked(pageNumber: number) {
   //   return () => onPageChange(pageNumber)
