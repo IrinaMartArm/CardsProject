@@ -3,21 +3,16 @@ import * as TabsRadix from '@radix-ui/react-tabs'
 
 import s from './tabs.module.scss'
 
-type OptionsType = {
-  disabled: boolean
-  option: string
-}
-
 type TabsType = {
   label?: string
   name?: string
-  onChange: () => void
-  tabsOptions: OptionsType[]
-  value?: string
+  onChange: (key: string, value: string) => void
+  value: string
 }
-export const Tabs = ({ label, onChange, tabsOptions, value }: TabsType) => {
-  const onValueChangeHandler = () => {
-    onChange()
+export const Tabs = ({ label, onChange, value }: TabsType) => {
+  const onValueChangeHandler = (value: string) => {
+    onChange('tab', value)
+    console.log(value)
   }
 
   return (
@@ -25,23 +20,16 @@ export const Tabs = ({ label, onChange, tabsOptions, value }: TabsType) => {
       <Typography variant={'body2'}>{label}</Typography>
       <TabsRadix.Root
         className={s.TabsRoot}
-        defaultValue={tabsOptions[0].option}
+        defaultValue={value}
         onValueChange={onValueChangeHandler}
-        value={value}
       >
         <TabsRadix.List aria-label={'Manage your account'} className={s.TabsList}>
-          {tabsOptions.map((el, index) => {
-            return (
-              <TabsRadix.Trigger
-                className={s.TabsTrigger}
-                disabled={el.disabled}
-                key={index}
-                value={el.option}
-              >
-                <Typography variant={'body1'}>{el.option}</Typography>
-              </TabsRadix.Trigger>
-            )
-          })}
+          <TabsRadix.Trigger className={s.TabsTrigger} value={'all'}>
+            <Typography variant={'body1'}>All Cards</Typography>
+          </TabsRadix.Trigger>
+          <TabsRadix.Trigger className={s.TabsTrigger} value={'my'}>
+            <Typography variant={'body1'}>My Cards</Typography>
+          </TabsRadix.Trigger>
         </TabsRadix.List>
       </TabsRadix.Root>
     </div>

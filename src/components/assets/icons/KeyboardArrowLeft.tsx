@@ -6,7 +6,7 @@ export const KeyboardArrowLeft = memo(
   forwardRef<SVGSVGElement, IconProps>(({ color }, ref) => {
     return (
       <svg
-        fill={'none'}
+        fill={'#fff'}
         height={'24'}
         ref={ref}
         viewBox={'0 0 24 24'}

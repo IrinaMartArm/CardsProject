@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider/Slider'
 import { Tabs } from '@/components/ui/tabs/Tabs'
-import { Typography } from '@/components/ui/typography/Typography'
 import { DeckResponse } from '@/services/decks/decks.types'
 
 import s from '@/features/decks/ui/decks.module.scss'
@@ -20,12 +19,6 @@ type Props = {
   originMaxCount: number
   value: string
 }
-
-const tabOptions = [
-  { disabled: false, option: 'My Cards' },
-  { disabled: false, option: 'All Cards' },
-]
-
 export const DecksFilters = ({
   maxCardsCount,
   minCardsCount,
@@ -64,21 +57,15 @@ export const DecksFilters = ({
         type={'search'}
         value={value}
       />
-      <Tabs
-        label={'Show decks cards'}
-        name={'decksCards'}
-        onChange={() => {}}
-        tabsOptions={tabOptions}
-      />
+      <Tabs label={'Show decks cards'} name={'tab'} onChange={onChangeFilter} value={'all'} />
       <Slider
         label={'Number of cards'}
         max={originMaxCount}
         onValueChange={onValueChangeHandler}
         value={[minCardsCount, maxCardsCount]}
       />
-      <Button onClick={onFiltersReset} variant={'secondary'}>
-        <TrashBin />
-        <Typography variant={'subtitle2'}>Clear Filter</Typography>
+      <Button icon={<TrashBin />} onClick={onFiltersReset} variant={'secondary'}>
+        Clear Filter
       </Button>
     </div>
   )

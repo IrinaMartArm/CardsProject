@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Picture } from '@/components/assets/icons'
-import { Button, ControlledCheckBox, ControlledTextField, Modal, Typography } from '@/components/ui'
+import { Button, ControlledCheckBox, ControlledTextField, Modal } from '@/components/ui'
 import { ModalClose } from '@/components/ui/modals/ModalClose'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -43,26 +43,22 @@ export const AddNewDeckDialog = ({
       onOpenChange={onOpenChange}
       open={open}
       title={'Add New Deck'}
-      trigger={
-        <Button variant={'primary'}>
-          <Typography variant={'subtitle2'}>Add New Deck</Typography>
-        </Button>
-      }
+      trigger={<Button variant={'primary'}>Add New Deck</Button>}
     >
       <form className={s.child} onSubmit={onSubmit}>
         <ControlledTextField control={control} label={'Name Pack'} name={'name'} type={'text'} />
         <Button fullWidth icon={<Picture />} variant={'secondary'}>
-          <Typography variant={'subtitle2'}>Upload Image</Typography>
+          Upload Image
         </Button>
         <ControlledCheckBox control={control} label={'Private pack'} name={'isPrivate'} />
       </form>
       <ModalClose>
         <div className={s.footer}>
           <Button onClick={onCancel} variant={'secondary'}>
-            <Typography variant={'subtitle2'}>Cancel</Typography>
+            Cancel
           </Button>
           <Button onClick={onSubmit} variant={'primary'}>
-            <Typography variant={'subtitle2'}>Add New Pack</Typography>
+            Add New Pack
           </Button>
         </div>
       </ModalClose>

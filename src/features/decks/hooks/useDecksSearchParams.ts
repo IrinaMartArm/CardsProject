@@ -16,8 +16,8 @@ export const useDecksSearchParams = () => {
   const maxCardsCount = Number(searchParams.get('maxCardsCount'))
   const minCardsCount = Number(searchParams.get('minCardsCount'))
   const page = Number(searchParams.get('page')) || 1
-  const itemsPerPage = searchParams.get('itemsPerPage') ?? '10'
-
+  const itemsPerPage = Number(searchParams.get('itemsPerPage') ?? '10')
+  const tab = searchParams.get('tab') ?? ''
   const setSearchParametersHandler = (key: string, value: string) => {
     searchParams.set(key, value)
     setSearchParams(searchParams)
@@ -45,5 +45,6 @@ export const useDecksSearchParams = () => {
     setOrderBy,
     setSearchParametersHandler,
     sortedString,
+    tab,
   }
 }

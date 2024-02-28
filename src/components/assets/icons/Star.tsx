@@ -7,10 +7,10 @@ export const Star = memo(
     return (
       <svg
         fill={'none'}
-        height={'100%'}
+        height={'18'}
         ref={ref}
         viewBox={'0 0 24 24'}
-        width={'100%'}
+        width={'18'}
         xmlns={'http://www.w3.org/2000/svg'}
       >
         <g clipPath={'url(#prefix__clip0_124_21527)'}>
