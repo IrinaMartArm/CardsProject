@@ -6,6 +6,7 @@ import { Layout } from '@/features/layout'
 import { ForgotPasswordPage } from '@/pages/Auth/ForgotPasswordPage'
 import { SignInPage } from '@/pages/Auth/SignInPage'
 import { SignUpPage } from '@/pages/Auth/SignUpPage'
+import { DeckPage } from '@/pages/deckPage/DeckPage'
 import { DecksPage } from '@/pages/decksPage/DecksPage'
 import { ErrorPage } from '@/pages/errorPage/ErrorPage'
 
@@ -17,6 +18,7 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   { element: <DecksPage />, path: '/' },
+  { element: <DeckPage />, path: '/decks/:deckId' },
   { element: <Navigate replace to={'/404'} />, path: '*' },
   { element: <ErrorPage />, path: '/404' },
 ]

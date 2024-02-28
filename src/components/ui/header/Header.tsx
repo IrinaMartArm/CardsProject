@@ -18,11 +18,6 @@ export type HeaderProps =
       isLoggedIn: true
     })
 
-// const dropDownItems: DropDownItemsType = [
-//   { foo: () => {}, icon: <Person />, separator: true, text: 'My Profile' },
-//   { foo: () => {}, icon: <Out />, separator: false, text: 'Sign Out' },
-// ]
-
 export const Header = memo(({ avatar, email, isLoggedIn, onLogout, userName }: HeaderProps) => {
   return (
     <div className={s.root}>

@@ -23,11 +23,9 @@ export const DeleteCardDialog = ({ disabled, onClick }: Props) => {
       </div>
       <ModalClose>
         <div className={s.footer}>
-          <Button variant={'secondary'}>
-            <Typography variant={'subtitle2'}>Cancel</Typography>
-          </Button>
+          <Button variant={'secondary'}>Cancel</Button>
           <Button onClick={onClickHandler} variant={'primary'}>
-            <Typography variant={'subtitle2'}>Delete Card</Typography>
+            Delete Card
           </Button>
         </div>
       </ModalClose>

@@ -5,6 +5,7 @@ import {
   Deck,
   DeckResponse,
   DeleteDeckArgs,
+  GetCardsArgs,
   GetDecksArgs,
   GetMinMax,
   UpdateDeckArgs,
@@ -74,8 +75,11 @@ export const DecksService = baseApi.injectEndpoints({
       getDeckById: builder.query<Deck, { id: string }>({
         query: ({ id }) => `v1/decks/${id}`,
       }),
-      getDeckCards: builder.query<CardsResponse, { id: string }>({
-        query: ({ id }) => `v1/decks/${id}/cards`,
+      getDeckCards: builder.query<CardsResponse, GetCardsArgs>({
+        query: ({ id, ...params }) => ({
+          params: params ?? undefined,
+          url: `v1/decks/${id}/cards`,
+        }),
       }),
       getDecks: builder.query<DeckResponse, GetDecksArgs | void>({
         providesTags: ['Decks'],
