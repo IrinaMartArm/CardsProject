@@ -49,6 +49,15 @@ export const authService = baseApi.injectEndpoints({
           url: '/v1/auth/recover-password',
         }),
       }),
+      resetPassword: builder.mutation<void, { password: string; token: string }>({
+        query: ({ password, token }) => ({
+          body: {
+            password,
+          },
+          method: 'POST',
+          url: `/v1/auth/reset-password/${token}`,
+        }),
+      }),
       signUp: builder.mutation<User, SignUpArgs>({
         query: body => ({
           body,
@@ -65,5 +74,6 @@ export const {
   useLogoutMutation,
   useMeQuery,
   useRecoverPasswordMutation,
+  useResetPasswordMutation,
   useSignUpMutation,
 } = authService
