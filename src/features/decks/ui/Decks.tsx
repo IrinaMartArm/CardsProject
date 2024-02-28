@@ -1,13 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 import { AddNewDeckDialog } from '@/components/ui/modals/dialogs/AddNewDeckDialog'
 import { Pagination } from '@/components/ui/pagination/Pagination'
-import { Sort } from '@/components/ui/tables/TableHeader'
 import { Typography } from '@/components/ui/typography/Typography'
+import { useDecksSearchParams } from '@/features/decks/hooks/useDecksSearchParams'
 import { DecksFilters } from '@/features/decks/ui/DecksFilters'
 import { DecksTable } from '@/features/decks/ui/DecksTable'
-import { useDebounce } from '@/hooks/useDebounce'
 import { useMeQuery } from '@/services/auth/auth.service'
 import {
   useCreateDeckMutation,
@@ -20,34 +18,20 @@ import { CreateDeckArgs } from '@/services/decks/decks.types'
 import s from './decks.module.scss'
 
 export const Decks = () => {
-  // const [skip, setSkip] = useState(true)
-  const [name, setName] = useState('')
-  const [searchParams, setSearchParams] = useSearchParams()
+  const {
+    debouncedSearch,
+    itemsPerPage,
+    maxCardsCount,
+    minCardsCount,
+    name,
+    orderBy,
+    page,
+    setName,
+    setOrderBy,
+    setSearchParametersHandler,
+    sortedString,
+  } = useDecksSearchParams()
 
-  const orderBy = JSON.parse(searchParams.get('orderBy') ?? 'null')
-  const maxCardsCount = Number(searchParams.get('maxCardsCount'))
-  const minCardsCount = Number(searchParams.get('minCardsCount'))
-  const page = Number(searchParams.get('page')) || 1
-  const itemsPerPage = searchParams.get('itemsPerPage') ?? '10'
-  const setOrderBy = (value: Sort) => {
-    searchParams.set('orderBy', JSON.stringify(value))
-    setSearchParams(searchParams)
-  }
-
-  const setSearchParametersHandler = (key: string, value: string) => {
-    searchParams.set(key, value)
-    setSearchParams(searchParams)
-  }
-
-  const sortedString = useMemo(() => {
-    if (!orderBy) {
-      return null
-    }
-
-    return `${orderBy.key}-${orderBy.direction}`
-  }, [orderBy])
-
-  const debouncedSearch = useDebounce(name, 1000)
   const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
   const { data, error, isLoading } = useGetDecksQuery(
     {
@@ -61,6 +45,7 @@ export const Decks = () => {
     // { skip: skip }
   )
   const { data: me } = useMeQuery()
+  const [createDeck] = useCreateDeckMutation()
   const { data: sliderData, isLoading: isSliderLoading } = useGetMinMaxCardsQuery()
   const currentUserId = me?.id
 
@@ -70,8 +55,6 @@ export const Decks = () => {
       setSearchParametersHandler('maxCardsCount', String(sliderData?.max))
     }
   }, [sliderData])
-
-  const [createDeck] = useCreateDeckMutation()
 
   const onDeleteClick = (id: string) => {
     deleteDeck({
