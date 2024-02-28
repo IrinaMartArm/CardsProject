@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { tabsOptions } from '@/App'
 import { Tabs } from '@/components/ui/tabs/Tabs'
 
 const meta = {
@@ -14,5 +13,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
-  args: { tabsOptions },
+  args: {
+    name: 'tabs',
+    value: 'all',
+  },
 }
