@@ -14,8 +14,8 @@ export type LoginArgs = {
 }
 
 export type UserArgs = {
-  avatar: string
-  name: string
+  avatar?: string
+  name?: string
 }
 
 export type SignUpArgs = {

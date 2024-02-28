@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 import { Out, Person } from '@/components/assets/icons'
-import { Avatar, Button, Typography } from '@/components/ui'
+import { Avatar, Button, Modal, Typography } from '@/components/ui'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropDownMenu/Test'
+import { PersonInfo } from '@/features/personInfo'
 
 import s from './userDropdown.module.scss'
 
@@ -20,8 +21,11 @@ export type UserDropdownProps = {
 }
 
 export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdownProps) => {
+  const [open, setOpen] = useState(false)
+  const onOpenChangeHandler = () => setOpen(!open)
+
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={onOpenChangeHandler} open={open}>
       <DropdownMenuTrigger asChild>
         <Button className={s.trigger} variant={'icon'}>
           <Typography className={s.name} variant={'subtitle1'}>
@@ -42,10 +46,16 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link to={'/profile'}>
-            <Person />
-            <Typography variant={'caption'}>My profile</Typography>
-          </Link>
+          <Modal
+            trigger={
+              <div className={s.profile}>
+                <Person />
+                <Typography variant={'caption'}>My profile</Typography>
+              </div>
+            }
+          >
+            <PersonInfo avatar={avatar} email={email} name={userName} />
+          </Modal>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={onLogout}>

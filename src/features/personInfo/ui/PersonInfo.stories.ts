@@ -2,12 +2,7 @@ import { PersonInfo } from '@/features/personInfo'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  argTypes: {
-    variant: {
-      control: { type: 'radio' },
-      options: ['primary', 'secondary'],
-    },
-  },
+  argTypes: {},
   component: PersonInfo,
   tags: ['autodocs'],
   title: 'Components/PersonInfo',
@@ -17,5 +12,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const PersonalInfo: Story = {
-  args: {},
+  args: {
+    email: 'bcgdfsrwe@bv.com',
+    name: 'Test',
+  },
 }

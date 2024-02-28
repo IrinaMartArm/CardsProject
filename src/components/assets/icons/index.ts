@@ -1,3 +1,4 @@
+export { ArrowLeft } from './ArrowLeft'
 export { ArrowUp } from './ArrowUp'
 export { Check } from './Check'
 export { CheckBorder } from './CheckBorder'

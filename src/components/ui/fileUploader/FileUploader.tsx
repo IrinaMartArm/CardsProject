@@ -46,20 +46,23 @@ export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
     }
 
     return (
-      <Typography as={'label'} className={className} htmlFor={name} variant={'caption'}>
-        {trigger}
-        <input
-          className={s.input}
-          id={name}
-          onChange={handleChangeCover}
-          ref={ref}
-          type={'file'}
-          {...rest}
-        />
-        <Typography as={'span'} className={s.error} variant={'caption'}>
-          {error}
+      <>
+        <Typography as={'label'} className={className} htmlFor={name} variant={'caption'}>
+          {trigger}
+
+          <input
+            className={s.input}
+            id={name}
+            onChange={handleChangeCover}
+            ref={ref}
+            type={'file'}
+            {...rest}
+          />
+          <Typography as={'span'} className={s.error} variant={'caption'}>
+            {error}
+          </Typography>
         </Typography>
-      </Typography>
+      </>
     )
   }
 )

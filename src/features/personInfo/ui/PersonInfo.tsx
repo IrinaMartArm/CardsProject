@@ -1,86 +1,98 @@
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { ChangeEvent, useState } from 'react'
 
-import { Edit } from '@/components/assets/icons'
+import { Edit, Out } from '@/components/assets/icons'
+import { Input } from '@/components/ui'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { FileUploader } from '@/components/ui/fileUploader'
 import { Typography } from '@/components/ui/typography/Typography'
-import { nikNameSchema } from '@/utils/Validation'
-import { convertFileToBase64 } from '@/utils/convertFile'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
+import { useUpdateAccountMutation } from '@/services/auth/auth.service'
 
 import s from './PersonInfo.module.scss'
 
-type FormValues = z.infer<typeof nikNameSchema>
+type Props = {
+  avatar: string
+  email: string
+  name: string
+}
 
-export const PersonInfo = () => {
+export const PersonInfo = ({ avatar, email, name }: Props) => {
   const [editNicknameMode, setEditNicknameMode] = useState(false)
-  const [nickname, setNickname] = useState('nick')
-  const [avatar, setAvatar] = useState(
-    'https://as2.ftcdn.net/v2/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg'
-  )
-  // const [error, setError] = useState('')
 
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<FormValues>({
-    resolver: zodResolver(nikNameSchema),
-  })
+  const [updateData] = useUpdateAccountMutation()
 
-  const onSubmitHandler = () => {
-    setEditNicknameMode(!editNicknameMode)
+  const [newName, setNewName] = useState(name)
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewName(e.currentTarget.value)
   }
-  const onKeyDownHandler = (key: string) => {
-    if (key === 'Escape') {
-      setEditNicknameMode(!editNicknameMode)
-      setNickname('nick') // сделано, чтобы не багалось пока нету rtk!! убрать!!!
-    }
+
+  const onAvatarChange = (file: File) => {
+    const formData = new FormData()
+
+    formData.append('avatar', file)
+
+    updateData(formData)
   }
+
+  const onChangeNameHandler = () => {
+    const formData = new FormData()
+
+    formData.append('name', name)
+
+    updateData(formData)
+
+    editNicknameModeHandler()
+  }
+  // const onKeyDownHandler = (key: string) => {
+  //   if (key === 'Escape') {
+  //     setEditNicknameMode(!editNicknameMode)
+  //   }
+  // }
+  const editNicknameModeHandler = () => setEditNicknameMode(!editNicknameMode)
 
   return (
-    <Card as={'form'} className={s.root} onSubmit={handleSubmit(onSubmitHandler)}>
-      <Typography variant={'h3'}>Personal Information</Typography>
-      <FileUploader
-        setFile={(file: File) => {
-          convertFileToBase64(file, setAvatar)
-        }}
-        trigger={
-          <div className={s.AvatarUploader}>
-            <Avatar size={'large'} src={avatar} title={'Avatar'} />
-            <Edit className={s.pen} size={25} />
-          </div>
-        }
-      />
+    <Card className={s.root}>
+      <Typography variant={'h1'}>Personal Information</Typography>
+      <div className={s.AvatarUploader}>
+        <Avatar size={'large'} src={avatar} title={'Avatar'} />
+        <FileUploader
+          name={'inputFile'}
+          setFile={onAvatarChange}
+          trigger={
+            <div className={s.pen}>
+              <Edit size={25} />
+            </div>
+          }
+        />
+      </div>
 
       {editNicknameMode ? (
         <>
-          <ControlledTextField
-            autoFocus
-            control={control}
-            errorMessage={errors.root?.message}
-            label={'Nickname'}
-            name={'nickName'}
-            onEnter={onSubmitHandler}
-            onKeyDown={e => onKeyDownHandler(e.key)}
-            type={'text'}
-          />
-          <Button type={'submit'} variant={'primary'}>
+          <Input name={'newName'} onChange={onChangeHandler} type={'text'} value={newName} />
+          <Button fullWidth onClick={onChangeNameHandler} variant={'primary'}>
             Save Changes
           </Button>
         </>
       ) : (
         <>
-          <Typography className={s.nickName} variant={'body1'}>
-            {nickname}
-            <Edit onClick={() => setEditNicknameMode(true)} size={21} />
-          </Typography>
-          <Typography variant={'body2'}>email</Typography>
+          <div>
+            <div className={s.nickName}>
+              <Typography variant={'h2'}>{name}</Typography>
+              <Button
+                icon={<Edit size={21} />}
+                onClick={editNicknameModeHandler}
+                variant={'icon'}
+              ></Button>
+            </div>
+
+            <Typography className={s.email} variant={'body2'}>
+              {email}
+            </Typography>
+          </div>
+          <Button icon={<Out />} variant={'secondary'}>
+            Logout
+          </Button>
         </>
       )}
     </Card>

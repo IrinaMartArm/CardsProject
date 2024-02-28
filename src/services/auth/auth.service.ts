@@ -4,7 +4,7 @@ import { LoginArgs, SignUpArgs, User } from '@/services/auth/auth.types'
 export const authService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createAccount: builder.query({
+      createAccount: builder.query<User, any>({
         providesTags: ['Me'],
         query: body => ({
           body,
@@ -56,6 +56,14 @@ export const authService = baseApi.injectEndpoints({
           url: '/v1/auth/sign-up',
         }),
       }),
+      updateAccount: builder.mutation<User, FormData>({
+        invalidatesTags: ['Me'],
+        query: body => ({
+          body,
+          method: 'PATCH',
+          url: '/v1/auth/me',
+        }),
+      }),
     }
   },
 })
@@ -66,4 +74,5 @@ export const {
   useMeQuery,
   useRecoverPasswordMutation,
   useSignUpMutation,
+  useUpdateAccountMutation,
 } = authService

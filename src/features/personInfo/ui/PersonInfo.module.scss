@@ -1,20 +1,5 @@
 .root {
-  gap: 10px;
-  width: 420px;
-  height: 420px;
-}
-
-.nickName {
-  display: flex;
-
-  span {
-    cursor: pointer;
-    margin: 0 0 0 5px;
-  }
-
-  svg {
-    align-self: center;
-  }
+  gap: 20px;
 }
 
 .AvatarUploader {
@@ -26,16 +11,39 @@
     cursor: pointer;
 
     position: absolute;
+    right: 0;
+    bottom: 0;
 
-    place-self: flex-end flex-end;
+    align-self: center;
 
+    width: 24px;
+    height: 24px;
     padding: 3px;
 
-    background: var(--color-accent-500);
-    border-radius: 50%;
+    background-color: var(--color-dark-300);
+    border-radius: 4px;
 
-    svg {
-      align-self: center;
+    &:hover {
+      background-color: var(--color-dark-100);
+    }
+
+    &:active {
+      background-color: var(--color-dark-500);
     }
   }
+}
+
+.nickName {
+  display: flex;
+  justify-content: center;
+
+  svg {
+    cursor: pointer;
+    align-self: center;
+    margin: 0 0 0 5px;
+  }
+}
+
+.email {
+  color: var(--color-dark-100);
 }
