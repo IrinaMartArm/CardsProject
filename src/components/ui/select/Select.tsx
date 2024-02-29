@@ -8,7 +8,7 @@ import { clsx } from 'clsx'
 import s from './select.module.scss'
 
 type ItemsType = {
-  id: string
+  title: string
   value: string
 }
 
