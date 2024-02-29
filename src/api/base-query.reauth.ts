@@ -1,6 +1,3 @@
-// import { router } from '@/Router'
-
-import { router } from '@/app/routes/config/Router'
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { Mutex } from 'async-mutex'
 
@@ -33,8 +30,6 @@ export const baseQueryWithReauth: BaseQueryFn<
       if (refreshResult.meta?.response?.status === 204) {
         // retry the initial query
         result = await baseQuery(args, api, extraOptions)
-      } else {
-        await router.navigate('/login')
       }
       release()
     } else {

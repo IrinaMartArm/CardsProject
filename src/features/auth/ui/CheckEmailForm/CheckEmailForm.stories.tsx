@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
-import { CheckEmailForm } from '@/features/auth'
+import { CheckEmailForm } from './CheckEmailForm'
 
 const meta = {
   component: CheckEmailForm,
@@ -11,4 +11,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const DefaultCheckEmailForm: Story = {}
+export const Default: Story = {
+  args: {
+    email: 'example@mail.com',
+  },
+}
