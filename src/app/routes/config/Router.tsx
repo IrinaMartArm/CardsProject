@@ -2,7 +2,7 @@ import { Navigate, RouteObject, RouterProvider, createBrowserRouter } from 'reac
 
 import { PrivateRedirect } from '@/app/routes/ui/PrivateRedirect'
 import { PublicRedirect } from '@/app/routes/ui/PublicRedirect'
-import { DeckPage } from '@/features/deck/ui/DeckPage'
+import { Deck } from '@/features/deck/ui/Deck'
 import { Layout } from '@/features/layout'
 import { CreateNewPasswordPage } from '@/pages/Auth/CreateNewPasswordPage'
 import { ForgotPasswordPage } from '@/pages/Auth/ForgotPasswordPage'
@@ -20,7 +20,7 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   { element: <DecksPage />, path: '/' },
-  { element: <DeckPage />, path: '/decks/:deckId' },
+  { element: <Deck />, path: '/decks/:deckId' },
   { element: <Navigate replace to={'/404'} />, path: '*' },
   { element: <ErrorPage />, path: '/404' },
 ]

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { Page } from '@/components/ui'
 import { AddNewDeckDialog } from '@/components/ui/modals/dialogs/AddNewDeckDialog'
 import { Pagination } from '@/components/ui/pagination/Pagination'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -83,42 +84,42 @@ export const Decks = () => {
   }
 
   return (
-    <div className={s.root}>
-      {/*<div className={s.wrapper}>*/}
-      <div className={s.title}>
-        <Typography variant={'h1'}>Decks list</Typography>
-        <AddNewDeckDialog onAddDeck={onAddDeckHandler} />
-      </div>
-      <DecksFilters
-        decks={data}
-        maxCardsCount={maxCardsCount}
-        minCardsCount={minCardsCount}
-        onChange={setName}
-        onChangeFilter={setSearchParametersHandler}
-        onFiltersReset={onFiltersReset}
-        originMaxCount={sliderData.max}
-        value={name}
-      />
-      <DecksTable
-        currentUserId={currentUserId}
-        decks={data}
-        disabled={isDeckBeingDeleted}
-        onDeleteClick={onDeleteClick}
-        onEditClick={() => {}}
-        onSort={setOrderBy}
-        orderBy={orderBy}
-      />
-      <div className={s.pagination}>
-        <Pagination
-          currentPage={data?.pagination.currentPage || 1}
-          onFilterChange={setSearchParametersHandler}
-          pageSize={+itemsPerPage}
-          siblingCount={1}
-          totalCount={data?.pagination.totalPages || 1}
+    <Page>
+      <div className={s.root}>
+        <div className={s.title}>
+          <Typography variant={'h1'}>Decks list</Typography>
+          <AddNewDeckDialog onAddDeck={onAddDeckHandler} />
+        </div>
+        <DecksFilters
+          decks={data}
+          maxCardsCount={maxCardsCount}
+          minCardsCount={minCardsCount}
+          onChange={setName}
+          onChangeFilter={setSearchParametersHandler}
+          onFiltersReset={onFiltersReset}
+          originMaxCount={sliderData.max}
+          value={name}
         />
+        <DecksTable
+          currentUserId={currentUserId}
+          decks={data}
+          disabled={isDeckBeingDeleted}
+          onDeleteClick={onDeleteClick}
+          onEditClick={() => {}}
+          onSort={setOrderBy}
+          orderBy={orderBy}
+        />
+        <div className={s.pagination}>
+          <Pagination
+            currentPage={data?.pagination.currentPage || 1}
+            onFilterChange={setSearchParametersHandler}
+            pageSize={+itemsPerPage}
+            siblingCount={1}
+            totalCount={data?.pagination.totalPages || 1}
+          />
+        </div>
       </div>
-      {/*</div>*/}
-    </div>
+    </Page>
   )
 }
 
