@@ -14,7 +14,7 @@ export type LoginArgs = {
 }
 
 export type UserArgs = {
-  avatar?: string
+  avatar?: FormData
   name?: string
 }
 
