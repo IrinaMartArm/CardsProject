@@ -45,12 +45,14 @@ button {
 }
 
 .item {
+  cursor: pointer;
+
   display: flex;
   gap: 5px;
   align-items: center;
 
   width: 100%;
-  padding: 8px 40px 8px 13px;
+  padding: 10px 45px 10px 15px;
 
   color: var(--color-light-100);
   text-align: start;

@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropDownMenu/Test'
 import { PersonInfo } from '@/features/personInfo'
 
+import d from './../dropDown.module.scss'
 import s from './userDropdown.module.scss'
 
 export type UserDropdownProps = {
@@ -35,7 +36,7 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>
+        <div className={s.profile}>
           <Avatar src={avatar} title={userName} />
           <div>
             <Typography variant={'subtitle2'}>{userName}</Typography>
@@ -43,12 +44,12 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
               {email}
             </Typography>
           </div>
-        </DropdownMenuItem>
+        </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Modal
             trigger={
-              <div className={s.profile}>
+              <div className={d.item}>
                 <Person />
                 <Typography variant={'caption'}>My profile</Typography>
               </div>
