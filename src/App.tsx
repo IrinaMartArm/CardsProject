@@ -9,18 +9,12 @@ import 'react-toastify/dist/ReactToastify.css'
 // import { Router } from './Router'
 
 export const items = [
-  { title: '1', value: '1' },
-  { title: '2', value: '2' },
   { title: '3', value: '3' },
-  { title: '4', value: '4' },
+  { title: '5', value: '5' },
   { title: '10', value: '10' },
+  { title: '15', value: '15' },
+  { title: '20', value: '20' },
 ]
-
-export const tabsOptions = [
-  { disabled: false, option: 'Switcher' },
-  { disabled: false, option: 'Switcher' },
-]
-
 export const answerVariants = [
   { disabled: false, id: '1', variant: 'Did not know' },
   { disabled: false, id: '2', variant: 'Forgot' },

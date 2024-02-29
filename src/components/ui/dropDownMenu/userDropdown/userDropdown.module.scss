@@ -27,20 +27,4 @@
   color: var(--color-light-100);
   text-align: start;
   white-space: nowrap;
-
-  &:hover {
-    color: var(--color-light-100);
-  }
-
-  &:hover {
-    background-color: var(--color-dark-300);
-  }
-
-  &:active {
-    background-color: var(--color-dark-500);
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
 }
