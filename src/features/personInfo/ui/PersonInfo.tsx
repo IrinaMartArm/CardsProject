@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { Edit, Out } from '@/components/assets/icons'
 import { Input } from '@/components/ui'
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { FileUploader } from '@/components/ui/fileUploader'
 import { Typography } from '@/components/ui/typography/Typography'
-import { useUpdateAccountMutation } from '@/services/auth/auth.service'
+import { useLogoutMutation, useUpdateAccountMutation } from '@/services/auth/auth.service'
 
 import s from './PersonInfo.module.scss'
 
@@ -18,8 +19,9 @@ type Props = {
 }
 
 export const PersonInfo = ({ avatar, email, name }: Props) => {
+  const navigate = useNavigate()
   const [editNicknameMode, setEditNicknameMode] = useState(false)
-
+  const [logout, { isLoading }] = useLogoutMutation()
   const [updateData] = useUpdateAccountMutation()
 
   const [newName, setNewName] = useState(name)
@@ -51,6 +53,10 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
   // }
   const editNicknameModeHandler = () => setEditNicknameMode(!editNicknameMode)
 
+  const handleLogout = () => {
+    logout().then(() => navigate('/login'))
+  }
+
   return (
     <Card className={s.root}>
       <Typography variant={'h1'}>Personal Information</Typography>
@@ -80,6 +86,7 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
             <div className={s.nickName}>
               <Typography variant={'h2'}>{name}</Typography>
               <Button
+                disabled={isLoading}
                 icon={<Edit size={21} />}
                 onClick={editNicknameModeHandler}
                 variant={'icon'}
@@ -90,7 +97,7 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
               {email}
             </Typography>
           </div>
-          <Button icon={<Out />} variant={'secondary'}>
+          <Button icon={<Out />} onClick={handleLogout} variant={'secondary'}>
             Logout
           </Button>
         </>
