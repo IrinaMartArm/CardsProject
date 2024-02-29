@@ -66,10 +66,22 @@ export const SignUpForm = ({ isLoading, onSubmit }: Props) => {
       <Typography className={s.haveAnAccountText} variant={'body2'}>
         Already have an account?
       </Typography>
-      <Button as={Link} className={s.signInNav} disabled={isLoading} to={'/login'} variant={'link'}>
+      <Button
+        as={Link}
+        className={s.signInNav}
+        disabled={isLoading}
+        to={'/login'}
+        variant={'link'}
+      >
         Sign Up
       </Button>
-      <Button as={Link} className={s.signInNav} disabled={isLoading} to={'/login'} variant={'link'}>
+      <Button
+        as={Link}
+        className={s.signInNav}
+        disabled={isLoading}
+        to={'/login'}
+        variant={'link'}
+      >
         Sign In
       </Button>
     </Card>
