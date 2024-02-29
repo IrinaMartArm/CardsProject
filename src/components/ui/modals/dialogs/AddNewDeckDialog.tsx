@@ -5,18 +5,13 @@ import { Picture } from '@/components/assets/icons'
 import { Button, ControlledCheckBox, ControlledTextField, Modal } from '@/components/ui'
 import { FileUploader } from '@/components/ui/fileUploader'
 import { ModalClose } from '@/components/ui/modals/ModalClose'
+import { newDeckSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import { z } from 'zod'
 
 import btn from '../../button/button.module.scss'
 import s from '../Modals.module.scss'
-
-const newDeckSchema = z.object({
-  cover: z.instanceof(File).optional(),
-  isPrivate: z.boolean().optional(),
-  name: z.string().max(1000).min(5),
-})
 
 type FormValues = z.infer<typeof newDeckSchema>
 
@@ -41,7 +36,6 @@ export const AddNewDeckDialog = ({
     } else {
       onAddDeck({ ...data, cover: undefined })
     }
-
     setOpen(!open)
     onCancel()
   })
