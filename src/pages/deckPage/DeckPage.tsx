@@ -4,6 +4,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { ArrowLeft } from '@/components/assets/icons'
 import { Button, Input, Page, Typography } from '@/components/ui'
 import { Pagination } from '@/components/ui/pagination/Pagination'
+import { CreateCardModal } from '@/features/card/ui/CardActions/CreateCardModal/CreateCardModal'
 import { useDebounce } from '@/hooks/useDebounce'
 import { CardsTable } from '@/pages/deckPage/CardsTable'
 import { useMeQuery } from '@/services/auth/auth.service'
@@ -36,8 +37,8 @@ export const DeckPage = () => {
     question: debounceSearch,
   })
 
-  // console.log('deck', deckData)
-  // console.log('cards', cardsData)
+  /*     console.log('deck', deckData?.userId)
+   console.log('cards', deckId)*/
 
   const disabled = isDeckData && isCardsData
 
@@ -46,10 +47,12 @@ export const DeckPage = () => {
   const inputSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
 
-    console.log(value)
     setSearch(value)
     setSearchParametersHandler('searchValue', value)
   }
+  const isOwner = deckData?.userId === me?.id
+
+  console.log(isOwner)
 
   return (
     <Page>
@@ -59,9 +62,14 @@ export const DeckPage = () => {
         </Button>
         <div className={s.title}>
           <Typography variant={'h1'}>{deckData?.name}</Typography>
-          <Button as={Link} to={`/decks/${deckId}/learn`}>
-            Learn
-          </Button>
+
+          {isOwner ? (
+            <CreateCardModal />
+          ) : (
+            <Button as={Link} to={`/decks/${deckId}/learn`}>
+              Learn
+            </Button>
+          )}
         </div>
         <img alt={''} src={deckData?.cover} width={50} />
         <Input

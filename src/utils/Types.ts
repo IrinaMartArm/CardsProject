@@ -20,4 +20,7 @@ export type DropDownItemType = {
   separator: boolean
   text: string
 }
+
+export type Cover = File | null | string
+
 export type DropDownItemsType = DropDownItemType[]
