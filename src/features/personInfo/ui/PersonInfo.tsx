@@ -34,15 +34,11 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
 
     formData.append('avatar', file)
 
-    updateData(formData)
+    updateData({ avatar: formData })
   }
 
   const onChangeNameHandler = () => {
-    const formData = new FormData()
-
-    formData.append('name', name)
-
-    updateData(formData)
+    updateData({ name: newName })
 
     editNicknameModeHandler()
   }
