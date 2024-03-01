@@ -13,7 +13,7 @@ const createCardSchema = z.object({
 
 export type ActionsCardFormData = z.input<typeof createCardSchema>
 
-export const useActionsCardForm = (card?: Card) => {
+export const useActionsCardForm = (card?: Card | undefined) => {
   const [questionCover, setQuestionCover] = useState<Cover>(card?.questionImg || null)
   const [answerCover, setAnswerCover] = useState<Cover>(card?.answerImg || null)
   const formValues = useForm<ActionsCardFormData>({

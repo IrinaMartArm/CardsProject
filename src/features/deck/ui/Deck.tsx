@@ -36,7 +36,7 @@ export const Deck = () => {
           </Typography>
 
           {isOwner ? (
-            <CreateCardModal />
+            <CreateCardModal deckId={deckId} />
           ) : (
             <Button as={Link} to={`/decks/${deckId}/learn`}>
               Learn to Pack
