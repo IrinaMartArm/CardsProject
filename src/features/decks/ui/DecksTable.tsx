@@ -4,6 +4,7 @@ import { Play } from '@/components/assets/icons'
 import { Typography } from '@/components/ui'
 import { Button } from '@/components/ui/button'
 import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
+import { LearnDialog } from '@/components/ui/modals/dialogs/LearnDialog'
 import { AddNewDeckDialog } from '@/components/ui/modals/dialogs/UpdateDeckDialog'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
@@ -86,19 +87,25 @@ export const DecksTable = ({
               <Table.Cell>{item.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
               <Table.Cell>{item.author.name}</Table.Cell>
-              <Table.Cell className={s.iconButtons}>
-                <Button
-                  as={Link}
-                  className={s.iconButton}
-                  icon={<Play />}
-                  to={`/decks/${item.id}/learn`}
-                  variant={'icon'}
-                />
-                {item.author.id === currentUserId && (
-                  <>
-                    <AddNewDeckDialog deck={item} id={item.id} onUpdateDeck={onEditClick} />
-                    <DeleteCardDialog disabled={disabled} onClick={deleteClickHandler(item.id)} />
-                  </>
+              <Table.Cell>
+                {item.cardsCount > 0 && (
+                  <div className={s.iconButtons}>
+                    <LearnDialog
+                      // deck={item}
+                      id={item.id}
+                      name={item.name}
+                      trigger={<Button className={s.iconButton} icon={<Play />} variant={'icon'} />}
+                    />
+                    {item.author.id === currentUserId && (
+                      <>
+                        <AddNewDeckDialog deck={item} id={item.id} onUpdateDeck={onEditClick} />
+                        <DeleteCardDialog
+                          disabled={disabled}
+                          onClick={deleteClickHandler(item.id)}
+                        />
+                      </>
+                    )}
+                  </div>
                 )}
               </Table.Cell>
             </Table.Row>

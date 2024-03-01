@@ -74,7 +74,6 @@ export const Decks = () => {
   }
 
   const onUpdateDeck = (data: UpdateDeckArgs) => {
-    console.log(data)
     updateDeck(data)
   }
 

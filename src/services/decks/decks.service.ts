@@ -86,9 +86,11 @@ export const DecksService = baseApi.injectEndpoints({
         }),
       }),
       getDeckById: builder.query<Deck, { id: string }>({
+        providesTags: ['Deck'],
         query: ({ id }) => `v1/decks/${id}`,
       }),
       getDeckCards: builder.query<CardsResponse, GetCardsArgs>({
+        providesTags: ['Cards'],
         query: ({ id, ...params }) => ({
           params: params ?? undefined,
           url: `v1/decks/${id}/cards`,
@@ -105,7 +107,15 @@ export const DecksService = baseApi.injectEndpoints({
         query: () => `v2/decks/min-max-cards`,
       }),
       getQuestion: builder.query<Card, { id: string }>({
+        providesTags: ['Cards'],
         query: ({ id }) => `/v1/decks/${id}/learn`,
+      }),
+      saveTheGrade: builder.mutation<Deck, { id: string }>({
+        invalidatesTags: ['Cards'],
+        query: id => ({
+          method: 'POST',
+          url: `/v1/decks/${id}/learn`,
+        }),
       }),
       updateDeck: builder.mutation<Deck, UpdateDeckArgs>({
         invalidatesTags: ['Decks'],
@@ -165,5 +175,6 @@ export const {
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
   useGetQuestionQuery,
+  useSaveTheGradeMutation,
   useUpdateDeckMutation,
 } = DecksService
