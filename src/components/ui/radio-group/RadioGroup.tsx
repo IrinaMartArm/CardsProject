@@ -1,5 +1,6 @@
 import { ElementRef, Ref, forwardRef } from 'react'
 
+import { Typography } from '@/components/ui'
 import { AnswerVariantType } from '@/utils/Types'
 import * as RadioGroupRadix from '@radix-ui/react-radio-group'
 
@@ -35,8 +36,8 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, Ra
                     <RadioGroupRadix.Indicator className={s.RadioGroupIndicator} />
                   </RadioGroupRadix.Item>
                 </div>
-                <label className={'Label'} htmlFor={el.id}>
-                  {el.variant}
+                <label htmlFor={el.id}>
+                  <Typography variant={'body2'}>{el.variant}</Typography>
                 </label>
               </div>
             )

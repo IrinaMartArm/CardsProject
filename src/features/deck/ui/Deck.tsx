@@ -32,7 +32,7 @@ export const Deck = () => {
         <div className={s.title}>
           <Typography className={s.dropBoxTitle} variant={'h1'}>
             {deckData?.name}
-            {isOwner && <MyDropdown />}
+            {isOwner && <MyDropdown id={deckId || ''} name={deckData?.name} />}
           </Typography>
 
           {isOwner ? (

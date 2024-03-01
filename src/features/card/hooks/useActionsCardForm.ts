@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Card } from '@/services/decks/decks.types'
+import { GetCard } from '@/services/decks/decks.types'
 import { Cover } from '@/utils/Types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -13,7 +13,7 @@ const createCardSchema = z.object({
 
 export type ActionsCardFormData = z.input<typeof createCardSchema>
 
-export const useActionsCardForm = (card?: Card) => {
+export const useActionsCardForm = (card?: GetCard) => {
   const [questionCover, setQuestionCover] = useState<Cover>(card?.questionImg || null)
   const [answerCover, setAnswerCover] = useState<Cover>(card?.answerImg || null)
   const formValues = useForm<ActionsCardFormData>({

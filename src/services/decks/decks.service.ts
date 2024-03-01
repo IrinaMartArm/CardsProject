@@ -1,5 +1,6 @@
 import { baseApi } from '@/api/base-api'
 import {
+  Card,
   CardsResponse,
   CreateDeckArgs,
   Deck,
@@ -103,6 +104,9 @@ export const DecksService = baseApi.injectEndpoints({
       getMinMaxCards: builder.query<GetMinMax, void>({
         query: () => `v2/decks/min-max-cards`,
       }),
+      getQuestion: builder.query<Card, { id: string }>({
+        query: ({ id }) => `/v1/decks/${id}/learn`,
+      }),
       updateDeck: builder.mutation<Deck, UpdateDeckArgs>({
         invalidatesTags: ['Decks'],
         onQueryStarted: async ({ id, ...data }, { dispatch, getState, queryFulfilled }) => {
@@ -133,11 +137,21 @@ export const DecksService = baseApi.injectEndpoints({
             patchResult?.undo()
           }
         },
-        query: ({ id, ...body }) => ({
-          body,
-          method: 'PATCH',
-          url: `/v1/decks/${id}`,
-        }),
+        query: ({ cover, id, isPrivate, name }) => {
+          const formData = new FormData()
+
+          cover && formData.append('cover', cover)
+
+          name && formData.append('name', name)
+
+          isPrivate && formData.append('isPrivate', `${isPrivate}`)
+
+          return {
+            body: { cover, id, isPrivate, name },
+            method: 'PATCH',
+            url: `/v1/decks/${id}`,
+          }
+        },
       }),
     }
   },
@@ -150,5 +164,6 @@ export const {
   useGetDeckCardsQuery,
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
+  useGetQuestionQuery,
   useUpdateDeckMutation,
 } = DecksService
