@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { CardBox } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
 import {
@@ -36,7 +36,7 @@ export const ForgotPasswordForm = ({ className, isLoading, onSubmit }: Props) =>
   }
 
   return (
-    <Card
+    <CardBox
       as={'form'}
       className={`${s.root} ${className}`}
       onSubmit={handleSubmit(handleSubmitAction)}
@@ -63,6 +63,6 @@ export const ForgotPasswordForm = ({ className, isLoading, onSubmit }: Props) =>
       <Button as={Link} className={s.link} disabled={isLoading} to={'/login'} variant={'link'}>
         Try logging in
       </Button>
-    </Card>
+    </CardBox>
   )
 }

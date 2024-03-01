@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 
-import { Edit, Play } from '@/components/assets/icons'
+import { Play } from '@/components/assets/icons'
 import { Typography } from '@/components/ui'
 import { Button } from '@/components/ui/button'
 import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
+import { AddNewDeckDialog } from '@/components/ui/modals/dialogs/UpdateDeckDialog'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
-import { DeckResponse } from '@/services/decks/decks.types'
+import { DeckResponse, UpdateDeckArgs } from '@/services/decks/decks.types'
 
 import s from '@/features/decks/ui/decks.module.scss'
 
@@ -21,7 +22,7 @@ type Props = {
   decks: DeckResponse | undefined
   disabled: boolean
   onDeleteClick: (id: string) => void
-  onEditClick: (id: string) => void
+  onEditClick: (data: UpdateDeckArgs) => void
   onSort: (value: Sort) => void
   orderBy: Sort
 }
@@ -66,9 +67,6 @@ export const DecksTable = ({
   const deleteClickHandler = (id: string) => () => {
     onDeleteClick(id)
   }
-  const editClickHandler = (id: string) => () => {
-    onEditClick(id)
-  }
 
   return (
     <Table.Root className={s.tableContainer}>
@@ -98,12 +96,7 @@ export const DecksTable = ({
                 />
                 {item.author.id === currentUserId && (
                   <>
-                    <Button
-                      className={s.iconButton}
-                      icon={<Edit />}
-                      onClick={editClickHandler(item.id)}
-                      variant={'icon'}
-                    />
+                    <AddNewDeckDialog deck={item} id={item.id} onUpdateDeck={onEditClick} />
                     <DeleteCardDialog disabled={disabled} onClick={deleteClickHandler(item.id)} />
                   </>
                 )}

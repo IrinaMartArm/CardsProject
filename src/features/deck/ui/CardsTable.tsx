@@ -65,7 +65,7 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
             <Table.Cell>
               <Rating onClick={() => {}} value={card.grade} />
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell className={s.iconButtons}>
               {card.userId === currentUserId && (
                 <>
                   <Button

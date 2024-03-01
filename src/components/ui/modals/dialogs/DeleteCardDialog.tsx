@@ -13,7 +13,7 @@ export const DeleteCardDialog = ({ disabled, onClick }: Props) => {
 
   return (
     <Modal
-      title={'Delete Card'}
+      title={'Delete CardBox'}
       trigger={<Button disabled={disabled} icon={<TrashBin />} variant={'icon'} />}
     >
       <div className={s.child}>

@@ -18,10 +18,10 @@ export const CreateCardModal = ({ className }: Props) => {
       className={`${s.modal} ${className}`}
       onOpenChange={setOpen}
       open={open}
-      title={'Creating New Card'}
+      title={'Creating New CardBox'}
       trigger={<Button>Add New Card</Button>}
     >
-      <ActionsCardForm submitTitle={'Add New Card'} />
+      <ActionsCardForm submitTitle={'Add New CardBox'} />
     </Modal>
   )
 }

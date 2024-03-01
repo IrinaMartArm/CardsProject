@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { CardBox } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
 import {
@@ -34,7 +34,7 @@ export const CreateNewPasswordForm = ({ isLoading, onSubmit }: Props) => {
   }
 
   return (
-    <Card as={'form'} onSubmit={handleSubmit(handleSubmitAction)}>
+    <CardBox as={'form'} onSubmit={handleSubmit(handleSubmitAction)}>
       <Typography className={s.title} variant={'h1'}>
         Create new password
       </Typography>
@@ -52,6 +52,6 @@ export const CreateNewPasswordForm = ({ isLoading, onSubmit }: Props) => {
       <Button disabled={isLoading} fullWidth type={'submit'} variant={'primary'}>
         Create New Password
       </Button>
-    </Card>
+    </CardBox>
   )
 }

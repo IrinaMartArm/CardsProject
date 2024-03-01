@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Page } from '@/components/ui'
 import { AddNewDeckDialog } from '@/components/ui/modals/dialogs/AddNewDeckDialog'
 import { Pagination } from '@/components/ui/pagination/Pagination'
+import { Preloader } from '@/components/ui/preloader'
 import { Typography } from '@/components/ui/typography/Typography'
 import { useDecksSearchParams } from '@/features/decks/hooks/useDecksSearchParams'
 import { DecksFilters } from '@/features/decks/ui/DecksFilters'
@@ -13,8 +14,9 @@ import {
   useDeleteDeckMutation,
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
+  useUpdateDeckMutation,
 } from '@/services/decks/decks.service'
-import { CreateDeckArgs } from '@/services/decks/decks.types'
+import { CreateDeckArgs, UpdateDeckArgs } from '@/services/decks/decks.types'
 
 import s from './decks.module.scss'
 
@@ -33,9 +35,8 @@ export const Decks = () => {
     sortedString,
     tab,
   } = useDecksSearchParams()
-
-  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
   const { data: me } = useMeQuery()
+
   const { data, error, isLoading } = useGetDecksQuery(
     {
       authorId: tab === 'my' ? me?.id : '',
@@ -48,9 +49,11 @@ export const Decks = () => {
     }
     // { skip: skip }
   )
+  const [deleteDeck, { isLoading: isDeckBeingDeleted }] = useDeleteDeckMutation()
 
   const [createDeck] = useCreateDeckMutation()
   const { data: sliderData, isLoading: isSliderLoading } = useGetMinMaxCardsQuery()
+  const [updateDeck] = useUpdateDeckMutation()
   const currentUserId = me?.id
 
   useEffect(() => {
@@ -70,13 +73,18 @@ export const Decks = () => {
     setSearchParametersHandler('page', '1')
   }
 
+  const onUpdateDeck = (data: UpdateDeckArgs) => {
+    console.log(data)
+    updateDeck(data)
+  }
+
   const onFiltersReset = () => {
     setSearchParametersHandler('minCardsCount', String(sliderData?.min))
     setSearchParametersHandler('maxCardsCount', String(sliderData?.max))
   }
 
   if (isLoading || isSliderLoading || !sliderData) {
-    return <h2>Loading...</h2>
+    return <Preloader size={100} />
   }
 
   if (error) {
@@ -105,7 +113,7 @@ export const Decks = () => {
           decks={data}
           disabled={isDeckBeingDeleted}
           onDeleteClick={onDeleteClick}
-          onEditClick={() => {}}
+          onEditClick={onUpdateDeck}
           onSort={setOrderBy}
           orderBy={orderBy}
         />
