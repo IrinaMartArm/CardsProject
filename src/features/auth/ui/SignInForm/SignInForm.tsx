@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { CardBox } from '@/components/ui/card'
 import { ControlledCheckBox } from '@/components/ui/controlled/ControlledCheckBox'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
@@ -22,7 +22,7 @@ export const SignInForm = ({ ClassName, isLoading, onSubmit }: Props) => {
   } = useSignInForm()
 
   return (
-    <Card as={'form'} className={`${s.form} ${ClassName}`} onSubmit={handleSubmit(onSubmit)}>
+    <CardBox as={'form'} className={`${s.form} ${ClassName}`} onSubmit={handleSubmit(onSubmit)}>
       <Typography className={s.headerText} variant={'h1'}>
         Sign In
       </Typography>
@@ -67,6 +67,6 @@ export const SignInForm = ({ ClassName, isLoading, onSubmit }: Props) => {
       >
         Sign Up
       </Button>
-    </Card>
+    </CardBox>
   )
 }

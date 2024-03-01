@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { CardBox } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/ControlledTextField'
 import { Typography } from '@/components/ui/typography/Typography'
 import { SignUpFormValues, useSignUpForm } from '@/features/auth/hooks/useSignUpForm'
@@ -32,7 +32,7 @@ export const SignUpForm = ({ isLoading, onSubmit }: Props) => {
   }
 
   return (
-    <Card as={'form'} className={s.form} onSubmit={handleSubmit(handleSubmitAction)}>
+    <CardBox as={'form'} className={s.form} onSubmit={handleSubmit(handleSubmitAction)}>
       <Typography className={s.headerText} variant={'h1'}>
         Sign Up
       </Typography>
@@ -66,24 +66,12 @@ export const SignUpForm = ({ isLoading, onSubmit }: Props) => {
       <Typography className={s.haveAnAccountText} variant={'body2'}>
         Already have an account?
       </Typography>
-      <Button
-        as={Link}
-        className={s.signInNav}
-        disabled={isLoading}
-        to={'/login'}
-        variant={'link'}
-      >
+      <Button as={Link} className={s.signInNav} disabled={isLoading} to={'/login'} variant={'link'}>
         Sign Up
       </Button>
-      <Button
-        as={Link}
-        className={s.signInNav}
-        disabled={isLoading}
-        to={'/login'}
-        variant={'link'}
-      >
+      <Button as={Link} className={s.signInNav} disabled={isLoading} to={'/login'} variant={'link'}>
         Sign In
       </Button>
-    </Card>
+    </CardBox>
   )
 }

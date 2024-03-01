@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'rea
 
 import { Close } from '@/components/assets/icons'
 import { IconButton } from '@/components/ui/IconButton'
-import { Card } from '@/components/ui/card/Card'
+import { CardBox } from '@/components/ui/card/CardBox'
 import { Typography } from '@/components/ui/typography/Typography'
 import * as RadixModal from '@radix-ui/react-dialog'
 
@@ -25,7 +25,7 @@ export const Modal = forwardRef<ElementRef<typeof RadixModal.Root>, Props>((prop
       <RadixModal.Portal>
         <RadixModal.Overlay className={s.overlay} />
         <RadixModal.Content asChild className={`${s.main} ${className}`} ref={ref}>
-          <Card style={{ padding: '0' }}>
+          <CardBox style={{ padding: '0' }}>
             {title && (
               <div className={s.title}>
                 <Typography as={'h2'} variant={'h2'}>
@@ -37,7 +37,7 @@ export const Modal = forwardRef<ElementRef<typeof RadixModal.Root>, Props>((prop
               </div>
             )}
             {children}
-          </Card>
+          </CardBox>
         </RadixModal.Content>
       </RadixModal.Portal>
     </RadixModal.Root>

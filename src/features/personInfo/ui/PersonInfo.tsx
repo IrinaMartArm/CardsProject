@@ -5,7 +5,7 @@ import { Edit, Out } from '@/components/assets/icons'
 import { Input } from '@/components/ui'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { CardBox } from '@/components/ui/card'
 import { FileUploader } from '@/components/ui/fileUploader'
 import { Typography } from '@/components/ui/typography/Typography'
 import { useLogoutMutation, useUpdateAccountMutation } from '@/services/auth/auth.service'
@@ -54,7 +54,7 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
   }
 
   return (
-    <Card className={s.root}>
+    <CardBox className={s.root}>
       <Typography variant={'h1'}>Personal Information</Typography>
       <div className={s.AvatarUploader}>
         <Avatar size={'large'} src={avatar} title={'Avatar'} />
@@ -98,6 +98,6 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
           </Button>
         </>
       )}
-    </Card>
+    </CardBox>
   )
 }

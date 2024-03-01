@@ -2,9 +2,15 @@ button {
   all: unset;
 }
 
+.radioGroupRoot {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+}
+
 .box {
   display: flex;
-  gap: 15px;
+  gap: 5px;
   align-items: center;
 }
 
@@ -35,12 +41,6 @@ button {
     background-color: transparent;
     border: none;
   }
-}
-
-.radioGroupRoot {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .RadioGroupItem {
@@ -89,11 +89,4 @@ button {
       background-color: var(--color-accent-900);
     }
   }
-}
-
-.Label {
-  padding-left: 15px;
-  font-size: 15px;
-  line-height: 1;
-  color: white;
 }

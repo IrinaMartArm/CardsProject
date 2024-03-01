@@ -19,7 +19,7 @@ type CardProps<T extends ElementType> = {
   ref?: LegacyRef<HTMLElement>
 } & ComponentPropsWithoutRef<T>
 
-export const Card = forwardRef(
+export const CardBox = forwardRef(
   <T extends ElementType = 'div'>(props: CardProps<T>, ref: Ref<ElementRef<T>>) => {
     const { as: Component = 'div', children, className, ...rest } = props
 

@@ -30,9 +30,6 @@ export const useDeckSearchParams = () => {
     question: debounceSearch,
   })
 
-  /*     console.log('deck', deckData?.userId)
-	 console.log('cards', deckId)*/
-
   const disabled = isDeckData && isCardsData
 
   const currentUserId = me?.id
