@@ -39,41 +39,24 @@
   padding: 18px 24px;
 }
 
-.learnRoot {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: center;
+.cover {
+  position: relative;
+  width: fit-content;
+  max-width: 200px;
+  margin: 0 auto;
 
-  width: 100%;
+  .img {
+    max-width: 200px;
+  }
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: center;
+.clearCover {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
 
-  width: 100%;
-}
+  width: 20px;
+  height: 20px;
 
-.question {
-  display: flex;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.text {
-  color: var(--color-dark-100);
-}
-
-.rate {
-  padding-left: 10px;
-}
-
-.radioBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 100%;
+  background-color: var(--color-dark-300);
 }

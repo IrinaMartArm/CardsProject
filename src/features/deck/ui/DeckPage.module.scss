@@ -7,6 +7,8 @@
   max-width: 1100px;
   margin: 0 auto 50px;
   padding: 0 35px;
+
+  //border: 1px solid red;
 }
 
 .backBtn {
@@ -23,6 +25,19 @@
   display: flex;
   gap: 5px;
   align-items: center;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  padding-top: 50px;
+
+  .text {
+    color: var(--color-dark-100);
+  }
 }
 
 //.filters {

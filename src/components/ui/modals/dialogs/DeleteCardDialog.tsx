@@ -1,20 +1,28 @@
 import { TrashBin } from '@/components/assets/icons'
 import { Button, Modal, Typography } from '@/components/ui'
 import { ModalClose } from '@/components/ui/modals/ModalClose'
+import { clsx } from 'clsx'
 
 import s from '../Modals.module.scss'
 
 type Props = {
+  className?: string
   disabled: boolean
+  name?: string
   onClick: () => void
 }
-export const DeleteCardDialog = ({ disabled, onClick }: Props) => {
+export const DeleteCardDialog = ({ className, disabled, name, onClick }: Props) => {
   const onClickHandler = () => onClick()
 
   return (
     <Modal
       title={'Delete Card'}
-      trigger={<Button disabled={disabled} icon={<TrashBin />} variant={'icon'} />}
+      trigger={
+        <div className={clsx(className)}>
+          <TrashBin />
+          {name}
+        </div>
+      }
     >
       <div className={s.child}>
         <Typography variant={'body2'}>
@@ -24,7 +32,7 @@ export const DeleteCardDialog = ({ disabled, onClick }: Props) => {
       <ModalClose>
         <div className={s.footer}>
           <Button variant={'secondary'}>Cancel</Button>
-          <Button onClick={onClickHandler} variant={'primary'}>
+          <Button disabled={disabled} onClick={onClickHandler} variant={'primary'}>
             Delete Card
           </Button>
         </div>

@@ -42,7 +42,7 @@ type Props = {
   currentUserId?: string
   disabled: boolean
 }
-export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
+export const CardsTable = ({ cards, currentUserId }: Props) => {
   return (
     <Table.Root>
       <TableHeader columns={columns} />
@@ -65,17 +65,17 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
             <Table.Cell>
               <Rating onClick={() => {}} value={card.grade} />
             </Table.Cell>
-            <Table.Cell className={s.iconButtons}>
+            <Table.Cell>
               {card.userId === currentUserId && (
-                <>
+                <div className={s.iconButtons}>
                   <Button
                     className={s.iconButton}
                     icon={<Edit />}
                     onClick={() => {}}
                     variant={'icon'}
                   />
-                  <DeleteCardDialog disabled={disabled} onClick={() => {}} />
-                </>
+                  <DeleteCardDialog className={s.delete} onClick={() => {}} />
+                </div>
               )}
             </Table.Cell>
           </Table.Row>
