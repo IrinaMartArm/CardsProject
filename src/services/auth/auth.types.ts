@@ -1,3 +1,5 @@
+import { Cover } from '@/utils/Types'
+
 export type User = {
   avatar: string
   created: string
@@ -14,7 +16,7 @@ export type LoginArgs = {
 }
 
 export type UserArgs = {
-  avatar?: FormData
+  avatar?: Cover
   name?: string
 }
 

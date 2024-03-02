@@ -9,6 +9,7 @@ import { CardBox } from '@/components/ui/card'
 import { FileUploader } from '@/components/ui/fileUploader'
 import { Typography } from '@/components/ui/typography/Typography'
 import { useLogoutMutation, useUpdateAccountMutation } from '@/services/auth/auth.service'
+import { Cover } from '@/utils/Types'
 
 import s from './PersonInfo.module.scss'
 
@@ -20,28 +21,27 @@ type Props = {
 
 export const PersonInfo = ({ avatar, email, name }: Props) => {
   const navigate = useNavigate()
+  const [newName, setNewName] = useState(name)
+  const [cover, setCover] = useState<Cover>(avatar)
   const [editNicknameMode, setEditNicknameMode] = useState(false)
   const [logout, { isLoading }] = useLogoutMutation()
   const [updateData] = useUpdateAccountMutation()
+  const newFile = cover instanceof File ? URL.createObjectURL(cover) : cover || ''
 
-  const [newName, setNewName] = useState(name)
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setNewName(e.currentTarget.value)
   }
 
   const onAvatarChange = (file: File) => {
-    const formData = new FormData()
-
-    formData.append('avatar', file)
-
-    updateData({ avatar: formData })
+    setCover(file)
+    updateData({ avatar: file })
   }
 
   const onChangeNameHandler = () => {
     updateData({ name: newName })
-
     editNicknameModeHandler()
   }
+
   // const onKeyDownHandler = (key: string) => {
   //   if (key === 'Escape') {
   //     setEditNicknameMode(!editNicknameMode)
@@ -57,7 +57,7 @@ export const PersonInfo = ({ avatar, email, name }: Props) => {
     <CardBox className={s.root}>
       <Typography variant={'h1'}>Personal Information</Typography>
       <div className={s.AvatarUploader}>
-        <Avatar size={'large'} src={avatar} title={'Avatar'} />
+        <Avatar size={'large'} src={newFile} title={'Avatar'} />
         <FileUploader
           name={'inputFile'}
           setFile={onAvatarChange}

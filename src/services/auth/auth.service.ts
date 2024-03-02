@@ -67,11 +67,19 @@ export const authService = baseApi.injectEndpoints({
       }),
       updateAccount: builder.mutation<User, UserArgs>({
         invalidatesTags: ['Me'],
-        query: body => ({
-          body,
-          method: 'PATCH',
-          url: '/v1/auth/me',
-        }),
+        query: ({ avatar, name }) => {
+          const formData = new FormData()
+
+          avatar && formData.append('avatar', avatar)
+
+          name && formData.append('name', name)
+
+          return {
+            body: formData,
+            method: 'PATCH',
+            url: '/v1/auth/me',
+          }
+        },
       }),
     }
   },

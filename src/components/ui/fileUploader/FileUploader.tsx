@@ -23,9 +23,10 @@ export const FileUploader = forwardRef<ElementRef<'input'>, Props>(
     const [error, setError] = useState<null | string>(null)
 
     const handleChangeCover = (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length) {
-        setFile(e.target.files[0])
-      }
+      // if (e.target.files && e.target.files.length) {
+      //   console.log(e.target.files)
+      //   setFile(e.target.files[0])
+      // }
 
       try {
         const file = e.target.files?.[0]
