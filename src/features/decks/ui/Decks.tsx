@@ -14,9 +14,8 @@ import {
   useDeleteDeckMutation,
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
-  useUpdateDeckMutation,
 } from '@/services/decks/decks.service'
-import { CreateDeckArgs, UpdateDeckArgs } from '@/services/decks/decks.types'
+import { CreateDeckArgs } from '@/services/decks/decks.types'
 
 import s from './decks.module.scss'
 
@@ -53,7 +52,6 @@ export const Decks = () => {
 
   const [createDeck] = useCreateDeckMutation()
   const { data: sliderData, isLoading: isSliderLoading } = useGetMinMaxCardsQuery()
-  const [updateDeck] = useUpdateDeckMutation()
   const currentUserId = me?.id
 
   useEffect(() => {
@@ -71,10 +69,6 @@ export const Decks = () => {
   const onAddDeckHandler = (data: CreateDeckArgs) => {
     createDeck(data)
     setSearchParametersHandler('page', '1')
-  }
-
-  const onUpdateDeck = (data: UpdateDeckArgs) => {
-    updateDeck(data)
   }
 
   const onFiltersReset = () => {
@@ -112,7 +106,6 @@ export const Decks = () => {
           decks={data}
           disabled={isDeckBeingDeleted}
           onDeleteClick={onDeleteClick}
-          onEditClick={onUpdateDeck}
           onSort={setOrderBy}
           orderBy={orderBy}
         />

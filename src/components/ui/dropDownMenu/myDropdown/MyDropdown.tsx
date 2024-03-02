@@ -1,5 +1,7 @@
-import { Edit, More, Play, TrashBin } from '@/components/assets/icons'
-import { Button, Typography } from '@/components/ui'
+import { Link } from 'react-router-dom'
+
+import { More, Play } from '@/components/assets/icons'
+import { Button } from '@/components/ui'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,47 +9,47 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropDownMenu/Test'
-import { LearnDialog } from '@/components/ui/modals/dialogs/LearnDialog'
+import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
+import { EditDeckDialog } from '@/components/ui/modals/dialogs/UpdateDeckDialog'
 import { Deck } from '@/services/decks/decks.types'
 
-import d from '@/components/ui/dropDownMenu/dropDown.module.scss'
+import d from '../dropDown.module.scss'
 
 type Props = {
   deckData?: Deck
   id: string
-  name?: string
+  onDeleteClick: () => void
 }
-export const MyDropdown = ({ id, name }: Props) => {
+export const MyDropdown = ({ deckData, id, onDeleteClick }: Props) => {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Button icon={<More />} variant={'icon'} />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem asChild>
-          <LearnDialog
-            // deck={deckData}
-            id={id}
-            name={name}
-            trigger={
-              <div className={d.item}>
-                <Play />
-                <Typography variant={'caption'}>Learn</Typography>
-              </div>
-            }
-          />
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={() => {}}>
-          <Edit />
-          <Typography variant={'caption'}>Edit</Typography>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={() => {}}>
-          <TrashBin />
-          <Typography variant={'caption'}>Delete</Typography>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Button icon={<More />} variant={'icon'} />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align={'start'}>
+          <span className={d.arrowBox} />
+          <DropdownMenuItem asChild>
+            <Button
+              as={Link}
+              className={d.item}
+              icon={<Play />}
+              to={`/learn/${id}`}
+              variant={'icon'}
+            >
+              Learn
+            </Button>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <EditDeckDialog deck={deckData} id={id} />
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <DeleteCardDialog name={'Delete'} onClick={onDeleteClick} />
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   )
 }

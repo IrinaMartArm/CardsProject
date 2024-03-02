@@ -10,9 +10,10 @@ button {
 .DropdownMenuContent {
   will-change: transform, opacity;
 
-  width: fit-content;
+  position: relative;
 
-  //padding: 12px 0;
+  width: fit-content;
+  padding-top: 7px;
 
   background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
@@ -20,6 +21,21 @@ button {
 
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  .arrowBox {
+    position: absolute;
+    top: -3.75px;
+    right: calc(90% - 3px);
+    transform: rotate(45deg);
+
+    width: 9px;
+    height: 9px;
+
+    background-color: var(--color-dark-700);
+    border: 1px solid var(--color-dark-500);
+    border-right: none;
+    border-bottom: none;
+  }
 }
 
 .DropdownMenuContent[data-side='top'] {
@@ -58,6 +74,8 @@ button {
   text-align: start;
   white-space: nowrap;
 
+  border-radius: 0;
+
   &:hover {
     color: var(--color-light-100);
   }
@@ -75,23 +93,23 @@ button {
   }
 }
 
-.itemBox {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-
-  padding: 12px;
-
-  color: var(--color-light-100);
-  text-align: start;
-  white-space: nowrap;
-
-  border: 1px solid red;
-
-  &:hover {
-    color: var(--color-light-100);
-  }
-}
+//.itemBox {
+//  display: flex;
+//  gap: 5px;
+//  align-items: center;
+//
+//  padding: 12px;
+//
+//  color: var(--color-light-100);
+//  text-align: start;
+//  white-space: nowrap;
+//
+//  border: 1px solid red;
+//
+//  &:hover {
+//    color: var(--color-light-100);
+//  }
+//}
 
 .text {
   padding-bottom: 2px;

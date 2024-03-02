@@ -1,6 +1,6 @@
 import { baseApi } from '@/api/base-api'
+import { Card } from '@/services/cards/cards.types'
 import {
-  Card,
   CardsResponse,
   CreateDeckArgs,
   Deck,
@@ -86,11 +86,9 @@ export const DecksService = baseApi.injectEndpoints({
         }),
       }),
       getDeckById: builder.query<Deck, { id: string }>({
-        providesTags: ['Deck'],
         query: ({ id }) => `v1/decks/${id}`,
       }),
       getDeckCards: builder.query<CardsResponse, GetCardsArgs>({
-        providesTags: ['Cards'],
         query: ({ id, ...params }) => ({
           params: params ?? undefined,
           url: `v1/decks/${id}/cards`,
@@ -107,11 +105,9 @@ export const DecksService = baseApi.injectEndpoints({
         query: () => `v2/decks/min-max-cards`,
       }),
       getQuestion: builder.query<Card, { id: string }>({
-        providesTags: ['Cards'],
         query: ({ id }) => `/v1/decks/${id}/learn`,
       }),
       saveTheGrade: builder.mutation<Deck, { id: string }>({
-        invalidatesTags: ['Cards'],
         query: id => ({
           method: 'POST',
           url: `/v1/decks/${id}/learn`,
@@ -157,7 +153,7 @@ export const DecksService = baseApi.injectEndpoints({
           isPrivate && formData.append('isPrivate', `${isPrivate}`)
 
           return {
-            body: { cover, id, isPrivate, name },
+            body: formData,
             method: 'PATCH',
             url: `/v1/decks/${id}`,
           }
