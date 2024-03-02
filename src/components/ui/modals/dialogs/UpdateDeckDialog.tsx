@@ -8,7 +8,7 @@ import { Deck, UpdateDeckArgs } from '@/services/decks/decks.types'
 import { clsx } from 'clsx'
 
 type Props = {
-  className: string
+  className?: string
   deck?: Deck
   id: string
   name?: string

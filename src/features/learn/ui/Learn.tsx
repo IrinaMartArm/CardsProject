@@ -20,7 +20,7 @@ export const Learn = ({ id, name }: Props) => {
   const [] = useSaveTheGradeMutation()
   const navigate = useNavigate()
 
-  const showAnswerHandler = () => {
+  const setOpenHandler = () => {
     setOpen(true)
   }
   const nextQuestionHandler = () => {
@@ -42,12 +42,12 @@ export const Learn = ({ id, name }: Props) => {
         </Typography>
         {!open && (
           <>
-            <Button fullWidth onClick={showAnswerHandler}>
+            <Button fullWidth onClick={setOpenHandler}>
               Show Answer
             </Button>
-            <Button fullWidth onClick={navigate('/')} variant={'secondary'}>
-              End study session
-            </Button>
+            {/*<Button fullWidth onClick={navigate('/')} variant={'secondary'}>*/}
+            {/*  End study session*/}
+            {/*</Button>*/}
           </>
         )}
         {open && (
@@ -64,10 +64,10 @@ export const Learn = ({ id, name }: Props) => {
               <ControlledRadioGroup control={control} name={'grade'} variants={answerVariants} />
             </div>
 
-            <Button fullWidth onClick={nextQuestionHandler}>
+            <Button fullWidth onClick={nextQuestionHandler} type={'button'}>
               Next Question
             </Button>
-            <Button fullWidth onClick={navigate('/')} variant={'secondary'}>
+            <Button fullWidth onClick={navigate('/')} type={'submit'} variant={'secondary'}>
               End study session
             </Button>
           </form>

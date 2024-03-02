@@ -42,7 +42,7 @@ type Props = {
   currentUserId?: string
   disabled: boolean
 }
-export const CardsTable = ({ cards, currentUserId }: Props) => {
+export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
   return (
     <Table.Root>
       <TableHeader columns={columns} />
@@ -74,7 +74,7 @@ export const CardsTable = ({ cards, currentUserId }: Props) => {
                     onClick={() => {}}
                     variant={'icon'}
                   />
-                  <DeleteCardDialog className={s.delete} onClick={() => {}} />
+                  <DeleteCardDialog className={s.delete} disabled={disabled} onClick={() => {}} />
                 </div>
               )}
             </Table.Cell>

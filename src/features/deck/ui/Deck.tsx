@@ -50,8 +50,8 @@ export const Deck = () => {
                 {isOwner && (
                   <MyDropdown
                     deckData={deckData}
+                    disabled={isLoading}
                     id={deckId || ''}
-                    isLoading={isLoading}
                     onDeleteClick={onDeleteClick}
                   />
                 )}
@@ -59,7 +59,7 @@ export const Deck = () => {
               {isOwner ? (
                 <CreateCardModal deckId={deckId} />
               ) : (
-                <Button as={Link} to={`/decks/${deckId}/learn`}>
+                <Button as={Link} to={`/learn/${deckId}`}>
                   Learn to Pack
                 </Button>
               )}

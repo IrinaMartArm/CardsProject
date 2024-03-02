@@ -17,10 +17,11 @@ import d from '../dropDown.module.scss'
 
 type Props = {
   deckData?: Deck
+  disabled: boolean
   id: string
   onDeleteClick: () => void
 }
-export const MyDropdown = ({ deckData, id, onDeleteClick }: Props) => {
+export const MyDropdown = ({ deckData, disabled, id, onDeleteClick }: Props) => {
   return (
     <>
       <DropdownMenu>
@@ -46,7 +47,7 @@ export const MyDropdown = ({ deckData, id, onDeleteClick }: Props) => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <DeleteCardDialog name={'Delete'} onClick={onDeleteClick} />
+            <DeleteCardDialog disabled={disabled} name={'Delete'} onClick={onDeleteClick} />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
