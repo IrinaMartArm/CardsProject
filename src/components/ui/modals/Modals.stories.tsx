@@ -120,7 +120,7 @@ export const ModalFooter: Story = {
       <div
         style={{
           display: 'flex',
-          gap: '120px',
+          gap: '30px',
           padding: '18px 24px',
         }}
       >
@@ -158,7 +158,7 @@ export const ModalFullExample: Story = {
         <div
           style={{
             display: 'flex',
-            gap: '140px',
+            gap: '30px',
             marginTop: '36px',
           }}
         >

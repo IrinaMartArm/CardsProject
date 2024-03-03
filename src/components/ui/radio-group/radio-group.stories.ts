@@ -1,18 +1,18 @@
 import { answerVariants } from '@/App'
-import { ControlledRadioGroup } from '@/components/ui/controlled/ControlledRadioGroup'
 import { Meta, StoryObj } from '@storybook/react'
 
+import { RadioGroup } from './RadioGroup'
+
 const meta = {
-  argTypes: {},
-  component: ControlledRadioGroup,
+  component: RadioGroup,
   tags: ['autodocs'],
-  title: 'Components/ControlledRadioGroup',
-} satisfies Meta<typeof ControlledRadioGroup>
+  title: 'Components/RadioGroup',
+} satisfies Meta<typeof RadioGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const RadioGroup: Story = {
+export const Demo: Story = {
   args: {
     name: 'radioGroup',
     variants: answerVariants,

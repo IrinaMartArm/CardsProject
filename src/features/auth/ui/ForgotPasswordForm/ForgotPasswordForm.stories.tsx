@@ -1,3 +1,5 @@
+import { MemoryRouter } from 'react-router-dom'
+
 import { Meta, StoryObj } from '@storybook/react'
 
 import { ForgotPasswordForm } from './ForgotPasswordForm'
@@ -9,14 +11,19 @@ const meta = {
     },
   },
   component: ForgotPasswordForm,
-  parameters: { layout: 'centered' },
+  decorators: [
+    Story => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   tags: ['autodocs'],
-  title: 'Auth/ForgotPasswordForm',
+  title: 'Auth/ForgotPasswordForm'
 } satisfies Meta<typeof ForgotPasswordForm>
 
 export default meta
 type Story = StoryObj<typeof meta>
-
 export const Default: Story = {
   args: {
     isLoading: false,
