@@ -1,6 +1,5 @@
 import { baseApi } from '@/api'
-
-import { Card } from './cards.types'
+import { Card } from '@/services/decks/decks.types'
 
 const cardsService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -13,8 +12,16 @@ const cardsService = baseApi.injectEndpoints({
           url: `/v1/decks/${id}/cards`,
         }),
       }),
+      updateCard: builder.mutation<Card, { body: FormData; card: Card }>({
+        invalidatesTags: (_, error) => (error ? [] : ['Cards']),
+        query: ({ body, card }) => ({
+          body,
+          method: 'PATCH',
+          url: `/v1/cards/${card.id}`,
+        }),
+      }),
     }
   },
 })
 
-export const { useCreateCardMutation } = cardsService
+export const { useCreateCardMutation, useUpdateCardMutation } = cardsService
