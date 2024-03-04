@@ -70,8 +70,13 @@ button {
   width: 100%;
   padding: 10px 45px 10px 15px;
 
+  font-family: var(--font-family);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 1.2;
   color: var(--color-light-100);
   text-align: start;
+  text-decoration: none;
   white-space: nowrap;
 
   border-radius: 0;

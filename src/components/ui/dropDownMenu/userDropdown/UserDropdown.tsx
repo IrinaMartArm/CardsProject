@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropDownMenu/Test'
 import { PersonInfo } from '@/features/personInfo'
+import { clsx } from 'clsx'
 
 import d from './../dropDown.module.scss'
 import s from './userDropdown.module.scss'
@@ -36,6 +37,7 @@ export const UserDropdown = ({ avatar, email, onLogout, userName }: UserDropdown
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <span className={clsx(d.arrowBox, s.arrow)} />
         <div className={s.profile}>
           <Avatar src={avatar} title={userName} />
           <div>

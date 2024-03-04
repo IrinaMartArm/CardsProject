@@ -43,7 +43,7 @@ export const MyDropdown = ({ deckData, disabled, id, onDeleteClick }: Props) => 
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <EditDeckDialog deck={deckData} id={id} />
+            <EditDeckDialog deck={deckData} id={id} name={'Edit'} />
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>

@@ -3,6 +3,8 @@ import { ComponentPropsWithoutRef, FC } from 'react'
 import { Table } from '@/components/ui/tables/Table'
 import { Column } from '@/features/decks/ui/DecksTable'
 
+import s from './table.module.scss'
+
 export type Sort = {
   direction: 'asc' | 'desc'
   key: string
@@ -39,7 +41,7 @@ export const TableHeader: FC<
 
   return (
     <Table.Head {...restProps}>
-      <Table.Row>
+      <Table.Row className={s.headerRow}>
         {columns.map(({ key, sortable, title }) => (
           <Table.HeadCell key={key} onClick={handleSort(key, sortable)}>
             {title}
