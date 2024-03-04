@@ -70,11 +70,7 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
             <Table.Cell>
               {card.userId === currentUserId && (
                 <div className={s.iconButtons}>
-                  <UpdateCardModal
-                    card={card}
-                    /*handleChangePage={handleChangePage}*/
-                    trigger={<IconButton icon={<Edit />} />}
-                  />
+                  <UpdateCardModal card={card} trigger={<IconButton icon={<Edit />} />} />
                   <DeleteCardDialog className={s.delete} disabled={disabled} onClick={() => {}} />
                 </div>
               )}

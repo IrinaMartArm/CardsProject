@@ -13,7 +13,6 @@ import { ActionsCardForm } from '../ActionsCardForm/ActionsCardForm'
 type Props = {
   card: Card
   className?: string
-  /*handleChangePage: (newPage: number) => void*/
   trigger: ReactNode
 }
 
