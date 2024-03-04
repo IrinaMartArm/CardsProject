@@ -12,6 +12,13 @@ const cardsService = baseApi.injectEndpoints({
           url: `/v1/decks/${id}/cards`,
         }),
       }),
+      deleteCard: builder.mutation({
+        invalidatesTags: ['Cards', 'Deck', 'Decks'],
+        query: ({ id }) => ({
+          method: 'DELETE',
+          url: `/v1/cards/${id}`,
+        }),
+      }),
       updateCard: builder.mutation<Card, { body: FormData; card: Card }>({
         invalidatesTags: (_, error) => (error ? [] : ['Cards']),
         query: ({ body, card }) => ({
@@ -20,16 +27,8 @@ const cardsService = baseApi.injectEndpoints({
           url: `/v1/cards/${card.id}`,
         }),
       }),
-      deleteCard: builder.mutation({
-        invalidatesTags: ['Cards', 'Deck', 'Decks'],
-        query: ({ id }) => ({
-          method: 'DELETE',
-          url: `/v1/cards/${id}`,
-        }),
-      }),
     }
   },
 })
 
-export const { useCreateCardMutation, useUpdateCardMutation } = cardsService
-export const { useCreateCardMutation, useDeleteCardMutation } = cardsService
+export const { useCreateCardMutation, useDeleteCardMutation, useUpdateCardMutation } = cardsService
