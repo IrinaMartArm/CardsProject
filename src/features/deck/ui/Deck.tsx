@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 
-import { ArrowLeft } from '@/components/assets/icons'
 import { Button, Input, Page, Typography } from '@/components/ui'
 import { MyDropdown } from '@/components/ui/dropDownMenu/myDropdown/MyDropdown'
 import { Pagination } from '@/components/ui/pagination/Pagination'
@@ -39,9 +38,6 @@ export const Deck = () => {
   return (
     <Page>
       <div className={s.root}>
-        <Button as={Link} className={s.backBtn} icon={<ArrowLeft />} to={'/'} variant={'link'}>
-          <Typography variant={'body2'}>Back to Decks List</Typography>
-        </Button>
         {cardsData?.items && cardsData?.items.length >= 1 ? (
           <>
             <div className={s.title}>

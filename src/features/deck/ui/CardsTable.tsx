@@ -1,10 +1,11 @@
 import { Edit } from '@/components/assets/icons'
 import { Button, Typography } from '@/components/ui'
-import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
+import { DeleteDialog } from '@/components/ui/modals/dialogs/DeleteDialog'
 import { Rating } from '@/components/ui/tables/Rating'
 import { Table } from '@/components/ui/tables/Table'
 import { TableHeader } from '@/components/ui/tables/TableHeader'
 import { Column } from '@/features/decks/ui/DecksTable'
+import { useDeleteCardMutation } from '@/services/cards/cards.service'
 import { Card } from '@/services/decks/decks.types'
 
 import s from '@/features/decks/ui/decks.module.scss'
@@ -43,6 +44,11 @@ type Props = {
   disabled: boolean
 }
 export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
+  const [deleteCard] = useDeleteCardMutation()
+  const deleteCardHandler = (id: string) => {
+    deleteCard({ id: id })
+  }
+
   return (
     <Table.Root>
       <TableHeader columns={columns} />
@@ -63,7 +69,7 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
             </Table.Cell>
             <Table.Cell>{new Date(card.updated).toLocaleDateString('ru-RU')}</Table.Cell>
             <Table.Cell>
-              <Rating onClick={() => {}} value={card.grade} />
+              <Rating value={card.grade} />
             </Table.Cell>
             <Table.Cell>
               {card.userId === currentUserId && (
@@ -74,7 +80,12 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
                     onClick={() => {}}
                     variant={'icon'}
                   />
-                  <DeleteCardDialog className={s.delete} disabled={disabled} onClick={() => {}} />
+                  <DeleteDialog
+                    className={s.delete}
+                    disabled={disabled}
+                    onClick={() => deleteCardHandler(card.id)}
+                    text={'Do you really want to remove Card Name?'}
+                  />
                 </div>
               )}
             </Table.Cell>

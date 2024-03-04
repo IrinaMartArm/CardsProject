@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 
 import { answerVariants } from '@/App'
 import { Button, CardBox, ControlledRadioGroup, Typography } from '@/components/ui'
@@ -31,17 +30,9 @@ export const Learn = ({ id, name }: Props) => {
     setOpen(!open)
   }
 
-  const submitHandler = (value: FormValues) => {
-    console.log(value)
-    debugger
-    SaveTheGrade({ grade: +value, id: id })
+  const submitHandler = ({ grade }: FormValues) => {
+    SaveTheGrade({ cardId: data?.id || '', grade: grade, id: id })
   }
-
-  // const submitHandler = (value: FormValues) => {
-  //   debugger
-  //   SaveTheGrade({ grade: +value, id: id })
-  //   setOpen(false)
-  // }
 
   return (
     <CardBox>
@@ -60,41 +51,26 @@ export const Learn = ({ id, name }: Props) => {
             <Button fullWidth onClick={setOpenHandler} type={'button'}>
               Show Answer
             </Button>
-            <Button as={Link} fullWidth to={'/'} type={'button'} variant={'secondary'}>
-              End study session
-            </Button>
           </>
         )}
         {open && (
-          <div className={s.wrapper}>
+          <form className={s.wrapper} onSubmit={handleSubmit(submitHandler)}>
             <div className={s.question}>
               <Typography variant={'subtitle1'}>Answer:</Typography>
               <Typography variant={'body1'}>{data?.answer}</Typography>
             </div>
             <img alt={''} src={data?.answerImg || ''} width={100} />
-            <form onSubmit={() => handleSubmit(submitHandler)}>
-              <div className={s.radioBlock}>
-                <Typography className={s.rate} variant={'subtitle1'}>
-                  Rate yourself:
-                </Typography>
 
-                <ControlledRadioGroup control={control} name={'grade'} options={answerVariants} />
-              </div>
-              <Button fullWidth type={'submit'}>
-                Next Question
-              </Button>
-              {/*<Button*/}
-              {/*  as={Link}*/}
-              {/*  fullWidth*/}
-              {/*  // onClick={setOpenHandler}*/}
-              {/*  to={'/'}*/}
-              {/*  type={'submit'}*/}
-              {/*  variant={'secondary'}*/}
-              {/*>*/}
-              {/*  End study session*/}
-              {/*</Button>*/}
-            </form>
-          </div>
+            <div className={s.radioBlock}>
+              <Typography className={s.rate} variant={'subtitle1'}>
+                Rate yourself:
+              </Typography>
+              <ControlledRadioGroup control={control} name={'grade'} options={answerVariants} />
+            </div>
+            <Button fullWidth type={'submit'} variant={'primary'}>
+              Next Question
+            </Button>
+          </form>
         )}
       </div>
     </CardBox>

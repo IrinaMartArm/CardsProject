@@ -10,8 +10,9 @@ type Props = {
   disabled: boolean
   name?: string
   onClick: () => void
+  text: string
 }
-export const DeleteCardDialog = ({ className, disabled, name, onClick }: Props) => {
+export const DeleteDialog = ({ className, disabled, name, onClick, text }: Props) => {
   const onClickHandler = () => onClick()
 
   return (
@@ -25,15 +26,13 @@ export const DeleteCardDialog = ({ className, disabled, name, onClick }: Props) 
       }
     >
       <div className={s.child}>
-        <Typography variant={'body2'}>
-          Do you really want to remove Card Name? All cards will be deleted.
-        </Typography>
+        <Typography variant={'body2'}>{text}</Typography>
       </div>
       <ModalClose>
         <div className={s.footer}>
           <Button variant={'secondary'}>Cancel</Button>
           <Button disabled={disabled} onClick={onClickHandler} variant={'primary'}>
-            Delete Card
+            Delete
           </Button>
         </div>
       </ModalClose>

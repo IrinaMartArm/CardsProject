@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Play } from '@/components/assets/icons'
 import { Typography } from '@/components/ui'
 import { Button } from '@/components/ui/button'
-import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
+import { DeleteDialog } from '@/components/ui/modals/dialogs/DeleteDialog'
 import { EditDeckDialog } from '@/components/ui/modals/dialogs/UpdateDeckDialog'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
@@ -95,7 +95,7 @@ export const DecksTable = ({
                   {item.author.id === currentUserId && (
                     <>
                       <EditDeckDialog className={s.delete} deck={item} id={item.id} />
-                      <DeleteCardDialog
+                      <DeleteDialog
                         className={s.delete}
                         disabled={disabled}
                         onClick={deleteClickHandler(item.id)}
