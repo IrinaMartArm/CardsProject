@@ -1,9 +1,13 @@
 import { Edit } from '@/components/assets/icons'
 import { Button, Typography } from '@/components/ui'
 import { DeleteDialog } from '@/components/ui/modals/dialogs/DeleteDialog'
+import { Typography } from '@/components/ui'
+import { IconButton } from '@/components/ui/IconButton'
+import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
 import { Rating } from '@/components/ui/tables/Rating'
 import { Table } from '@/components/ui/tables/Table'
 import { TableHeader } from '@/components/ui/tables/TableHeader'
+import { UpdateCardModal } from '@/features/card/ui/CardActions/UpdateCardModal/UpdateCardModal'
 import { Column } from '@/features/decks/ui/DecksTable'
 import { useDeleteCardMutation } from '@/services/cards/cards.service'
 import { Card } from '@/services/decks/decks.types'
@@ -87,6 +91,8 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
                     onClick={() => deleteCardHandler(card.id)}
                     text={'Do you really want to remove Card Name?'}
                   />
+                  <UpdateCardModal card={card} trigger={<IconButton icon={<Edit />} />} />
+                  <DeleteCardDialog className={s.delete} disabled={disabled} onClick={() => {}} />
                 </div>
               )}
             </Table.Cell>
