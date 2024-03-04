@@ -1,9 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { MemoryRouter } from 'react-router-dom'
+
 import { SignUpForm } from './SignUpForm'
 
 const meta = {
   component: SignUpForm,
+  decorators: [
+    Story => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   tags: ['autodocs'],
   title: 'Auth/SignUpForm',
 } satisfies Meta<typeof SignUpForm>

@@ -1,7 +1,6 @@
 import { TrashBin } from '@/components/assets/icons'
 import { Button, Modal, Typography } from '@/components/ui'
 import { ModalClose } from '@/components/ui/modals/ModalClose'
-import { clsx } from 'clsx'
 
 import s from '../Modals.module.scss'
 
@@ -20,7 +19,7 @@ export const DeleteDialog = ({ className, disabled, label, name, onClick, text }
     <Modal
       title={name}
       trigger={
-        <div className={clsx(className)}>
+        <div className={className}>
           <TrashBin />
           {label}
         </div>
