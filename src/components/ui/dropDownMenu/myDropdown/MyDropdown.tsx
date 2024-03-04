@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropDownMenu/Test'
-import { DeleteCardDialog } from '@/components/ui/modals/dialogs/DeleteCardDialog'
+import { DeleteDialog } from '@/components/ui/modals/dialogs/DeleteDialog'
 import { EditDeckDialog } from '@/components/ui/modals/dialogs/UpdateDeckDialog'
 import { Deck } from '@/services/decks/decks.types'
 
@@ -47,7 +47,12 @@ export const MyDropdown = ({ deckData, disabled, id, onDeleteClick }: Props) => 
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <DeleteCardDialog disabled={disabled} name={'Delete'} onClick={onDeleteClick} />
+            <DeleteDialog
+              disabled={disabled}
+              name={'Delete'}
+              onClick={onDeleteClick}
+              text={'Do you really want to remove Card Name? All cards will be deleted.'}
+            />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

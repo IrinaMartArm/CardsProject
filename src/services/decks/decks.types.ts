@@ -67,6 +67,7 @@ export type GetCardsArgs = {
 }
 
 export type GradeArgs = {
+  cardId: string
   grade: number
   id: string
 }

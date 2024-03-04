@@ -26,7 +26,7 @@ export const ControlledRadioGroup = <T extends FieldValues>({
       {...rest}
       {...field}
       // id={rest.name}
-      onValueChange={onChange}
+      onValueChange={value => onChange(+value)}
       options={rest.options}
     />
   )

@@ -4,7 +4,6 @@ import s from './table.module.scss'
 export type RatingValueType = number
 
 type PropsType = {
-  onClick: (value: RatingValueType) => void
   value: RatingValueType
 }
 

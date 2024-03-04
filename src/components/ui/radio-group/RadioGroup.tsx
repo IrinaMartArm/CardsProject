@@ -19,8 +19,6 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, Ra
     { disabled, id, name, onValueChange, options, value }: RadioGroupProps,
     ref: Ref<HTMLDivElement>
   ) => {
-    // console.log(value)
-
     return (
       <RadioGroupRoot
         aria-label={'View density'}
@@ -31,7 +29,7 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, Ra
         name={name}
         onValueChange={onValueChange}
         ref={ref}
-        value={value}
+        value={`${value}`}
       >
         {options.map(el => {
           return (

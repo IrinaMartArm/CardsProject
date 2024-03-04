@@ -110,10 +110,10 @@ export const DecksService = baseApi.injectEndpoints({
         query: ({ id }) => `/v1/decks/${id}/learn`,
       }),
       saveTheGrade: builder.mutation<Deck, GradeArgs>({
-        query: body => ({
-          body,
+        query: ({ cardId, grade, id }) => ({
+          body: { cardId, grade },
           method: 'POST',
-          url: `/v1/decks/${body.id}/learn`,
+          url: `/v1/decks/${id}/learn`,
         }),
       }),
       updateDeck: builder.mutation<Deck, UpdateDeckArgs>({
