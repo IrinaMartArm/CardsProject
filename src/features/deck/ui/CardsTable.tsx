@@ -83,6 +83,7 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
                   <DeleteDialog
                     className={s.delete}
                     disabled={disabled}
+                    name={'Delete Card'}
                     onClick={() => deleteCardHandler(card.id)}
                     text={'Do you really want to remove Card Name?'}
                   />

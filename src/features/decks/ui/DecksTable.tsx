@@ -98,7 +98,9 @@ export const DecksTable = ({
                       <DeleteDialog
                         className={s.delete}
                         disabled={disabled}
+                        name={'Delete Deck'}
                         onClick={deleteClickHandler(item.id)}
+                        text={'Do you really want to remove Deck Name? All cards will be deleted.'}
                       />
                     </>
                   )}

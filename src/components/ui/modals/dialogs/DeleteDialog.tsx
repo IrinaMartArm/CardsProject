@@ -8,20 +8,21 @@ import s from '../Modals.module.scss'
 type Props = {
   className?: string
   disabled: boolean
+  label?: string
   name?: string
   onClick: () => void
   text: string
 }
-export const DeleteDialog = ({ className, disabled, name, onClick, text }: Props) => {
+export const DeleteDialog = ({ className, disabled, label, name, onClick, text }: Props) => {
   const onClickHandler = () => onClick()
 
   return (
     <Modal
-      title={'Delete Card'}
+      title={name}
       trigger={
         <div className={clsx(className)}>
           <TrashBin />
-          {name}
+          {label}
         </div>
       }
     >
@@ -32,7 +33,7 @@ export const DeleteDialog = ({ className, disabled, name, onClick, text }: Props
         <div className={s.footer}>
           <Button variant={'secondary'}>Cancel</Button>
           <Button disabled={disabled} onClick={onClickHandler} variant={'primary'}>
-            Delete
+            {name}
           </Button>
         </div>
       </ModalClose>

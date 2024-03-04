@@ -49,9 +49,10 @@ export const MyDropdown = ({ deckData, disabled, id, onDeleteClick }: Props) => 
           <DropdownMenuItem asChild>
             <DeleteDialog
               disabled={disabled}
-              name={'Delete'}
+              label={'Delete'}
+              name={'Delete Deck'}
               onClick={onDeleteClick}
-              text={'Do you really want to remove Card Name? All cards will be deleted.'}
+              text={'Do you really want to remove Deck Name? All cards will be deleted.'}
             />
           </DropdownMenuItem>
         </DropdownMenuContent>
