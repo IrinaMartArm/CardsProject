@@ -69,9 +69,7 @@ export const AddNewDeckDialog = ({
           <Button onClick={onCancel} variant={'secondary'}>
             Cancel
           </Button>
-          <Button onClick={onSubmit} variant={'primary'}>
-            Add New Pack
-          </Button>
+          <Button onClick={onSubmit}>Add New Pack</Button>
         </div>
       </ModalClose>
     </Modal>

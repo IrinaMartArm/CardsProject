@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>
 export const RadioGroup: Story = {
   args: {
     name: 'radioGroup',
-    variants: answerVariants,
+    options: answerVariants,
   },
 }

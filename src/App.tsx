@@ -16,11 +16,11 @@ export const items = [
   { title: '20', value: '20' },
 ]
 export const answerVariants = [
-  { disabled: false, id: '1', variant: 'Did not know' },
-  { disabled: false, id: '2', variant: 'Forgot' },
-  { disabled: false, id: '3', variant: 'A lot of thought' },
-  { disabled: false, id: '4', variant: 'Confused' },
-  { disabled: false, id: '5', variant: 'Knew the answer' },
+  { disabled: false, label: 'Did not know', value: '1' },
+  { disabled: false, label: 'Forgot', value: '2' },
+  { disabled: false, label: 'A lot of thought', value: '3' },
+  { disabled: false, label: 'Confused', value: '4' },
+  { disabled: false, label: 'Knew the answer', value: '5' },
 ]
 
 export function App() {

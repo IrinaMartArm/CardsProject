@@ -66,4 +66,9 @@ export type GetCardsArgs = {
   question?: string
 }
 
+export type GradeArgs = {
+  grade: number
+  id: string
+}
+
 export type UpdateDeckArgs = Partial<CreateDeckArgs> & { id: Deck['id'] }

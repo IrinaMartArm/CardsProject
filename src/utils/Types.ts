@@ -1,9 +1,9 @@
 import { HTMLProps, LegacyRef, ReactNode } from 'react'
 
-export type AnswerVariantType = {
+export type Option = {
   disabled: boolean
-  id: string
-  variant: string
+  label: string
+  value: string
 }
 
 export type IconProps = {

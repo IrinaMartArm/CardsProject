@@ -9,6 +9,7 @@ import {
   GetCardsArgs,
   GetDecksArgs,
   GetMinMax,
+  GradeArgs,
   UpdateDeckArgs,
 } from '@/services/decks/decks.types'
 
@@ -102,15 +103,17 @@ export const DecksService = baseApi.injectEndpoints({
         }),
       }),
       getMinMaxCards: builder.query<GetMinMax, void>({
+        providesTags: ['Decks'],
         query: () => `v2/decks/min-max-cards`,
       }),
       getQuestion: builder.query<Card, { id: string }>({
         query: ({ id }) => `/v1/decks/${id}/learn`,
       }),
-      saveTheGrade: builder.mutation<Deck, { id: string }>({
-        query: id => ({
+      saveTheGrade: builder.mutation<Deck, GradeArgs>({
+        query: body => ({
+          body,
           method: 'POST',
-          url: `/v1/decks/${id}/learn`,
+          url: `/v1/decks/${body.id}/learn`,
         }),
       }),
       updateDeck: builder.mutation<Deck, UpdateDeckArgs>({

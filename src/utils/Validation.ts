@@ -12,3 +12,7 @@ export const newDeckSchema = z.object({
   isPrivate: z.boolean().optional(),
   name: z.string().max(1000).min(5),
 })
+
+export const gradeSchema = z.object({
+  grade: z.number().min(1).max(5),
+})

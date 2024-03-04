@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { answerVariants } from '@/App'
 import { Button, CardBox, ControlledRadioGroup, Typography } from '@/components/ui'
 import { useGetQuestionQuery, useSaveTheGradeMutation } from '@/services/decks/decks.service'
+import { gradeSchema } from '@/utils/Validation'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 import s from './learn.module.scss'
 
@@ -13,20 +16,32 @@ type Props = {
   name?: string
 }
 
+type FormValues = z.infer<typeof gradeSchema>
+
 export const Learn = ({ id, name }: Props) => {
   const [open, setOpen] = useState(false)
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(gradeSchema),
+  })
+
   const { data } = useGetQuestionQuery({ id })
-  const [] = useSaveTheGradeMutation()
-  const navigate = useNavigate()
+  const [SaveTheGrade] = useSaveTheGradeMutation()
 
   const setOpenHandler = () => {
-    setOpen(true)
+    setOpen(!open)
   }
-  const nextQuestionHandler = () => {
-    setOpen(false)
+
+  const submitHandler = (value: FormValues) => {
+    console.log(value)
+    debugger
+    SaveTheGrade({ grade: +value, id: id })
   }
-  const submitHandler = () => {}
+
+  // const submitHandler = (value: FormValues) => {
+  //   debugger
+  //   SaveTheGrade({ grade: +value, id: id })
+  //   setOpen(false)
+  // }
 
   return (
     <CardBox>
@@ -42,35 +57,44 @@ export const Learn = ({ id, name }: Props) => {
         </Typography>
         {!open && (
           <>
-            <Button fullWidth onClick={setOpenHandler}>
+            <Button fullWidth onClick={setOpenHandler} type={'button'}>
               Show Answer
             </Button>
-            {/*<Button fullWidth onClick={navigate('/')} variant={'secondary'}>*/}
-            {/*  End study session*/}
-            {/*</Button>*/}
+            <Button as={Link} fullWidth to={'/'} type={'button'} variant={'secondary'}>
+              End study session
+            </Button>
           </>
         )}
         {open && (
-          <form className={s.wrapper} onSubmit={handleSubmit(submitHandler)}>
+          <div className={s.wrapper}>
             <div className={s.question}>
               <Typography variant={'subtitle1'}>Answer:</Typography>
               <Typography variant={'body1'}>{data?.answer}</Typography>
             </div>
             <img alt={''} src={data?.answerImg || ''} width={100} />
-            <div className={s.radioBlock}>
-              <Typography className={s.rate} variant={'subtitle1'}>
-                Rate yourself:
-              </Typography>
-              <ControlledRadioGroup control={control} name={'grade'} variants={answerVariants} />
-            </div>
+            <form onSubmit={() => handleSubmit(submitHandler)}>
+              <div className={s.radioBlock}>
+                <Typography className={s.rate} variant={'subtitle1'}>
+                  Rate yourself:
+                </Typography>
 
-            <Button fullWidth onClick={nextQuestionHandler} type={'button'}>
-              Next Question
-            </Button>
-            <Button fullWidth onClick={navigate('/')} type={'submit'} variant={'secondary'}>
-              End study session
-            </Button>
-          </form>
+                <ControlledRadioGroup control={control} name={'grade'} options={answerVariants} />
+              </div>
+              <Button fullWidth type={'submit'}>
+                Next Question
+              </Button>
+              {/*<Button*/}
+              {/*  as={Link}*/}
+              {/*  fullWidth*/}
+              {/*  // onClick={setOpenHandler}*/}
+              {/*  to={'/'}*/}
+              {/*  type={'submit'}*/}
+              {/*  variant={'secondary'}*/}
+              {/*>*/}
+              {/*  End study session*/}
+              {/*</Button>*/}
+            </form>
+          </div>
         )}
       </div>
     </CardBox>

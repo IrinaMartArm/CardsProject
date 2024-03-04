@@ -1,47 +1,73 @@
-import { ElementRef, Ref, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, Ref, forwardRef } from 'react'
 
 import { Typography } from '@/components/ui'
-import { AnswerVariantType } from '@/utils/Types'
+import { Option } from '@/utils/Types'
 import * as RadioGroupRadix from '@radix-ui/react-radio-group'
+import { clsx } from 'clsx'
 
 import s from './radio-group.module.scss'
 
-export type RadioGroupType = {
-  disabled?: boolean
-  id?: string
-  name?: string
-  onChange?: () => void
-  onValueChange?: () => void
-  variants: AnswerVariantType[]
+export type RadioGroupProps = Omit<
+  ComponentPropsWithoutRef<typeof RadioGroupRadix.Root>,
+  'children'
+> & {
+  errorMessage?: string
+  options: Option[]
 }
-export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, RadioGroupType>(
-  ({ disabled, id, name, onChange, variants }: RadioGroupType, ref: Ref<HTMLDivElement>) => {
+export const RadioGroup = forwardRef<ElementRef<typeof RadioGroupRadix.Root>, RadioGroupProps>(
+  (
+    { disabled, id, name, onValueChange, options, value }: RadioGroupProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
+    // console.log(value)
+
     return (
-      <RadioGroupRadix.Root
+      <RadioGroupRoot
         aria-label={'View density'}
         className={`${s.radioGroupRoot} ${disabled ? s.disabled : ''}`}
         defaultValue={'1'}
         disabled={disabled}
         id={id}
         name={name}
-        onChange={onChange}
+        onValueChange={onValueChange}
         ref={ref}
+        value={value}
       >
-        {variants.map(el => {
+        {options.map(el => {
           return (
-            <div className={s.box} key={el.id}>
+            <div className={s.box} key={el.value}>
               <div className={`${s.wrapper} ${disabled ? s.disabled : ''}`}>
-                <RadioGroupRadix.Item className={s.RadioGroupItem} id={el.id} value={el.variant}>
-                  <RadioGroupRadix.Indicator className={s.RadioGroupIndicator} />
-                </RadioGroupRadix.Item>
+                <RadioGroupItem id={el.value} value={el.value} />
               </div>
-              <label htmlFor={el.id}>
-                <Typography variant={'body2'}>{el.variant}</Typography>
-              </label>
+              <Typography as={'label'} htmlFor={el.value} variant={'body2'}>
+                {el.label}
+              </Typography>
             </div>
           )
         })}
-      </RadioGroupRadix.Root>
+      </RadioGroupRoot>
     )
   }
 )
+
+const RadioGroupRoot = forwardRef<
+  ElementRef<typeof RadioGroupRadix.Root>,
+  ComponentPropsWithoutRef<typeof RadioGroupRadix.Root>
+>(({ className, ...props }, ref) => {
+  return <RadioGroupRadix.Root className={clsx(s.radioGroupRoot, className)} {...props} ref={ref} />
+})
+
+RadioGroupRoot.displayName = RadioGroupRadix.Root.displayName
+
+const RadioGroupItem = forwardRef<
+  ElementRef<typeof RadioGroupRadix.Item>,
+  ComponentPropsWithoutRef<typeof RadioGroupRadix.Item>
+>(({ children, className, ...props }, ref) => {
+  return (
+    <RadioGroupRadix.Item className={clsx(s.RadioGroupItem, className)} ref={ref} {...props}>
+      <RadioGroupRadix.Indicator className={s.RadioGroupIndicator} />
+    </RadioGroupRadix.Item>
+  )
+})
+
+RadioGroupItem.displayName = RadioGroupRadix.Item.displayName
