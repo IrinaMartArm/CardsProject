@@ -12,7 +12,6 @@ type TabsType = {
 export const Tabs = ({ label, onChange, value }: TabsType) => {
   const onValueChangeHandler = (value: string) => {
     onChange('tab', value)
-    console.log(value)
   }
 
   return (
@@ -22,6 +21,7 @@ export const Tabs = ({ label, onChange, value }: TabsType) => {
         className={s.TabsRoot}
         defaultValue={value}
         onValueChange={onValueChangeHandler}
+        value={value}
       >
         <TabsRadix.List aria-label={'Manage your account'} className={s.TabsList}>
           <TabsRadix.Trigger className={s.TabsTrigger} value={'all'}>

@@ -17,6 +17,7 @@ type Props = {
   onChangeFilter: (key: string, value: string) => void
   onFiltersReset: () => void
   originMaxCount: number
+  tab: string
   value: string
 }
 export const DecksFilters = ({
@@ -26,6 +27,7 @@ export const DecksFilters = ({
   onChangeFilter,
   onFiltersReset,
   originMaxCount,
+  tab,
   value,
 }: Props) => {
   const onSearchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +59,7 @@ export const DecksFilters = ({
         type={'search'}
         value={value}
       />
-      <Tabs label={'Show decks cards'} name={'tab'} onChange={onChangeFilter} value={'all'} />
+      <Tabs label={'Show decks cards'} name={'tab'} onChange={onChangeFilter} value={tab} />
       <Slider
         label={'Number of cards'}
         max={originMaxCount}

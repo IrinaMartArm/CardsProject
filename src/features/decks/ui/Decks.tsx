@@ -74,6 +74,9 @@ export const Decks = () => {
   const onFiltersReset = () => {
     setSearchParametersHandler('minCardsCount', String(sliderData?.min))
     setSearchParametersHandler('maxCardsCount', String(sliderData?.max))
+    setSearchParametersHandler('searchValue', '')
+    setSearchParametersHandler('tab', 'all')
+    setName('')
   }
 
   if (isLoading || isSliderLoading || !sliderData) {
@@ -99,6 +102,7 @@ export const Decks = () => {
           onChangeFilter={setSearchParametersHandler}
           onFiltersReset={onFiltersReset}
           originMaxCount={sliderData.max}
+          tab={tab}
           value={name}
         />
         <DecksTable
