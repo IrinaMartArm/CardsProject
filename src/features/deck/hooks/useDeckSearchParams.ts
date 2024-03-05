@@ -3,7 +3,8 @@ import { useParams, useSearchParams } from 'react-router-dom'
 
 import { useDebounce } from '@/hooks/useDebounce'
 import { useMeQuery } from '@/services/auth/auth.service'
-import { useGetDeckByIdQuery, useGetDeckCardsQuery } from '@/services/decks/decks.service'
+import { useGetDeckCardsQuery } from '@/services/cards/cards.service'
+import { useGetDeckByIdQuery } from '@/services/decks/decks.service'
 
 export const useDeckSearchParams = () => {
   const { deckId } = useParams()
