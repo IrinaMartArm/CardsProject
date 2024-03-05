@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { answerVariants } from '@/App'
 import { Button, CardBox, ControlledRadioGroup, Typography } from '@/components/ui'
-import { useGetQuestionQuery, useSaveTheGradeMutation } from '@/services/decks/decks.service'
+import { useGetQuestionQuery, useSaveTheGradeMutation } from '@/services/cards/cards.service'
 import { gradeSchema } from '@/utils/Validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'

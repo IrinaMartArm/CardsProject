@@ -1,5 +1,4 @@
 import { baseApi } from '@/api/base-api'
-import { Card } from '@/services/cards/cards.types'
 import {
   CreateDeckArgs,
   Deck,
@@ -7,7 +6,6 @@ import {
   DeleteDeckArgs,
   GetDecksArgs,
   GetMinMax,
-  GradeArgs,
   UpdateDeckArgs,
 } from '@/services/decks/decks.types'
 
@@ -98,19 +96,7 @@ export const DecksService = baseApi.injectEndpoints({
         providesTags: ['Decks'],
         query: () => `v2/decks/min-max-cards`,
       }),
-      getQuestion: builder.query<Card, { id: string }>({
-        extraOptions: { cached: false },
-        providesTags: ['CardRequest'],
-        query: ({ id }) => `/v1/decks/${id}/learn`,
-      }),
-      saveTheGrade: builder.mutation<Deck, GradeArgs>({
-        invalidatesTags: ['CardRequest'],
-        query: ({ cardId, grade, id }) => ({
-          body: { cardId, grade },
-          method: 'POST',
-          url: `/v1/decks/${id}/learn`,
-        }),
-      }),
+
       updateDeck: builder.mutation<Deck, UpdateDeckArgs>({
         invalidatesTags: ['Decks'],
         onQueryStarted: async ({ id, ...data }, { dispatch, getState, queryFulfilled }) => {
@@ -165,10 +151,7 @@ export const {
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetDeckByIdQuery,
-
   useGetDecksQuery,
   useGetMinMaxCardsQuery,
-  useGetQuestionQuery,
-  useSaveTheGradeMutation,
   useUpdateDeckMutation,
 } = DecksService

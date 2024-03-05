@@ -1,5 +1,5 @@
 import { baseApi } from '@/api'
-import { Card, CardsResponse, GetCardsArgs } from '@/services/decks/decks.types'
+import { Card, CardsResponse, Deck, GetCardsArgs, GradeArgs } from '@/services/decks/decks.types'
 
 const cardsService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -69,6 +69,19 @@ const cardsService = baseApi.injectEndpoints({
           url: `v1/decks/${id}/cards`,
         }),
       }),
+      getQuestion: builder.query<Card, { id: string }>({
+        extraOptions: { cached: false },
+        providesTags: ['Cards'],
+        query: ({ id }) => `/v1/decks/${id}/learn`,
+      }),
+      saveTheGrade: builder.mutation<Deck, GradeArgs>({
+        invalidatesTags: ['Cards'],
+        query: ({ cardId, grade, id }) => ({
+          body: { cardId, grade },
+          method: 'POST',
+          url: `/v1/decks/${id}/learn`,
+        }),
+      }),
       updateCard: builder.mutation<Card, { body: FormData; card: Card }>({
         invalidatesTags: (_, error) => (error ? [] : ['Cards']),
         query: ({ body, card }) => ({
@@ -85,5 +98,7 @@ export const {
   useCreateCardMutation,
   useDeleteCardMutation,
   useGetDeckCardsQuery,
+  useGetQuestionQuery,
+  useSaveTheGradeMutation,
   useUpdateCardMutation,
 } = cardsService
