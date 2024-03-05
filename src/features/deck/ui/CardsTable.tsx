@@ -1,5 +1,5 @@
 import { Edit } from '@/components/assets/icons'
-import { Button, Typography } from '@/components/ui'
+import { Typography } from '@/components/ui'
 import { IconButton } from '@/components/ui/IconButton'
 import { DeleteDialog } from '@/components/ui/modals/dialogs/DeleteDialog'
 import { Rating } from '@/components/ui/tables/Rating'
@@ -76,12 +76,6 @@ export const CardsTable = ({ cards, currentUserId, disabled }: Props) => {
             <Table.Cell>
               {card.userId === currentUserId && (
                 <div className={s.iconButtons}>
-                  <Button
-                    className={s.iconButton}
-                    icon={<Edit />}
-                    onClick={() => {}}
-                    variant={'icon'}
-                  />
                   <UpdateCardModal card={card} trigger={<IconButton icon={<Edit />} />} />
                   <DeleteDialog
                     className={s.delete}
