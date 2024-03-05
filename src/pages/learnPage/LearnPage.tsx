@@ -14,7 +14,7 @@ export const LearnPage = () => {
       <Button as={Link} className={s.backBtn} icon={<ArrowLeft />} to={'/'} variant={'link'}>
         <Typography variant={'body2'}>Back to Decks List</Typography>
       </Button>
-      <Learn id={deckId || ''} />
+      <Learn deckId={deckId || ''} />
     </Page>
   )
 }

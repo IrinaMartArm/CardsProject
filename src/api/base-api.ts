@@ -5,5 +5,5 @@ export const baseApi = createApi({
   baseQuery: baseQueryWithReauth,
   endpoints: () => ({}),
   reducerPath: 'baseApi',
-  tagTypes: ['Decks', 'Cards', 'Me', 'Deck'],
+  tagTypes: ['Decks', 'Cards', 'Me', 'Deck', 'CardRequest'],
 })

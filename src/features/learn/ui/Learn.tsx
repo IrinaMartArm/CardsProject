@@ -11,19 +11,19 @@ import { z } from 'zod'
 import s from './learn.module.scss'
 
 type Props = {
-  id: string
+  deckId: string
   name?: string
 }
 
 type FormValues = z.infer<typeof gradeSchema>
 
-export const Learn = ({ id, name }: Props) => {
+export const Learn = ({ deckId, name }: Props) => {
   const [open, setOpen] = useState(false)
   const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(gradeSchema),
   })
 
-  const { data } = useGetQuestionQuery({ id })
+  const { data } = useGetQuestionQuery({ id: deckId })
   const [SaveTheGrade] = useSaveTheGradeMutation()
 
   const setOpenHandler = () => {
@@ -31,11 +31,13 @@ export const Learn = ({ id, name }: Props) => {
   }
 
   const submitHandler = ({ grade }: FormValues) => {
-    SaveTheGrade({ cardId: data?.id || '', grade: grade, id: id })
+    SaveTheGrade({ cardId: data?.id || '', grade: grade, id: deckId })
+    // refetch()
+    setOpen(false)
   }
 
   return (
-    <CardBox>
+    <CardBox className={s.learnCardBox}>
       <div className={s.learnRoot}>
         <Typography variant={'h1'}>Learn {name}</Typography>
         <div className={s.question}>

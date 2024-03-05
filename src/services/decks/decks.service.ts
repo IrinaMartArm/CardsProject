@@ -108,9 +108,12 @@ export const DecksService = baseApi.injectEndpoints({
         query: () => `v2/decks/min-max-cards`,
       }),
       getQuestion: builder.query<Card, { id: string }>({
+        extraOptions: { cached: false },
+        providesTags: ['CardRequest'],
         query: ({ id }) => `/v1/decks/${id}/learn`,
       }),
       saveTheGrade: builder.mutation<Deck, GradeArgs>({
+        invalidatesTags: ['CardRequest'],
         query: ({ cardId, grade, id }) => ({
           body: { cardId, grade },
           method: 'POST',
