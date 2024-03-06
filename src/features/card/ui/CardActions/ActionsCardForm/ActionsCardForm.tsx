@@ -6,7 +6,7 @@ import { IconButton } from '@/components/ui/IconButton'
 import { FileUploader } from '@/components/ui/fileUploader'
 import { ModalClose } from '@/components/ui/modals/ModalClose'
 import { ActionsCardFormData, useActionsCardForm } from '@/features/card/hooks/useActionsCardForm'
-import { Card } from '@/services/decks/decks.types'
+import { Card } from '@/services/cards/cards.types'
 import { CatchingData } from '@/utils/handleErrorResponse'
 
 import s from './ActionsCardForm.module.scss'

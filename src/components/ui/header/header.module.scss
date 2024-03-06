@@ -1,6 +1,6 @@
 .root {
   position: fixed;
-  z-index: auto;
+  z-index: 999;
   top: 0;
   right: 0;
   left: 0;
@@ -48,7 +48,11 @@
 }
 
 @media screen and (width <= 640px) {
-  .logo {
-    max-height: 22.4px;
+  .header {
+    padding: 0 5px;
   }
+
+  //.logo {
+  //  max-height: 22.4px;
+  //}
 }

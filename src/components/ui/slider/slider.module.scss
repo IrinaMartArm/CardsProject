@@ -75,3 +75,9 @@
 .slider {
   text-align: center;
 }
+
+@media screen and (width <= 640px) {
+  .SliderRoot {
+    width: 160px;
+  }
+}
