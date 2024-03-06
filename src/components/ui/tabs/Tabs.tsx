@@ -19,7 +19,7 @@ export const Tabs = ({ label, onChange, value }: TabsType) => {
       <Typography variant={'body2'}>{label}</Typography>
       <TabsRadix.Root
         className={s.TabsRoot}
-        // defaultValue={value}
+        defaultValue={'all'}
         onValueChange={onValueChangeHandler}
         value={value}
       >

@@ -30,7 +30,7 @@ export const TableBody = ({
           <Typography as={Link} to={`/deck/${item.id}`} variant={'body2'}>
             {item.name}
           </Typography>
-          <img alt={''} src={item.cover} width={30} />
+          {item.cover && <img alt={''} src={item.cover} width={30} />}
         </div>
       </Table.Cell>
       <Table.Cell>{item.cardsCount}</Table.Cell>
