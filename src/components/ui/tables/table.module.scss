@@ -1,20 +1,19 @@
 .table {
   border-collapse: collapse;
   color: var(--color-light-100);
-  border: 1px solid var(--color-bg-dividers);
+  border: 1px solid var(--color-dark-300);
 }
 
 .headCell {
-  padding: 6px 24px;
+  padding: 8px 24px;
 
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-m);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-m);
   text-align: start;
+  white-space: nowrap;
 
   background-color: var(--color-dark-500);
-
-  //border: 1px solid red;
 }
 
 .headerRow {
@@ -25,16 +24,45 @@
   padding: 8px 24px;
 
   font-size: var(--font-size-s);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-m);
 
   background-color: var(--color-dark-900);
-  border-bottom: 1px solid var(--color-dark-500);
+  border-bottom: 1px solid var(--color-dark-300);
 }
 
 .stars {
   display: flex;
+  padding: 3px;
 }
 
 .icons {
   display: flex;
+}
+
+@media screen and (width <= 640px) {
+  .table {
+    display: flex;
+  }
+
+  .headerRow {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .headCell {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-dark-300);
+  }
+
+  .tableCell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: end;
+  }
+
+  .stars {
+    justify-content: end;
+  }
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Card } from '@/services/decks/decks.types'
+import { Card } from '@/services/cards/cards.types'
 import { Cover } from '@/utils/Types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'

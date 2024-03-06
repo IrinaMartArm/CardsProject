@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 
 import { Modal } from '@/components/ui'
 import { useUpdateCardMutation } from '@/services/cards/cards.service'
-import { Card } from '@/services/decks/decks.types'
+import { Card } from '@/services/cards/cards.types'
 import { handleErrorResponse } from '@/utils/handleErrorResponse'
 
 import s from './UpdateCardModal.module.scss'

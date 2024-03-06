@@ -1,4 +1,4 @@
-import { PaginatedResponse, Pagination } from '@/services/common.types'
+import { PaginatedResponse } from '@/services/common.types'
 
 export type DeckResponse = PaginatedResponse<Deck[]>
 
@@ -37,24 +37,6 @@ export type DeleteDeckArgs = {
 export type GetMinMax = {
   max: number
   min: number
-}
-export type Card = {
-  answer: string
-  answerImg?: null | string
-  created: string
-  deckId: string
-  grade: number
-  id: string
-  question: string
-  questionImg?: null | string
-  shots: number
-  updated: string
-  userId: string
-}
-
-export type CardsResponse = {
-  items: Card[]
-  pagination: Pagination
 }
 
 export type GetCardsArgs = {

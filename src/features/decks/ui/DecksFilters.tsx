@@ -66,7 +66,12 @@ export const DecksFilters = ({
         onValueChange={onValueChangeHandler}
         value={[minCardsCount, maxCardsCount]}
       />
-      <Button icon={<TrashBin />} onClick={onFiltersReset} variant={'secondary'}>
+      <Button
+        className={s.clearFilter}
+        icon={<TrashBin />}
+        onClick={onFiltersReset}
+        variant={'secondary'}
+      >
         Clear Filter
       </Button>
     </div>

@@ -1,12 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-import { Play } from '@/components/assets/icons'
-import { Typography } from '@/components/ui'
-import { Button } from '@/components/ui/button'
-import { DeleteDialog } from '@/components/ui/modals/dialogs/DeleteDialog'
-import { EditDeckDialog } from '@/components/ui/modals/dialogs/UpdateDeckDialog'
 import { Table } from '@/components/ui/tables/Table'
 import { Sort, TableHeader } from '@/components/ui/tables/TableHeader'
+import { DecksTableMobile } from '@/features/decks/ui/DecksTableMobile'
+import { TableBody } from '@/features/decks/ui/TableBody'
 import { DeckResponse } from '@/services/decks/decks.types'
 
 import s from '@/features/decks/ui/decks.module.scss'
@@ -61,55 +58,53 @@ export const DecksTable = ({
   onSort,
   orderBy,
 }: Props) => {
+  const [width, setWidth] = useState(window.innerWidth)
+  const breakpoint = 640
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   const deleteClickHandler = (id: string) => () => {
     onDeleteClick(id)
   }
 
   return (
-    <Table.Root className={s.tableContainer}>
-      <TableHeader columns={columns} onSort={onSort} sort={orderBy} />
-      <Table.Body>
-        {decks?.items?.map(item => {
-          return (
-            <Table.Row key={item.id}>
-              <Table.Cell>
-                <div className={s.cellImg}>
-                  <Typography as={Link} to={`/deck/${item.id}`} variant={'body2'}>
-                    {item.name}
-                  </Typography>
-                  <img alt={''} src={item.cover} width={30} />
-                </div>
-              </Table.Cell>
-              <Table.Cell>{item.cardsCount}</Table.Cell>
-              <Table.Cell>{new Date(item.updated).toLocaleDateString('ru-RU')}</Table.Cell>
-              <Table.Cell>{item.author.name}</Table.Cell>
-              <Table.Cell>
-                <div className={s.iconButtons}>
-                  <Button
-                    as={Link}
-                    className={s.iconButton}
-                    icon={<Play />}
-                    to={`/learn/${item.id}`}
-                    variant={'icon'}
+    // <Table.Root className={s.tableContainer}>
+    <>
+      {width > breakpoint ? (
+        <>
+          <Table.Root className={s.tableContainer}>
+            <TableHeader columns={columns} onSort={onSort} sort={orderBy} />
+            <Table.Body>
+              {decks?.items?.map(item => {
+                return (
+                  <TableBody
+                    currentUserId={currentUserId || ''}
+                    deleteClickHandler={deleteClickHandler}
+                    disabled={disabled}
+                    item={item}
+                    key={item.id}
+                    width={width}
                   />
-                  {item.author.id === currentUserId && (
-                    <>
-                      <EditDeckDialog className={s.delete} deck={item} id={item.id} />
-                      <DeleteDialog
-                        className={s.delete}
-                        disabled={disabled}
-                        name={'Delete Deck'}
-                        onClick={deleteClickHandler(item.id)}
-                        text={'Do you really want to remove Deck Name? All cards will be deleted.'}
-                      />
-                    </>
-                  )}
-                </div>
-              </Table.Cell>
-            </Table.Row>
-          )
-        })}
-      </Table.Body>
-    </Table.Root>
+                )
+              })}
+            </Table.Body>
+          </Table.Root>
+        </>
+      ) : (
+        <DecksTableMobile
+          currentUserId={currentUserId}
+          decks={decks}
+          disabled={disabled}
+          onDeleteClick={onDeleteClick}
+          onSort={onSort}
+          orderBy={orderBy}
+        />
+      )}
+    </>
   )
 }
